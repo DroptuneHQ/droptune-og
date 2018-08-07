@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.0'
+ruby '2.5.1'
 
 # Framework
 gem 'rails', '~> 5.2.0'
@@ -15,8 +15,15 @@ gem 'puma'
 # Misc
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
 gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-gem 'omniauth-twitter'
 gem 'figaro' # environment variables
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-spotify'
+gem 'devise'
+gem 'bootstrap', '~> 4.1.3'
+gem 'jquery-rails'
+gem 'rspotify'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
