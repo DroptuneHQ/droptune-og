@@ -16,7 +16,7 @@ class ArtistJob < ApplicationJob
         user.artists << current_artist
         current_artist.update_attributes spotify_id: artist.id, spotify_followers: artist.followers['total'], spotify_popularity: artist.popularity, spotify_image: artist.images.first['url'], spotify_link: artist.external_urls['spotify']
 
-        AlbumJob.perform_later(current_artist.id)
+        AlbumJob.perform_later(current_artist.id) # if current_artist.updated_at > 1.day
       end
     end
 
