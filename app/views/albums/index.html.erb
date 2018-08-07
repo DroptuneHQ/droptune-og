@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row">
+    <h1>
+      New Albums
+      <% if current_user %>
+      <small class="text-muted">The latest music by the artists you follow</small>
+      <% else %>
+      <small class="text-muted">The latest music on Spotify</small>
+      <% end %>
+    </h1>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="list-group">
+          <%= link_to "Most recent", albums_path, class: 'list-group-item' %>
+          <% @months.each do |month| %>
+            <%= link_to(albums_path(month: month[0].to_date.month, year: month[0].to_date.year), class: 'list-group-item d-flex justify-content-between align-items-center') do %>
+              <%= month[0] %> <span class="badge badge-primary badge-pill"><%= month[1] %></span>
+            <% end %>
+          <% end %>
+          <% @years.each do |year| %>
+            <%= link_to(albums_path(year: year[0]), class: 'list-group-item') do %>
+              <%= year[0] %> <span class="badge badge-primary badge-pill"><%= year[1] %></span>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-sm-9">
+        <div class="row">
+        <% @albums.each do |a| %>
+        <div class="col-sm-2">
+          <div class="card album">
+            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap">
+            <div class="card-img-overlay">
+              <% if a.spotify_link %>
+              <a href="<%= a.spotify_link %>" class="card-link">Spotify</a>
+              <% end %>
+            </div>
+            <div class="card-block">
+              <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
+              <h6><%= a.artist.name %></h6>
+              <% if a.release_date %>
+              <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
+              <% end %>
+            </div>
+          </div>
+        </div>  
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+        <li class="breadcrumb-item"><%= link_to "Artists", artists_path %></li>
+        <li class="breadcrumb-item"><%= link_to @album.artist.name, artist_path(@album.artist) %></li>
+        <li class="breadcrumb-item active"><%= @album.name %></li>
+      </ol>
+      <h1><%= @album.name %></h1>
+
+      <div class="row">
+        <div class="col-sm-1">
+          <% if @album.spotify_id %>
+          <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="500" height="580" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

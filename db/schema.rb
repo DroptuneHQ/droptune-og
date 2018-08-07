@@ -10,10 +10,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_182353) do
+ActiveRecord::Schema.define(version: 2018_08_07_202901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "albums", force: :cascade do |t|
+    t.bigint "artist_id"
+    t.text "name"
+    t.text "artwork_link"
+    t.boolean "explicity", default: false
+    t.integer "track_count"
+    t.date "release_date"
+    t.integer "itunes_id"
+    t.text "itunes_link"
+    t.text "spotify_id"
+    t.text "spotify_image"
+    t.text "spotify_link"
+    t.integer "spotify_popularity"
+    t.string "album_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_albums_on_artist_id"
+  end
+
+  create_table "artists", force: :cascade do |t|
+    t.text "name"
+    t.text "genre"
+    t.integer "itunes_id"
+    t.text "itunes_link"
+    t.text "spotify_id"
+    t.integer "spotify_followers"
+    t.integer "spotify_popularity"
+    t.text "spotify_image"
+    t.text "spotify_link"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "connections", force: :cascade do |t|
     t.string "uid"
@@ -23,6 +56,15 @@ ActiveRecord::Schema.define(version: 2018_08_07_182353) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_connections_on_user_id"
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "artist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["artist_id"], name: "index_follows_on_artist_id"
+    t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
   create_table "sessions", force: :cascade do |t|
@@ -49,6 +91,7 @@ ActiveRecord::Schema.define(version: 2018_08_07_182353) do
     t.datetime "updated_at", null: false
     t.string "provider"
     t.string "uid"
+    t.jsonb "settings", default: {}, null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

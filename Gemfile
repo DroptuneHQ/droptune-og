@@ -24,6 +24,9 @@ gem 'devise'
 gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'rspotify'
+gem 'sidekiq'
+gem 'storext'
+gem 'with_advisory_lock'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

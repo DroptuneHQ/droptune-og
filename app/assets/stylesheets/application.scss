@@ -1,1 +1,73 @@
 @import "bootstrap";
+
+.card.artist {
+  border: 0;
+  .card-img-top {
+    height: 150px;
+    max-height: 110px;
+    width: 100%;
+    display: block;
+    background-size: 100%;
+    background-position: center;
+  }
+  .card-block {
+    padding: 0.5rem 0.1rem;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom:2px;
+    margin-bottom: 0.3rem
+  }
+}
+
+.card.album {
+  border: 0;
+  .card-block {
+    padding: 0.5rem 0.1rem;
+  }
+  .card-title {
+    font-size: 15px;
+    font-weight: 400;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+    padding-bottom:2px;
+    margin-bottom: 0.3rem
+  }
+  h6 {
+    font-size: 12px;
+    font-weight: 400;
+    margin-bottom: 0.1rem;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .release-date {
+    font-size: 14px;
+    
+    margin-bottom: 0;
+  }
+  .card-img-overlay {
+    margin-bottom: 62%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    a {
+      visibility: hidden;
+      color: white;
+      text-shadow: black 0 0 5px;
+    }
+    &:hover {
+      a {
+        visibility: visible;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
