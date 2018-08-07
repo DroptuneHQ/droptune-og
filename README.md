@@ -1,24 +1,13 @@
-# README
+This is absurdly new. As in, no code.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I ([@Shpigford](https://twitter.com/Shpigford)) started this project two years ago, let it fall by the wayside, and in that time all the music APIs have changed. So, started from scratch and making it open source from the get go.
 
-Things you may want to cover:
+## Contributing
+It's still very early days for this. It doesn't exist on any public servers yet...all dev work is still just local. So, your mileage will vary here and lots of things will break.
 
-* Ruby version
+But almost any contribution will be beneficial at this point.
 
-* System dependencies
+If you've got an improvement, just send in a pull request. If you've got feature ideas, simply [open a new issues](https://github.com/Shpigford/droptune/issues/new)!
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## License & Copyright
+Released under the MIT license, see the [LICENSE](./LICENSE) file. Copyright (c) 2018 Sabotage Media LLC.
