@@ -18,9 +18,6 @@
   <div class="row">
     <div class="col">
       <h2>Connections</h2>
-      <%=  %>
-      <%= RSpotify::User.new(current_user.connections.where(provider:'spotify').first.settings.to_hash).saved_tracks(limit: 1) %>
-
       <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify') %><br />
     </div>
   </div>
