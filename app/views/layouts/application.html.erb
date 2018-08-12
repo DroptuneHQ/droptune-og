@@ -34,7 +34,7 @@
         </ul>
       </div>
     </nav>
-    <% if current_user and current_user.connections.where(provider:'spotify').first.created_at > 1.day.ago %>
+    <% if current_user and current_user.connections.where(provider:'spotify') and current_user.connections.where(provider:'spotify').first.created_at > 1.day.ago %>
       <div class="container-fluid bg-success text-light text-center">
         <div class="row">
           <div class="col-sm" style="padding:12px 0;">
