@@ -5,7 +5,7 @@ class ArtistsController < ApplicationController
     if @user
       @artists = @user.artists.where.not(name: nil).order(name: :asc)
     else
-      @artists = Artist.where.not(name: nil).order(name: :asc)
+      @artists = Artist.where.not(name: nil).order(name: :asc).limit(30)
     end
   end
 

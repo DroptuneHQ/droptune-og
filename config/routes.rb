@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'pages/index'
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   

@@ -29,7 +29,7 @@
             <li class="nav-item"><%= link_to 'Settings', edit_user_registration_path, class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
           <% else %>
-            <li class="nav-item"><%= link_to 'Signup with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Sign in with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
           <% end %>
         </ul>
       </div>
@@ -39,6 +39,11 @@
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </div>
-    
+    <footer class="bd-footer text-muted">
+      <div class="container-fluid p-2 p-md-5">
+        <p>Got feedback? Want to contribute? <a href="https://github.com/Shpigford/droptune">Droptune is open source!</a></p>
+        <p>Original idea by <a href="https://twitter.com/Shpigford">@Shpigford</a>. Maintained by <a href="https://twitter.com/Shpigford">@Shpigford</a> with the help of <a href="https://github.com/Shpigford/droptune/graphs/contributors">our contributors</a>!</p>
+      </div>
+    </footer>
   </body>
 </html>
