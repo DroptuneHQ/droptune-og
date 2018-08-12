@@ -26,10 +26,10 @@
         </ul>
         <ul class="navbar-nav float-lg-right">
           <% if user_signed_in? %>
-            <li class="nav-item"><%= link_to 'Settings', settings_path, class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to 'Sign out', signout_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Settings', edit_user_registration_path, class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
           <% else %>
-            <li class="nav-item"><%= link_to 'Signup', '#', class: 'nav-link' %></li>
+            <li class="nav-item"><%= link_to 'Signup with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
           <% end %>
         </ul>
       </div>
