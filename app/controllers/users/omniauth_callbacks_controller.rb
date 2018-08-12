@@ -22,10 +22,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         connection.settings = spotify_user
         connection.save
         
-        flash[:notice] = 'Spotify connection successfully added!'
+        flash[:notice] = 'Spotify connected!'
         redirect_to root_path
       else
         connection = current_user.connections.create(provider: auth['provider'], uid: auth['uid'].to_s, settings: spotify_user)
+
+        flash[:notice] = 'Spotify connected!'
+        redirect_to root_path
       end
 
       FollowJob.perform_async(current_user.id)
