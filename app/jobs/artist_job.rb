@@ -26,7 +26,7 @@ class ArtistJob
 
         current_artist.update_attributes spotify_id: artist.id, spotify_followers: artist.followers['total'], spotify_popularity: artist.popularity, spotify_image: image, spotify_link: artist.external_urls['spotify']
 
-        AlbumJob.perform_async(current_artist.id)# if current_artist.updated_at > 1.minute.ago or current_artist.updated_at < 1.day.ago
+        AlbumJob.perform_async(current_artist.id) if current_artist.updated_at > 10.minutes.ago or current_artist.updated_at < 1.day.ago
       end
     end
 
