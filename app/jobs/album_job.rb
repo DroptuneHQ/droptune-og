@@ -25,7 +25,9 @@ class AlbumJob
             album_type = album.album_type
           end
 
-          new_album.update_attributes spotify_id: album.id, spotify_image: album.images.first['url'], spotify_link: album.external_urls['spotify'], spotify_popularity: album.popularity, album_type: album_type
+          image = album.images.first['url'] if album.images.present?
+
+          new_album.update_attributes spotify_id: album.id, spotify_image: image, spotify_link: album.external_urls['spotify'], spotify_popularity: album.popularity, album_type: album_type
 
           if new_album.release_date.blank? and album.try(:release_date)
             if album.release_date_precision == 'year'
