@@ -21,6 +21,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if connection
         connection.settings = spotify_user
         connection.save
+        
+        flash[:notice] = 'Spotify connection successfully added!'
+        redirect_to root_path
       else
         connection = current_user.connections.create(provider: auth['provider'], uid: auth['uid'].to_s, settings: spotify_user)
       end
