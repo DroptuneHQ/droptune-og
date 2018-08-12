@@ -1,5 +1,7 @@
-class FollowJob < ApplicationJob
-  queue_as :default
+class FollowJob
+  include Sidekiq::Worker
+
+  sidekiq_options :queue => :default
 
   def perform(id)
     user = User.find id
@@ -25,7 +27,7 @@ class FollowJob < ApplicationJob
 
     artist_ids = artist_ids.uniq.compact.each_slice(50).to_a
     artist_ids.each do |artist_group|
-      ArtistJob.perform_later(user.id, artist_group)
+      ArtistJob.perform_async(user.id, artist_group)
     end
 
     # Playlists

@@ -25,7 +25,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         connection = current_user.connections.create(provider: auth['provider'], uid: auth['uid'].to_s, settings: spotify_user)
       end
 
-      FollowJob.perform_later(current_user.id)
+      FollowJob.perform_async(current_user.id)
     end
   end
 

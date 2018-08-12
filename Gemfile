@@ -25,6 +25,7 @@ gem 'bootstrap', '~> 4.1.3'
 gem 'jquery-rails'
 gem 'rspotify'
 gem 'sidekiq'
+gem "sidekiq-throttled"
 gem 'storext'
 gem 'with_advisory_lock'
 
