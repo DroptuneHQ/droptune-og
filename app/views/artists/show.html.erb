@@ -16,7 +16,20 @@
         <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-success' %>
         <% end %>
       </h1>
+      <button id="apple-music-authorize">Authorize</button>
+      <script type="text/javascript">
+        let music = MusicKit.getInstance();
 
+        // Set the playback queue to a specific album, and play
+        music.setQueue({
+          album: '1025210938'
+        });
+
+        // Playback Controls
+        music.play();
+        music.pause();
+        music.stop();
+      </script>
       <div class="row">
         <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
         <div class="col-sm-2">

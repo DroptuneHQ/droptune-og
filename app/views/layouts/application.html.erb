@@ -67,5 +67,18 @@
         <p>Original idea by <a href="https://twitter.com/Shpigford">@Shpigford</a>. Maintained by <a href="https://twitter.com/Shpigford">@Shpigford</a> with the help of <a href="https://github.com/Shpigford/droptune/graphs/contributors">our contributors</a>!</p>
       </div>
     </footer>
+    <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+    <script type="text/javascript">
+      document.addEventListener('musickitloaded', function() {
+        // MusicKit global is now defined
+        MusicKit.configure({
+          developerToken: 'eyJ0eXAiOiJKV1QiLCJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImFsZyI6IkVTMjU2Iiwia2lkIjoiNVhZSEhQUENTMiJ9.eyJpc3MiOiJXMzNKWlBQUEZOIiwiZXhwIjoxNTQxOTcyNjQzLCJpYXQiOjE1MzQxOTY2NDN9.oUl3SYgEyMWXl950g9R12km8gNC2uRZ46GBCH31Ln8WkH4IvMqa6hk9_Ex_uTsU-njuiZNl9qzBzyveeN_HxLQ',
+          app: {
+            name: 'Droptune',
+            build: '1'
+          }
+        });
+      });
+    </script>
   </body>
 </html>

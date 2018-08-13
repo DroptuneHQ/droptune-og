@@ -24,5 +24,7 @@ Rails.application.routes.draw do
   end
 
   resources :albums
+  
+  get '/test' => 'pages#test'
   root "pages#index"
 end
