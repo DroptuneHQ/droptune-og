@@ -7,7 +7,7 @@ class AlbumsController < ApplicationController
       query = @user.albums.has_release_date.order(release_date: :desc, artist_id: :desc)
 
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
-      query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
+      #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
       query = Album.has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single')
     end
