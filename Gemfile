@@ -29,6 +29,7 @@ gem "sidekiq-throttled"
 gem 'storext'
 gem 'with_advisory_lock'
 gem 'sentry-raven'
+gem 'textacular', '~> 5.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       get 'unfollow'
       get 'follow'
     end
+    collection do
+      get 'search'
+    end
   end
 
   resources :albums

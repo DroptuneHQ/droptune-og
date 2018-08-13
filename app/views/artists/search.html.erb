@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <h1>
+      Search results for <strong><%= params[:artist] %></strong>
+    </h1>
+
+    <div class="row">
+      <% if @artists.present? %>
+      <% @artists.each do |a| %>
+      <div class="col-md-2">
+        <div class="card artist">
+          <a href="<%= artist_path(a) %>"><div class="card-img-top rounded" style="background-image: url(<%= a.spotify_image %>)"></div></a>
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to a.name, artist_path(a) %></h4>
+          </div>
+        </div>
+      </div>
+      <% end %>
+      <% else %>
+      <div class="col"><p>Couldn't find that artist!</p></div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+</div>

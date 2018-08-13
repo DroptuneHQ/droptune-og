@@ -28,4 +28,8 @@ class ArtistsController < ApplicationController
 
     redirect_to artist_path(@artist)
   end
+
+  def search
+    @artists = Artist.basic_search(params[:artist])
+  end
 end
