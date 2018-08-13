@@ -99,7 +99,18 @@ section{
     <script>
       document.addEventListener('musickitloaded', function() {   
   let music = MusicKit.getInstance()
+  //let rp = music.api.library.recentPlayed();
+  //let results = music.api.search('james brown', { limit: 2, types: 'artists,albums' });
   
+
+  music.api.library.artists('',{offset: 10, limit: 10}).then(function(artists) {
+    alert(JSON.stringify(artists, null, 4));
+    // MusicKit.getInstance().setQueue(albums[0]).then(function(queue) {
+    //     MusicKit.getInstance().play();
+    // });
+});
+
+
   music.addEventListener('playbackStateDidChange', function(event) {
     console.log(event)
   })
