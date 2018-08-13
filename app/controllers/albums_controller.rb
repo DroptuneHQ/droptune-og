@@ -20,8 +20,8 @@ class AlbumsController < ApplicationController
       @albums = query.uniq.first(20)
     end
 
-    @months = query.where('release_date > ?', 4.years.ago).uniq.map { |album| [Date::MONTHNAMES[album.release_date.month], album.release_date.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
-    @years = query.where('release_date < ?', 3.years.ago.beginning_of_year).uniq.map { |album| album.release_date.year }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
+    @months = query.where('release_date > ?', 6.months.ago).uniq.map { |album| [Date::MONTHNAMES[album.release_date.month], album.release_date.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
+    @years = query.uniq.map { |album| album.release_date.year }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
   end
 
   def show
