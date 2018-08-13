@@ -17,9 +17,8 @@ class FollowJob
       tracks = spotify.saved_tracks(limit: 50, offset: n)
       break if tracks.size == 0
       tracks.each do |track|
-        track.artists.each do |artist|
-          artist_ids.push(artist.id)
-        end
+        # Only pull the primary artist from the track
+        artist_ids.push(track.artists.first.id)
       end
       
       #sleep 0.3
