@@ -2,8 +2,14 @@
 
 I ([@Shpigford](https://twitter.com/Shpigford)) started this project two years ago, let it fall by the wayside, and in that time all the music APIs have changed. So, started from scratch and making it open source from the get go.
 
-## Current status
-This is absurdly new. I've got it working locally for a single account. No idea about production or multiple users.
+## Codebase
+The codebase is vanilla Rails, Sidekiq, Puma and Postgres. Quite a simple setup.
+
+## Local setup
+```bash
+$ bundle && rake db:setup # sets up the database and loads seed data
+$ foreman start # starts webserver and background jobs
+```
 
 ## Contributing
 It's still very early days for this. It doesn't exist on any public servers yet...all dev work is still just local. So, your mileage will vary here and lots of things will break.
