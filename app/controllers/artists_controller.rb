@@ -12,4 +12,12 @@ class ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
   end
+
+  def unfollow
+    @artist = Artist.find(params[:id])
+    
+    current_user.follows.where(artist: @artist.id).first.delete
+
+    redirect_to artist_path(@artist)
+  end
 end
