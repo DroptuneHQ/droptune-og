@@ -13,6 +13,14 @@ class ArtistsController < ApplicationController
     @artist = Artist.find(params[:id])
   end
 
+  def follow
+    @artist = Artist.find(params[:id])
+    
+    current_user.artists << @artist
+
+    redirect_to artist_path(@artist)
+  end
+
   def unfollow
     @artist = Artist.find(params[:id])
     
