@@ -13,7 +13,7 @@
         <% if @artist.users.include?(current_user) %>
         <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-outline-success', data: { confirm: "Are you sure?" } %>
         <% else %>
-        <a href="#" class="btn btn-success">Follow</a>
+        <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-success' %>
         <% end %>
       </h1>
 

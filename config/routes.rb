@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :artists do
     member do
       get 'unfollow'
+      get 'follow'
     end
   end
 
