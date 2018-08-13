@@ -13,6 +13,12 @@ Rails.application.routes.draw do
   get 'settings', to: 'devise/registrations#edit'
   get '/signout' => 'sessions#destroy', :as => :signout
 
-  resources :artists, :albums
+  resources :artists do
+    member do
+      get 'unfollow'
+    end
+  end
+
+  resources :albums
   root "pages#index"
 end
