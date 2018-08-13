@@ -1,11 +1,3 @@
-<% if user_signed_in? %>
-  <% unless current_user.connections.where(provider:'spotify').first %>
-  <h1>Connect Spotify</h1>
-  <p>To get started you'll need to connect your Spotify account!</p>
-    <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-lg btn-success' %><br />
-    <hr>
-  <% end %>
-<% else %>
 <div class="jumbotron">
   <h1 class="display-3">Droptune</h1>
   <h2>Never miss another album release</h2>
@@ -13,7 +5,6 @@
   <hr class="my-4">
   <%= link_to "Sign in with Twitter", omniauth_authorize_path("user", "twitter"), class: 'btn btn-primary btn-lg' %>
 </div>
-<% end %>
 
 <div class="latest">
   <div class="container">

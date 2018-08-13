@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
+  authenticated :user do
+    root 'albums#index', as: :authenticated_root
+  end
+
   get 'connect', to: 'users#connect'
   get 'settings', to: 'devise/registrations#edit'
   get '/signout' => 'sessions#destroy', :as => :signout
