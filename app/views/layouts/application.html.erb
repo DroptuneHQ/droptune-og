@@ -17,11 +17,14 @@
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to "Albums", albums_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to "Artists", artists_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Charts", charts_path, class: 'nav-link' %>
           </li>
         </ul>
         <%= form_tag(search_artists_path, method: 'get', class: 'form-inline', enforce_utf8:false) do %>

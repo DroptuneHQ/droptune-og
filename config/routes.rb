@@ -23,6 +23,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :charts do
+    collection do
+      get 'artists'
+      get 'albums'
+    end
+  end
+
   resources :albums
   root "pages#index"
 end
