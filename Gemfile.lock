@@ -99,12 +99,17 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubi (1.7.1)
+    et-orbi (1.1.4)
+      tzinfo
     execjs (2.7.0)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
     figaro (1.1.1)
       thor (~> 0.14)
+    fugit (1.1.5)
+      et-orbi (~> 1.1, >= 1.1.3)
+      raabro (~> 1.1)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     hashie (3.5.7)
@@ -177,6 +182,7 @@ GEM
     popper_js (1.14.3)
     public_suffix (3.0.2)
     puma (3.12.0)
+    raabro (1.1.6)
     rack (2.0.5)
     rack-protection (2.0.1)
       rack
@@ -224,6 +230,8 @@ GEM
       rest-client (~> 2.0.2)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
+    rufus-scheduler (3.5.2)
+      fugit (~> 1.1, >= 1.1.5)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -245,6 +253,11 @@ GEM
       connection_pool (~> 2.2, >= 2.2.0)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
+    sidekiq-scheduler (3.0.0)
+      redis (>= 3, < 5)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      tilt (>= 1.4.0)
     sidekiq-throttled (0.8.2)
       redis-prescription
       sidekiq
@@ -325,6 +338,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-raven
   sidekiq
+  sidekiq-scheduler
   sidekiq-throttled
   spring
   spring-watcher-listen (~> 2.0.0)

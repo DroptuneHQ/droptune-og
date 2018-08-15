@@ -26,6 +26,7 @@ gem 'jquery-rails'
 gem 'rspotify'
 gem 'sidekiq'
 gem "sidekiq-throttled"
+gem 'sidekiq-scheduler'
 gem 'storext'
 gem 'with_advisory_lock'
 gem 'sentry-raven'

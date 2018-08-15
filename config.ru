@@ -3,3 +3,6 @@
 require_relative 'config/environment'
 
 run Rails.application
+
+require 'sidekiq/web'
+require 'sidekiq-scheduler/web'
