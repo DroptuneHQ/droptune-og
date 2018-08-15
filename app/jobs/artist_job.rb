@@ -20,7 +20,8 @@ class ArtistJob
     artists.each do |artist|
       Artist.with_advisory_lock(artist.id) do
         current_artist = Artist.find_or_create_by(name: artist.name)
-        user.artists << current_artist
+        
+        user.artists << current_artist unless Follow.where(user: user, artist: current_artist, active: false).present?
 
         image = artist.images.first['url'] if artist.images.present?
 
