@@ -30,15 +30,10 @@
         <% @albums.each do |a| %>
         <div class="col-sm-2">
           <div class="card album">
-            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap">
-            <div class="card-img-overlay">
-              <% if a.spotify_link %>
-              <a href="<%= a.spotify_link %>" class="card-link">Spotify</a>
-              <% end %>
-            </div>
+            <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
             <div class="card-block">
               <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
-              <h6><%= a.artist.name %></h6>
+              <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
               <% if a.release_date %>
               <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
               <% end %>
