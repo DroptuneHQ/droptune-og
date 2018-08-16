@@ -31,8 +31,15 @@ class User < ApplicationRecord
   }.freeze
 
   def to_param
-    username = username.present? ? username : ''
-    [id, username.parameterize].join("-")
+    [id, screename.parameterize].join("-")
+  end
+
+  def screename
+    if username.blank?
+      Faker::FunnyName.name
+    else
+      username
+    end
   end
 
   def avatar

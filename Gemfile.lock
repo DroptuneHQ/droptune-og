@@ -102,6 +102,8 @@ GEM
     et-orbi (1.1.4)
       tzinfo
     execjs (2.7.0)
+    faker (1.9.1)
+      i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
@@ -115,7 +117,7 @@ GEM
     hashie (3.5.7)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.0.1)
+    i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     io-like (0.3.0)
@@ -322,6 +324,7 @@ DEPENDENCIES
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  faker
   figaro
   jbuilder (~> 2.5)
   jquery-rails
