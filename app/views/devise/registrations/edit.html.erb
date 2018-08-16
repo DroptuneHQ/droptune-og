@@ -9,6 +9,11 @@
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', "aria-describedby": 'emailHelp' %>
         </div>
+        <div class="form-group">
+          <%= f.label :username %>
+          <%= f.text_field :username, class: 'form-control' %>
+        </div>
+        
         <%= f.submit "Update", class: 'btn btn-primary' %>
 
       <% end %>
