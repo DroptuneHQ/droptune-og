@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Droptune</title>
+    <title><%= content_for?(:title) ? "#{yield(:title)} - Droptune" : "Droptune" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
