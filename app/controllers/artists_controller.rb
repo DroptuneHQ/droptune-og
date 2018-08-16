@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
     @user = current_user
 
     if @user
-      @artists = @user.artists.where.not(name: nil).order(name: :asc)
+      @artists = @user.artists.active.where.not(name: nil).order(name: :asc)
     else
       @artists = Artist.where.not(name: nil).order(name: :asc).limit(30)
     end
