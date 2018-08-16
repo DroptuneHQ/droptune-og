@@ -8,6 +8,7 @@ The codebase is vanilla Rails, Sidekiq, Puma and Postgres. Quite a simple setup.
 ## How to start
 
 **1. You'll need to pull down the repo locally.** You can use GitHub's "Clone or download" button to make that happen.
+
 **2. In the command line, you'll want to run the following to set up gems and the database...**
 ```bash
 $ bundle && rake db:setup # Installs the necessary gems and sets up the database
@@ -28,7 +29,7 @@ For both, you'll need to set the Redirect/Callback URI to `http://localhost:5000
 
 These will get you the necessary keys for the app to fully function.
 
-**4. Start the server!**
+**4. Start the server (also in the command line)!**
 ```bash
 $ foreman start # starts webserver and background jobs
 ```
