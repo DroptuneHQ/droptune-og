@@ -31,6 +31,7 @@ class User < ApplicationRecord
   }.freeze
 
   def to_param
+    username = username.present? ? username : ''
     [id, username.parameterize].join("-")
   end
 
