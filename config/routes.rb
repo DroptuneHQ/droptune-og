@@ -30,6 +30,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users
+
   resources :albums
   root "pages#index"
 end
