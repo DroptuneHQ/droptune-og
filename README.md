@@ -1,6 +1,13 @@
 ## About
+Droptune is new music notifications for your favorite artists. It's something I've ([@Shpigford](https://twitter.com/Shpigford)) personally wanted to see exist for as long as I've been listening to music (i.e. forever). I don't passively listen to music. I don't just fire up some radio station or random playlist and listen to whatever is on. I choose what music I listen to and follow artists I love.
 
-I ([@Shpigford](https://twitter.com/Shpigford)) started this project two years ago, let it fall by the wayside, and in that time all the music APIs have changed. So, started from scratch and making it open source from the get go.
+In that vein, I always want to know when those artists I love release new music, new music videos, news and whatever else they put out.
+
+Unfortunately, that's a difficult task. I consume content from artists across multiple platforms (Spotify, Apple Music, YouTube, etc). But none of those platform accurately and consistently surface new music. They use fancy algorithms and content editors to surface music they "think" you'll want, instead of just showing it all, ultimately meaning you miss out on a lot.
+
+On top of that, they don't surface the non-audio content (such as news articles and music videos).
+
+So, what Droptune does is centralize all of that. New music, new videos, news and more, all for the artists that I choose to follow, so I never miss beat.
 
 ## Codebase
 The codebase is vanilla Rails, Sidekiq, Puma and Postgres. Quite a simple setup.
