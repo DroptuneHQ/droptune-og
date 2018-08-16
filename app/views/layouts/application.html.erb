@@ -26,6 +26,9 @@
           <li class="nav-item">
             <%= link_to "Charts", charts_path, class: 'nav-link' %>
           </li>
+          <li class="nav-item">
+            <%= link_to "Users", users_path, class: 'nav-link' %>
+          </li>
         </ul>
         <%= form_tag(search_artists_path, method: 'get', class: 'form-inline', enforce_utf8:false) do %>
           <%= text_field_tag :artist, nil, class: 'form-control mr-sm-2 input-lg', placeholder: "Search for artists" %>

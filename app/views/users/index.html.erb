@@ -1,12 +1,11 @@
-<h1>Users</h1>
+<h1>Community</h1>
 <div class="row">
-  
 <% @users.each do |user| %>
-<div class="col-sm-3">
-  <div class="card">
-    <img class="card-img-top" src="<%= user.avatar %>" alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text"><%= user.screename %></p>
+<div class="col-sm-2">
+  <div class="card artist">
+    <a href="<%= user_path(user) %>"><div class="card-img-top rounded" style="background-image: url(<%= user.avatar %>)"></div></a>
+    <div class="card-block">
+      <h4 class="card-title"><%= link_to user.screename, user_path(user) %></h4>
     </div>
   </div>
 </div>
