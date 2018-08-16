@@ -1,0 +1,15 @@
+<h1>Users</h1>
+<div class="row">
+  
+<% @users.each do |user| %>
+<div class="col-sm-3">
+  <div class="card">
+    <img class="card-img-top" src="<%= user.avatar %>" alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text"><%= user.username %></p>
+    </div>
+  </div>
+</div>
+<% end %>
+
+</div>
