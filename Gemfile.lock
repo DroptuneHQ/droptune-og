@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/inkstak/musicbrainz.git
+  revision: e83fd26e2b252e738d2923ad2642e6045eac2e4b
+  tag: 1.0.0
+  specs:
+    musicbrainz (1.0.0)
+      activesupport
+      faraday
+      faraday_middleware
+      hashie (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -106,6 +117,8 @@ GEM
       i18n (>= 0.7)
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.12.2)
+      faraday (>= 0.7.4, < 1.0)
     ffi (1.9.25)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -117,6 +130,8 @@ GEM
     hashie (3.5.7)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
+    httparty (0.16.2)
+      multi_xml (>= 0.5.2)
     i18n (1.1.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -326,9 +341,11 @@ DEPENDENCIES
   devise
   faker
   figaro
+  httparty
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
+  musicbrainz!
   omniauth
   omniauth-facebook
   omniauth-spotify

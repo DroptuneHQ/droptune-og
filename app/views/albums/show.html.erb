@@ -15,6 +15,10 @@
           <% if @album.spotify_id %>
           <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="500" height="580" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
           <% end %>
+
+          <% if @album.applemusic_id %>
+          <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="580" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music" width="500"></iframe>
+          <% end %>
         </div>
       </div>
     </div>
