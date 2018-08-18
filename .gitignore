@@ -29,3 +29,4 @@
 /config/application.yml
 
 music_token.py
+.DS_Store
