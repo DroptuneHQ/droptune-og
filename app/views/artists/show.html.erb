@@ -1,3 +1,4 @@
+<% title @artist.name %>
 <div class="container">
   <div class="row">
     <div class="col">
@@ -10,10 +11,12 @@
       </nav>
       
       <h1><%= @artist.name %> 
-        <% if @artist.users.include?(current_user) %>
-        <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-outline-success', data: { confirm: "Are you sure?" } %>
-        <% else %>
-        <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-success' %>
+        <% if current_user %>
+          <% if Follow.where(user: current_user, artist: @artist, active: true).present? %>
+          <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-outline-success', data: { confirm: "Are you sure?" } %>
+          <% else %>
+          <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-success' %>
+          <% end %>
         <% end %>
       </h1>
       <button id="apple-music-authorize">Authorize</button>
@@ -34,12 +37,7 @@
         <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
         <div class="col-sm-2">
           <div class="card album">
-            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap">
-            <div class="card-img-overlay">
-              <% if a.spotify_link %>
-              <a href="<%= a.spotify_link %>" class="card-link">Spotify</a>
-              <% end %>
-            </div>
+            <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
             <div class="card-block">
               <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
               <% if a.release_date %>

@@ -1,17 +1,12 @@
-<% title "Artists" %>
+<% title "Top Artists" %>
 <div class="container">
   <div class="row">
-    <h1>
-      Artists
-      <% if current_user %>
-      <small class="text-muted">The artists you follow</small>
-      <% else %>
-      <small class="text-muted">Popular artists</small>
-      <% end %>
+    <h1>Top Artists
+    <small class="text-muted">The most-followed artists</small>
     </h1>
-
     <div class="row">
-      <% @artists.each do |a| %>
+      <% @follows.each do |artist| %>
+      <% a = Artist.find_by_id(artist.first) %>
       <div class="col-sm-2">
         <div class="card artist">
           <a href="<%= artist_path(a) %>"><div class="card-img-top rounded" style="background-image: url(<%= a.spotify_image %>)"></div></a>
@@ -22,5 +17,4 @@
       </div>
       <% end %>
     </div>
-  </div>
 </div>

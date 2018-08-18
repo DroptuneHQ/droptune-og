@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
     @user = current_user
 
     if @user
-      @artists = @user.artists.where.not(name: nil).order(name: :asc)
+      @artists = @user.artists.active.where.not(name: nil).order(name: :asc)
     else
       @artists = Artist.where.not(name: nil).order(name: :asc).limit(30)
     end
@@ -16,6 +16,7 @@ class ArtistsController < ApplicationController
   def follow
     @artist = Artist.find(params[:id])
     
+    current_user.follows.where(artist: @artist).delete_all
     current_user.artists << @artist
 
     redirect_to artist_path(@artist)
@@ -24,7 +25,8 @@ class ArtistsController < ApplicationController
   def unfollow
     @artist = Artist.find(params[:id])
     
-    current_user.follows.where(artist: @artist.id).first.delete
+    current_user.follows.where(artist: @artist).delete_all
+    current_user.follows.create(artist: @artist, active: false)
 
     redirect_to artist_path(@artist)
   end

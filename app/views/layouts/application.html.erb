@@ -1,12 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Droptune</title>
+    <title><%= content_for?(:title) ? "#{yield(:title)} - Droptune" : "Droptune" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23290403-19"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-23290403-19');
+    </script>
   </head>
 
   <body>
@@ -17,11 +26,17 @@
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to "Albums", albums_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <%= link_to "Artists", artists_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Charts", charts_path, class: 'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Users", users_path, class: 'nav-link' %>
           </li>
         </ul>
         <%= form_tag(search_artists_path, method: 'get', class: 'form-inline', enforce_utf8:false) do %>
@@ -30,6 +45,7 @@
         <% end %>
         <ul class="navbar-nav">
           <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to 'Profile', user_path(current_user), class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to 'Settings', edit_user_registration_path, class: 'nav-link' %></li>
             <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
           <% else %>
