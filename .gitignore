@@ -27,3 +27,5 @@
 
 # Ignore application configuration
 /config/application.yml
+
+music_token.py

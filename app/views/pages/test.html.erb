@@ -1,132 +1,15 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authorize</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <h1>Authorization</h1>
+  <button id="apple-music-authorize">Authorize</button>
+  <button id="apple-music-unauthorize">Unauthorize</button>
 
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico">
-  <link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111">
-  <title>CodePen - MusicKit JS Demo</title>
-  <meta name="apple-music-developer-token" content="eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhYTEI5WkpSRzMifQ.eyJpc3MiOiJXMzNKWlBQUEZOIiwiaWF0IjoxNTM0MTk3Njc4LCJleHAiOjE1MzQyNDA4Nzh9.DnWadBObMQgXPUANjBpyRNBwDTG-51Kz1Pb0562TTi3alXT7E2Ab4PeSN0-4RrV133GCGozWf9VUrAjlYtFGqQ
-">
-<meta name="apple-music-app-name" content="Droptune">
-<meta name="apple-music-app-build" content="1">
-  
-  
-  
-      <style>
-      html, body, main{
-  height: 100%;
-  width: 100%;
-}
-
-main{
-  display: flex;
-}
-
-section{
-  width: 50%;
-}
-    </style>
-
-  
-  
-  
-  
-
-<style></style><style>.pkt_added {text-decoration:none !important;}</style></head>
-
-<body translate="no">
-
-  <main>
-  <section>
-    <h1>MusicKit JS</h1>
-
-    <h2>Demo Player</h2>
-
-    <h3>Authentication</h3>
-
-    <button id="apple-music-authorize" style="display: none;">Authorize</button>
-    <button id="apple-music-unauthorize">Unauthorize</button>
-
-    <h3>Media Playback Queue</h3>
-
-    <h4>Playlist</h4>
-    <button data-apple-music-set-queue="pl.da219c87667b4018968b94c4be8bc793" data-apple-music-autoplay="true">Queue Playlist</button>
-
-    <!--
-    <h4>Album</h4>
-    <button data-apple-music-set-queue="1025210938">Queue Album</button>
-    -->
-
-    <h3>Media Playback Controls</h3>
-
-    <button data-apple-music-pause="" style="display: none;">Pause</button>
-    <button data-apple-music-play="" disabled="true">Play</button>
-    <button data-apple-music-skip-to-next-item="" disabled="true">Next</button>
-    <button data-apple-music-skip-to-previous-item="" disabled="true">Previous</button>
-  </section>
-
-  <section>
-    <h3>Now Playing Item</h3><h3>
-
-    </h3><h4>Info</h4>
-    <p data-apple-music-now-playing="" style="display: none;"></p>
-
-    <h4>Album</h4>
-    <span data-apple-music-now-playing="albumInfo" style="display: none;"></span>
-
-    <h4>Artist</h4>
-    <span data-apple-music-now-playing="artistName" style="display: none;"></span>
-
-    <h4>Artwork</h4>
-    <img data-apple-music-now-playing="artworkURL" width="100" height="100" style="display: none;">
-
-    <h3>Playback Information</h3>
-
-    <h4>Duration</h4>
-    <time id="apple-music-current-playback-duration" style="display: none;"></time>
-
-    <h4>Time</h4>
-    <time id="apple-music-current-playback-time" style="display: none;"></time>
-
-    <h4>Progress</h4>
-    <span id="apple-music-current-playback-progress" style="display: none;"></span>
-  </section>
-</main>
-  
   <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
-
-  
-
-    <script>
-      document.addEventListener('musickitloaded', function() {   
-  let music = MusicKit.getInstance()
-  //let rp = music.api.library.recentPlayed();
-  //let results = music.api.search('james brown', { limit: 2, types: 'artists,albums' });
-  
-
-  music.api.library.artists('',{offset: 10, limit: 10}).then(function(artists) {
-    alert(JSON.stringify(artists, null, 4));
-    // MusicKit.getInstance().setQueue(albums[0]).then(function(queue) {
-    //     MusicKit.getInstance().play();
-    // });
-});
-
-
-  music.addEventListener('playbackStateDidChange', function(event) {
-    console.log(event)
-  })
-  
-  music.addEventListener('mediaItemDidChange', function(event) {
-    console.log(event)
-  })
-})
-    </script>
-
-
-
-  
-  
-
-
-
-
- <audio id="apple-music-player" crossorigin="true" preload="metadata"></audio></body></html>
+  <%= javascript_include_tag 'applemusic' %>
+</body>
+</html>
