@@ -4,7 +4,7 @@
     <title><%= content_for?(:title) ? "#{yield(:title)} - Droptune" : "Droptune" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -19,8 +19,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-      <%= link_to "Droptune", root_path, class: 'navbar-brand mb-0 h1' %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <%#= link_to "Droptune", root_path, class: 'navbar-brand mb-0 h1' %>
+      <%= link_to image_tag('logo-droptune-white.svg', height: '30', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
