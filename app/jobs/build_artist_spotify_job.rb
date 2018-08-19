@@ -15,9 +15,12 @@ class BuildArtistSpotifyJob
     artist = Artist.find artist_id
 
     spotify_artist = RSpotify::Artist.search(artist.name).first
-    image = spotify_artist.images.first['url'] if spotify_artist.images.present?
-    artist.update_attributes spotify_id: spotify_artist.id, spotify_followers: spotify_artist.followers['total'], spotify_popularity: spotify_artist.popularity, spotify_image: image, spotify_link: spotify_artist.external_urls['spotify']
+    
+    if spotify_artist.present?
+      image = spotify_artist.images.first['url'] if spotify_artist.images.present?
+      artist.update_attributes spotify_id: spotify_artist.id, spotify_followers: spotify_artist.followers['total'], spotify_popularity: spotify_artist.popularity, spotify_image: image, spotify_link: spotify_artist.external_urls['spotify']
 
-    BuildAlbumSpotifyJob.perform_async(artist_id)
+      BuildAlbumSpotifyJob.perform_async(artist_id)
+    end
   end
 end
