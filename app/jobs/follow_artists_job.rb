@@ -7,7 +7,7 @@ class FollowArtistsJob
     artist_names = Array(artist_names)
 
     artist_names.each do |artist_name|
-      artist = Artist.where(name: artist_name).first_or_initialize
+      artist = Artist.where('lower(name) = ?', artist_name.downcase).first_or_initialize(name: artist_name)
 
       if artist.new_record?
         artist.save
