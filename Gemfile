@@ -32,6 +32,8 @@ gem 'with_advisory_lock'
 gem 'sentry-raven'
 gem 'textacular', '~> 5.0'
 gem 'faker'
+gem 'musicbrainz', github: 'inkstak/musicbrainz', tag: '1.0.0'
+gem 'httparty'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

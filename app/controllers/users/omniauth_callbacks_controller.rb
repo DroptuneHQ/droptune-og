@@ -31,7 +31,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         redirect_to root_path
       end
 
-      FollowJob.perform_async(current_user.id)
+      FollowSpotifyJob.perform_async(current_user.id)
     end
   end
 

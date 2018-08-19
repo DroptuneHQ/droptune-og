@@ -28,5 +28,6 @@
 # Ignore application configuration
 /config/application.yml
 
-music_token.py
 .DS_Store
+music_token.py
+apple.p8
