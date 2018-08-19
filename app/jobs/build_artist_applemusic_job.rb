@@ -18,7 +18,7 @@ class BuildArtistApplemusicJob
       query: {term: artist.name, types: 'artists', limit: 1},
       headers: {"Authorization" => "Bearer #{ENV['apple_token']}"}
     })
-    artist.update_attributes applemusic_id: response.parsed_response['results']['artists']['data'].first['id']
+    artist.update_attributes applemusic_id: response.parsed_response['results']['artists']['data'].first['id'] if response.parsed_response['results'].present?
 
     BuildAlbumApplemusicJob.perform_async(artist_id)
   end

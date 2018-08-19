@@ -16,6 +16,6 @@ class BuildArtistMusicbrainzJob
 
     musicbrainz = MusicBrainz::Client.new
     musicbrainz_artist = musicbrainz.artists(artist.name).first
-    artist.update_attributes year_started: musicbrainz_artist.date_begin, year_ended: musicbrainz_artist.date_end
+    artist.update_attributes year_started: musicbrainz_artist.date_begin, year_ended: musicbrainz_artist.date_end if musicbrainz_artist.present?
   end
 end
