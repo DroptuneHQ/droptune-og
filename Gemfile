@@ -11,6 +11,7 @@ gem 'pg'
 
 # Webserver
 gem 'puma'
+gem 'puma_worker_killer'
 
 # Misc
 gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
