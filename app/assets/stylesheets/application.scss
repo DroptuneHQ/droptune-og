@@ -1,8 +1,34 @@
 $dark: #202425;
+$primary: #15B6FB;
 $font-family-sans-serif:      'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $headings-font-family: 'Nunito', sans-serif;
 
 @import "bootstrap";
+
+.navbar {
+  font-family: 'Nunito', sans-serif;
+  form {
+    .input-lg {
+      background-color: lighten($dark, 12%)!important;
+      border: 0;
+      color: $white;
+    }
+  }
+}
+.navbar-main {
+  padding-top: 0!important;
+}
+.nav-item {
+  &.active {
+    box-shadow: 0 2px $primary inset;
+  }
+  &:hover {
+    box-shadow: 0 2px $primary inset;
+  }
+}
+.bg-lightdark {
+  background: lighten($dark, 4%)!important;
+}
 
 .bd-footer {
   border-top: 1px solid #f7f7f7;

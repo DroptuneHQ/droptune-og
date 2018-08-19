@@ -19,41 +19,51 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-main">
       <%#= link_to "Droptune", root_path, class: 'navbar-brand mb-0 h1' %>
-      <%= link_to image_tag('logo-droptune-white.svg', height: '30', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand' %>
+      <%= link_to image_tag('logo-droptune-white.svg', height: '30', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand mr-3 mt-2' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <%= link_to "Albums", albums_path, class: 'nav-link' %>
+          <li class="nav-item pt-2 mx-2">
+            <%= link_to "Releases", albums_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item pt-2 mx-2">
             <%= link_to "Artists", artists_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item pt-2 mx-2">
             <%= link_to "Charts", charts_path, class: 'nav-link' %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item pt-2 mx-2">
             <%= link_to "Users", users_path, class: 'nav-link' %>
           </li>
         </ul>
-        <%= form_tag(search_artists_path, method: 'get', class: 'form-inline', enforce_utf8:false) do %>
-          <%= text_field_tag :artist, nil, class: 'form-control mr-sm-2 input-lg', placeholder: "Search for artists" %>
-          <button class="btn btn-light my-2 my-sm-0" type="submit">Search</button>
-        <% end %>
+        
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-          <li class="nav-item"><%= link_to 'Profile', user_path(current_user), class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to 'Settings', edit_user_registration_path, class: 'nav-link' %></li>
-            <li class="nav-item"><%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
+          <li class="nav-item pt-2 dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="<%= current_user.avatar %>" class="rounded-circle float-left" style="max-width:24px">  <%= current_user.screename %>
+            </a>
+            
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %>
+              <%= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item' %>
+              <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+            </div>
+          </li>
           <% else %>
-            <li class="nav-item"><%= link_to 'Sign in with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
+          <li class="nav-item"><%= link_to 'Sign in with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
           <% end %>
         </ul>
       </div>
+    </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-lightdark">
+      <%= form_tag(search_artists_path, method: 'get', class: 'd-inline w-100', enforce_utf8:false) do %>
+        <%= text_field_tag :artist, nil, class: 'form-control input-lg', placeholder: "Search for artists" %>
+      <% end %>
     </nav>
     <% if current_user and current_user.connections.where(provider:'spotify').present? and current_user.connections.where(provider:'spotify').first.created_at > 3.hours.ago %>
       <div class="container-fluid bg-success text-light text-center">
