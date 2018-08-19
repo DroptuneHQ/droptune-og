@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_16_002232) do
+ActiveRecord::Schema.define(version: 2018_08_18_195825) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2018_08_16_002232) do
     t.string "album_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "applemusic_id"
+    t.string "applemusic_image"
+    t.string "applemusic_link"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
   end
 
@@ -46,6 +49,9 @@ ActiveRecord::Schema.define(version: 2018_08_16_002232) do
     t.text "spotify_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "applemusic_id"
+    t.integer "year_started"
+    t.integer "year_ended"
   end
 
   create_table "connections", force: :cascade do |t|

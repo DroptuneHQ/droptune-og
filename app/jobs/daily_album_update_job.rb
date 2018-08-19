@@ -5,7 +5,11 @@ class DailyAlbumUpdateJob
 
   def perform
     User.find_each do |user|
-      FollowJob.perform_async(user.id)
+      FollowSpotifyJob.perform_async(user.id)
+    end
+    
+    Artist.find_each do |artist|
+      BuildArtistJob.perform_async(artist.id)
     end
   end
 end
