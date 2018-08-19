@@ -34,6 +34,7 @@ gem 'textacular', '~> 5.0'
 gem 'faker'
 gem 'musicbrainz', github: 'inkstak/musicbrainz', tag: '1.0.0'
 gem 'httparty'
+gem 'jwt'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

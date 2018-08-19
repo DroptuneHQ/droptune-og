@@ -16,7 +16,7 @@ class BuildArtistApplemusicJob
 
     response = HTTParty.get('https://api.music.apple.com/v1/catalog/us/search', {
       query: {term: artist.name, types: 'artists', limit: 1},
-      headers: {"Authorization" => "Bearer #{Apple::Token}"}
+      headers: {"Authorization" => "Bearer #{ENV['apple_token']}"}
     })
     artist.update_attributes applemusic_id: response.parsed_response['results']['artists']['data'].first['id'] if response.parsed_response['results'].present?
 

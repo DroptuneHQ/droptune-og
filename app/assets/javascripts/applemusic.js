@@ -1,16 +1,24 @@
 apple_music_id= $('#apple-music-authorize');
-dev_token = 'eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlhYTEI5WkpSRzMifQ.eyJpc3MiOiJXMzNKWlBQUEZOIiwiaWF0IjoxNTM0NTYwMzAzLCJleHAiOjE1NDc1MjM5MDN9.7Bk5aK9jG-2nDssxGEm4ky3MB4y53i0sqw5e-tjG_wtXlU7fC23k0IOtfizKA79BsDkg6sRMuBSXyoro4XLCFA';
+var dev_token;
 
 $(document).ready(function() {
-  MusicKit.configure({
-    developerToken: dev_token,
-    app: {
-      name: 'Droptune',
-      build: '1'
+  $.ajax({
+    url: '/token.json',
+    traditional: true,
+    dataType: 'json',
+    success: function(data) {
+      MusicKit.configure({
+        developerToken: data['token'],
+        app: {
+          name: 'Droptune',
+          build: '1'
+        }
+      });
+      
+      music = MusicKit.getInstance();
+      dev_token=data['token'];
     }
   });
-
-  music = MusicKit.getInstance();
 
   apple_music_id.on('click', function () {
     var auth = music.authorize();

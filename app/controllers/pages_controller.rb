@@ -6,4 +6,9 @@ class PagesController < ApplicationController
   def test
     render :layout => false
   end
+
+  def token
+    @token = ENV['apple_token']
+    render :layout => false
+  end
 end

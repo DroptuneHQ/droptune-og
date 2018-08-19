@@ -39,5 +39,6 @@ Rails.application.routes.draw do
   resources :albums
   
   get '/test' => 'pages#test'
+  get '/token' => 'pages#token'
   root "pages#index"
 end

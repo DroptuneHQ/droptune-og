@@ -11,35 +11,28 @@ class UsersController < ApplicationController
 
   def import_apple_music
     results = []
+    artists = []
     offset = 0
 
     loop do
-      url = URI("https://api.music.apple.com/v1/me/library/artists?limit=100&offset=#{offset}")
-      http = Net::HTTP.new(url.host, url.port)
-      http.use_ssl = true
-      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+      response = HTTParty.get('https://api.music.apple.com/v1/me/library/artists', {
+        query: {limit: 100, offset: offset},
+        headers: {"Authorization" => "Bearer #{params['dev_token']}", "music-user-token" => params['user_token']}
+      })
+      
+      next_url = response.parsed_response['next']
 
-      request = Net::HTTP::Get.new(url)
-      request["authorization"] = "Bearer #{params['dev_token']}"
-      request["music-user-token"] = params['user_token']
-
-      response = http.request(request)
-      body = JSON.parse(response.body)
-      next_url = body['next']
-
-      results += body['data']
+      results += response.parsed_response['data']
 
       break if (next_url.blank?)
 
       offset = offset+100
     end
 
-    #puts results
-
     results.each do |result|
-      puts result['attributes']['name']
+      artists.push(result['attributes']['name'])
     end
-    
-    # puts response.read_body
+
+    FollowArtistsJob.perform_async(current_user.id, artists)
   end
 end
