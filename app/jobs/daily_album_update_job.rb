@@ -1,7 +1,7 @@
 class DailyAlbumUpdateJob
   include Sidekiq::Worker
 
-  sidekiq_options :queue => :daily
+  sidekiq_options :queue => :default
 
   def perform
     User.find_each do |user|
