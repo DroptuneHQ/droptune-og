@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Authorize</title>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body>
+  <h1>Authorization</h1>
+  <button id="apple-music-authorize">Authorize</button>
+  <button id="apple-music-unauthorize">Unauthorize</button>
+
+  <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+  <%= javascript_include_tag 'applemusic' %>
+</body>
+</html>

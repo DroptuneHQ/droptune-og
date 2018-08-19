@@ -19,7 +19,7 @@
           <% end %>
         <% end %>
       </h1>
-
+      
       <div class="row">
         <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
         <div class="col-sm-2">

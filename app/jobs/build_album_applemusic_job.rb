@@ -5,7 +5,7 @@ class BuildAlbumApplemusicJob
   def perform(artist_id)
     artist = Artist.find artist_id
 
-    response = HTTParty.get("https://api.music.apple.com/v1/catalog/us/artists/#{artist.applemusic_id}/albums", {headers: {"Authorization" => "Bearer #{Apple::Token}"}})
+    response = HTTParty.get("https://api.music.apple.com/v1/catalog/us/artists/#{artist.applemusic_id}/albums", {headers: {"Authorization" => "Bearer #{ENV['apple_token']}"}})
 
     albums = response.parsed_response['data']
 

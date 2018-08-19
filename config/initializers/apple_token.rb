@@ -14,7 +14,6 @@ module Apple
 
   headers = {
     'typ': 'JWT',
-    'alg': algorithm,
     'kid': keyId
   }
 

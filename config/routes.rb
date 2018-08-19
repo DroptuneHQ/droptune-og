@@ -30,8 +30,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    collection do
+      get 'import_apple_music'
+    end
+  end
 
   resources :albums
+  
+  get '/test' => 'pages#test'
+  get '/token' => 'pages#token'
   root "pages#index"
 end
