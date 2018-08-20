@@ -62,29 +62,26 @@
         </ul>
       </div>
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-lightdark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-lightdark mb-5">
       <%= form_tag(search_artists_path, method: 'get', class: 'd-inline w-100', enforce_utf8:false) do %>
         <%= text_field_tag :artist, nil, class: 'form-control input-lg', placeholder: "Search for artists" %>
       <% end %>
     </nav>
-    <% if current_user and current_user.connections.where(provider:'spotify').present? and current_user.connections.where(provider:'spotify').first.created_at > 3.hours.ago %>
-      <div class="container-fluid bg-success text-light text-center">
-        <div class="row">
-          <div class="col-sm" style="padding:12px 0;">
-            Your Spotify account is now connected. It can take a few hours to fully populate your library (thanks to Spotify rate limits).
-          </div>
-        </div>
-      </div>
-    <% end %>
     <div class="container"> 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice %>
+        <div class="alert alert-success mt-3" role="alert"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="alert alert-danger mt-3" role="alert"><%= alert %></div>
+      <% end %>
 
       <% if user_signed_in? %>
-        <% unless current_user.connections.where(provider:'spotify').first %>
-        <h1>Connect Spotify</h1>
-        <p>To get started you'll need to connect your Spotify account!</p>
-          <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-lg btn-success' %><br />
+        <% unless current_user.follows.present? %>
+        <h1>Connect</h1>
+        <p>To get started you'll need to connect a music streaming service!</p>
+          <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-lg btn-primary' %> <button id="apple-music-authorize" class="btn btn-lg btn-primary">Connect Apple Music</button>
+      <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+      <%= javascript_include_tag 'applemusic' %>
           <hr>
         <% end %>
       <% end %>

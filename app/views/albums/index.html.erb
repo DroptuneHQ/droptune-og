@@ -1,40 +1,42 @@
 <% title "Latest Releases" %>
+<% if @albums.present? %>
 <div class="container">
-    <div class="row justify-content-between">
-      <div class="col-6"><h2>Latest Releases</h2></div>
-      <div class="col-3 text-right">
-        <div class="dropdown">
-          <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Last 7 days", albums_path(days: 7), class: 'dropdown-item' %>
-            <%= link_to "Last 14 days", albums_path(days: 14), class: 'dropdown-item' %>
-            <%= link_to "Last 30 days", albums_path(days: 30), class: 'dropdown-item' %>
-            <%= link_to "Last 60 days", albums_path(days: 60), class: 'dropdown-item' %>
-            <%= link_to "Last 90 days", albums_path(days: 90), class: 'dropdown-item' %>
-          </div>
+  <div class="row justify-content-between">
+    <div class="col-6"><h2>Latest Releases</h2></div>
+    <div class="col-3 text-right">
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Last 7 days", albums_path(days: 7), class: 'dropdown-item' %>
+          <%= link_to "Last 14 days", albums_path(days: 14), class: 'dropdown-item' %>
+          <%= link_to "Last 30 days", albums_path(days: 30), class: 'dropdown-item' %>
+          <%= link_to "Last 60 days", albums_path(days: 60), class: 'dropdown-item' %>
+          <%= link_to "Last 90 days", albums_path(days: 90), class: 'dropdown-item' %>
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="row">
-        <% @albums.each do |a| %>
-        <% cache a do %>
-        <div class="col-2 pb-4">
-          <div class="card album">
-            <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
-            <div class="card-block">
-              <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
-              <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
-              <% if a.release_date %>
-              <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-              <% end %>
-            </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+      <% @albums.each do |a| %>
+      <% cache a do %>
+      <div class="col-2 pb-4">
+        <div class="card album">
+          <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
+          <div class="card-block">
+            <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
+            <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
+            <% if a.release_date %>
+            <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
+            <% end %>
           </div>
-        </div>  
-        <% end %>
-        <% end %>
         </div>
+      </div>  
+      <% end %>
+      <% end %>
       </div>
+    </div>
   </div>
 </div>
+<% end %>
