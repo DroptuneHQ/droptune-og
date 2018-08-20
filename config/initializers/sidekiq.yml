@@ -6,3 +6,4 @@
 :schedule:
   DailyAlbumUpdateJob:
     cron: '0 20 * * *'  # Runs every day at 8pm
+    class: DailyAlbumUpdateJob
