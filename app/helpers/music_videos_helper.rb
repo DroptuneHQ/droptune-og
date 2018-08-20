@@ -1,0 +1,2 @@
+module MusicVideosHelper
+end

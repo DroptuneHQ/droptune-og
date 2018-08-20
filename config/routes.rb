@@ -42,6 +42,8 @@ Rails.application.routes.draw do
       get 'upcoming'
     end
   end
+
+  resources :music_videos, path: '/music-videos'
   
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'
