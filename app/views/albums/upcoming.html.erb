@@ -10,7 +10,12 @@
         <% cache a do %>
         <div class="col-2 pb-4">
           <div class="card album">
-            <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
+            <div class="album_cover">
+              <a href="<%= album_path(a) %>">
+              <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
+              <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
+              </a>
+            </div>
             <div class="card-block">
               <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
               <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
