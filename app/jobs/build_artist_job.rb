@@ -11,5 +11,8 @@ class BuildArtistJob
 
     # MusicBrainz
     BuildArtistMusicbrainzJob.perform_async(artist_id)
+
+    # IMVDb
+    BuildArtistImvdbJob.perform_async(artist_id)
   end
 end

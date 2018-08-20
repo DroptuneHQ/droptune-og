@@ -21,26 +21,57 @@
       </h1>
       
       <div class="row">
-        <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
-        <% cache a do %>
-        <div class="col-2 pb-4">
-          <div class="card album">
-            <div class="album_cover">
-              <a href="<%= album_path(a) %>">
-              <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
-              <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
-              </a>
-            </div>
-            <div class="card-block">
-              <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
-              <% if a.release_date %>
-              <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-              <% end %>
-            </div>
+
+        <div class="col-<% if @artist.music_videos.present? %>7<% else %>12<% end %>">
+          <h3>Releases</h3>
+          <div class="row">
+            <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
+            <% cache a do %>
+            <div class="col-<% if @artist.music_videos.present? %>3<% else %>2<% end %> pb-4">
+              <div class="card album">
+                <div class="album_cover">
+                  <a href="<%= album_path(a) %>">
+                  <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
+                  <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
+                  </a>
+                </div>
+                <div class="card-block">
+                  <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
+                  <% if a.release_date %>
+                  <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>  
+            <% end %>
+            <% end %>
           </div>
-        </div>  
+        </div>
+        <% if @artist.music_videos.present? %>
+        <div class="col-5">
+          <h3>Music Videos</h3>
+          <div class="row">
+          <% @artist.music_videos.order('release_date desc').each do |video| %>
+              <div class="col-6 pb-4">
+              <div class="card album">
+                <div class="album_cover">
+                  <a href="<%= music_video_path(video) %>">
+                  <div class="sources"><i class="fab fa-youtube"></i></div>
+                  <img class="card-img-top img-fluid rounded" src="<%= video.image %>">
+                  </a>
+                </div>
+                <div class="card-block">
+                  <h4 class="card-title"><%= link_to video.name, music_video_path(video) %></h4>
+                  <p class="release-date"><small><%= video.release_date.strftime("%B %-e, %Y") %></small></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+        </div>
         <% end %>
-        <% end %>
+
+
       </div>
     </div>
   </div>

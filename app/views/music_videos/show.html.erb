@@ -1,0 +1,22 @@
+<% title "#{@video.name} by #{@video.artist.name}" %>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
+        <li class="breadcrumb-item"><%= link_to "Artists", artists_path %></li>
+        <li class="breadcrumb-item"><%= link_to @video.artist.name, artist_path(@video.artist) %></li>
+        <li class="breadcrumb-item active"><%= @video.name %></li>
+      </ol>
+      <h1><%= @video.name %> Video</h1>
+
+      <div class="row">
+        <div class="col">
+          <div class="video_wrapper">
+            <iframe src="https://www.youtube.com/embed/<%= @video.source_data %>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" class="video" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
