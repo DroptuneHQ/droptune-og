@@ -48,7 +48,7 @@
           <% if user_signed_in? %>
           <li class="nav-item pt-2 dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="<%= current_user.avatar %>" class="rounded-circle float-left" style="max-width:24px">  <%= current_user.screename %>
+              <img src="<%= current_user.avatar_image %>" class="rounded-circle float-left mr-2" style="max-width:24px">  <%= current_user.screename %>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %>

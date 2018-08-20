@@ -14,22 +14,6 @@ class User < ApplicationRecord
 
   has_many :connections
 
-  ATTRIBUTES = {
-    topType: %w[NoHair Eyepatch Hat Hijab Turban LongHairBigHair LongHairBob LongHairBun LongHairCurly LongHairCurvy LongHairDreads LongHairFrida LongHairFro LongHairFroBand LongHairNotTooLong LongHairShavedSides LongHairMiaWallace LongHairStraight LongHairStraight2 LongHairStraightStrand ShortHairDreads01 ShortHairDreads02 ShortHairFrizzle ShortHairShaggyMullet ShortHairShortCurly ShortHairShortFlat ShortHairShortRound ShortHairShortWaved ShortHairSides ShortHairTheCaesar ShortHairTheCaesarSidePart WinterHat1 WinterHat2 WinterHat3 WinterHat4],
-    accessoriesType: %w[Blank Blank Blank Blank Blank Blank Blank Blank Blank Kurt Prescription01 Prescription02 Round Sunglasses Wayfarers],
-    hairColor: %w[Auburn Black Blonde BlondeGolden Brown BrownDark PastelPink Platinum Red SilverGray],
-    hatColor: %w[Black Blue01 Blue02 Blue03 Gray01 Gray02 Heather PastelBlue PastelGreen PastelOrange PastelRed PastelYellow Pink Red White],
-    facialHairType: %w[Blank BeardMedium BeardLight BeardMagestic MoustacheFancy MoustacheMagnum],
-    facialHairColor: %w[Auburn Black Blonde BlondeGolden Brown BrownDark Platinum Red],
-    clotheType: %w[BlazerShirt BlazerSweater CollarSweater GraphicShirt Hoodie Overall ShirtCrewNeck ShirtScoopNeck ShirtVNeck],
-    clotheColor: %w[Black Blue01 Blue02 Blue03 Gray01 Gray02 Heather PastelBlue PastelGreen PastelOrange PastelRed PastelYellow Pink Red White],
-    graphicType: %w[Bat Cumbia Deer Diamond Hola Pizza Resist Selena Bear SkullOutline Skull],
-    eyeType: %w[Close Cry Default Dizzy EyeRoll Happy Side Squint Surprised Wink WinkWacky],
-    eyebrowType: %w[Angry AngryNatural Default DefaultNatural FlatNatural RaisedExcited RaisedExcitedNatural SadConcerned SadConcernedNatural UnibrowNatural UpDown UpDownNatural],
-    mouthType: %w[Concerned Default Disbelief Eating Grimace Sad ScreamOpen Serious Smile Tongue Twinkle],
-    skinColor: %w[Tanned Yellow Pale Light Brown DarkBrown Black],
-  }.freeze
-
   def to_param
     [id, screename.parameterize].join("-")
   end
@@ -42,7 +26,7 @@ class User < ApplicationRecord
     end
   end
 
-  def avatar
+  def fauxvatar
     seed = "#{id}#{email.to_s.gsub('-','')}".to_i
     topType = ['NoHair','Eyepatch','Hat','Hijab','Turban','LongHairBigHair','LongHairBob','LongHairBun','LongHairCurly','LongHairCurvy','LongHairDreads','LongHairFrida','LongHairFro','LongHairFroBand','LongHairNotTooLong','LongHairShavedSides','LongHairMiaWallace','LongHairStraight','LongHairStraight2','LongHairStraightStrand','ShortHairDreads01','ShortHairDreads02','ShortHairFrizzle','ShortHairShaggyMullet','ShortHairShortCurly','ShortHairShortFlat','ShortHairShortRound','ShortHairShortWaved','ShortHairSides','ShortHairTheCaesar','ShortHairTheCaesarSidePart','WinterHat1','WinterHat2','WinterHat3','WinterHat4']
     accessoriesType = ['Blank','Blank','Blank','Blank','Blank','Blank','Blank','Blank','Blank','Kurt','Prescription01','Prescription02','Round','Sunglasses','Wayfarers']
@@ -62,7 +46,16 @@ class User < ApplicationRecord
     "https://avataaars.io/#{url}"
   end
 
+  def avatar_image
+    if username
+      "https://avatars.io/twitter/#{username}"
+    else
+      fauxvatar
+    end
+  end
+
   def self.create_from_provider_data(provider_data)
+    Rails.logger.warn("PROVIDER: #{JSON.pretty_generate provider_data}")
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
       user.email = provider_data.info.email
       user.username = provider_data.info.nickname

@@ -1,7 +1,7 @@
 <% title @user.screename %>
 <div class="row">
   <div class="col">
-    <img src="<%= @user.avatar %>" class="rounded-circle float-left" style="max-width:65px">
+    <img src="<%= @user.avatar_image %>" class="rounded-circle float-left mr-3" style="max-width:65px">
 
     <h1 class="display-4"><%= @user.screename %></h1>
   </div>
@@ -13,7 +13,7 @@
     <div class="row">
       <% @new_albums.each do |a| %>
       <% cache a do %>
-      <div class="col-sm-2">
+      <div class="col-sm-2 pb-4">
         <div class="card album">
           <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap"></a>
           <div class="card-block">
