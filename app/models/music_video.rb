@@ -1,7 +1,9 @@
 class MusicVideo < ApplicationRecord
   belongs_to :artist
 
-    def to_param
+  scope :active, -> {where('follows.active = ?', true)}
+
+  def to_param
     "#{id}-#{permalink}"
   end
 
