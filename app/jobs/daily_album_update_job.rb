@@ -1,3 +1,5 @@
+require 'sidekiq-scheduler'
+
 class DailyAlbumUpdateJob
   include Sidekiq::Worker
 
