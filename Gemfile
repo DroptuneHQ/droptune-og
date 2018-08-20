@@ -37,6 +37,9 @@ gem 'musicbrainz', github: 'inkstak/musicbrainz', tag: '1.0.0'
 gem 'httparty'
 gem 'jwt'
 
+gem 'dalli'
+gem 'memcachier'
+
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
