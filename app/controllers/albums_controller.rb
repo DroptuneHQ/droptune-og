@@ -20,9 +20,21 @@ class AlbumsController < ApplicationController
       @num_days = params[:days].present? ? params[:days].to_i : 7
       @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
     end
+  end
 
-    @months = query.where('release_date > ?', 6.months.ago).uniq.map { |album| [Date::MONTHNAMES[album.release_date.month], album.release_date.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
-    @years = query.uniq.map { |album| album.release_date.year }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }
+  def upcoming
+    @user = current_user
+
+    if @user
+      query = @user.albums.active.has_release_date.where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc)
+
+      query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
+      #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
+    else
+      query = Album.has_release_date.where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
+    end
+
+    @albums = query.uniq
   end
 
   def show

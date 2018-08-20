@@ -36,7 +36,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :albums
+  resources :albums do
+    collection do
+      get 'upcoming'
+    end
+  end
   
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'
