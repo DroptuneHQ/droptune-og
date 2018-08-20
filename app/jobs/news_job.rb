@@ -8,12 +8,22 @@ class NewsJob
     xml = HTTParty.get(url).body
     feed = Feedjira::Feed.parse(xml)
     
-    items = []
     Artist.find_each do |artist|
-      puts artist.name
       articles = feed.entries.select { |entry| entry.title.include?(artist.name) }
       articles.each do |article|
-        puts article.title
+        og = OpenGraph.new(article.entry_id)
+        image = og.images.first if og.present? and og.images.present?
+        sitename = og.metadata[:site_name].first[:_value] if og.present? and og.metadata[:site_name].present?
+
+        news_item = News.where('artist_id = ? AND url = ?', artist.id, article.entry_id).first_or_create(
+              artist_id: artist.id, 
+              title: article.title,
+              summary: article.summary,
+              image_url: image,
+              url: article.entry_id,
+              source_name: sitename,
+              published_at: DateTime.parse(article.published.to_s))
+        article.title
       end
     end
     

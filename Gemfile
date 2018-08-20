@@ -37,7 +37,7 @@ gem 'musicbrainz', github: 'inkstak/musicbrainz', tag: '1.0.0'
 gem 'httparty'
 gem 'jwt'
 gem "feedjira"
-
+gem "opengraph_parser"
 gem 'dalli'
 gem 'memcachier'
 

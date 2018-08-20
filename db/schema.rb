@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2018_08_20_212634) do
   end
 
   create_table "news", force: :cascade do |t|
-    t.bigint "artists_id"
+    t.bigint "artist_id"
     t.string "title"
     t.text "summary"
     t.string "image_url"
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 2018_08_20_212634) do
     t.integer "invalid_reports"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["artists_id"], name: "index_news_on_artists_id"
+    t.index ["artist_id"], name: "index_news_on_artist_id"
   end
 
   create_table "sessions", force: :cascade do |t|

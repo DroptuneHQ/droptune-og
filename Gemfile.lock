@@ -202,6 +202,9 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    opengraph_parser (0.2.3)
+      addressable
+      nokogiri
     orm_adapter (0.5.0)
     pg (1.0.0)
     popper_js (1.14.3)
@@ -365,6 +368,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-spotify
   omniauth-twitter
+  opengraph_parser
   pg
   puma
   puma_worker_killer
