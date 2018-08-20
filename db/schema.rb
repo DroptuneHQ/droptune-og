@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_18_195825) do
+ActiveRecord::Schema.define(version: 2018_08_20_135003) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,11 @@ ActiveRecord::Schema.define(version: 2018_08_18_195825) do
     t.bigint "applemusic_id"
     t.string "applemusic_image"
     t.string "applemusic_link"
+    t.index ["album_type"], name: "index_albums_on_album_type"
+    t.index ["artist_id", "name"], name: "index_albums_on_artist_id_and_name"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["name"], name: "index_albums_on_name"
+    t.index ["release_date"], name: "index_albums_on_release_date"
   end
 
   create_table "artists", force: :cascade do |t|
@@ -52,6 +56,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_195825) do
     t.string "applemusic_id"
     t.integer "year_started"
     t.integer "year_ended"
+    t.index ["name"], name: "index_artists_on_name"
   end
 
   create_table "connections", force: :cascade do |t|
@@ -61,6 +66,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_195825) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["provider"], name: "index_connections_on_provider"
     t.index ["user_id"], name: "index_connections_on_user_id"
   end
 
@@ -70,6 +76,7 @@ ActiveRecord::Schema.define(version: 2018_08_18_195825) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.index ["active"], name: "index_follows_on_active"
     t.index ["artist_id"], name: "index_follows_on_artist_id"
     t.index ["user_id"], name: "index_follows_on_user_id"
   end

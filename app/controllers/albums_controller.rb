@@ -4,12 +4,12 @@ class AlbumsController < ApplicationController
     @user = current_user
 
     if @user
-      query = @user.albums.active.has_release_date.order(release_date: :desc, artist_id: :desc)
+      query = @user.albums.active.has_release_date.includes(:artist).order(release_date: :desc, artist_id: :desc)
 
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
-      query = Album.has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single')
+      query = Album.has_release_date.includes(:artist).order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single')
     end
 
     if params[:month] and params[:year]
@@ -26,12 +26,12 @@ class AlbumsController < ApplicationController
     @user = current_user
 
     if @user
-      query = @user.albums.active.has_release_date.where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc)
+      query = @user.albums.active.has_release_date.includes(:artist).where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc)
 
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
-      query = Album.has_release_date.where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
+      query = Album.has_release_date.includes(:artist).where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
     end
 
     @albums = query.uniq
