@@ -12,6 +12,7 @@
     <h2>New music from artists they follow...</h2>
     <div class="row">
       <% @new_albums.each do |a| %>
+      <% cache a do %>
       <div class="col-sm-2">
         <div class="card album">
           <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap">
@@ -29,6 +30,7 @@
           </div>
         </div>
       </div>  
+      <% end %>
       <% end %>
     </div>
   </div>
