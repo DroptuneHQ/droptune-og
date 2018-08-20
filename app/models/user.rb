@@ -2,6 +2,7 @@ class User < ApplicationRecord
   has_many :follows, dependent:  :destroy
   has_many :artists, -> { distinct }, through: :follows
   has_many :albums, through: :artists
+  has_many :music_videos, through: :artists
   
   include Storext.model
   store_attributes :settings do
