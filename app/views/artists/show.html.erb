@@ -22,7 +22,7 @@
       
       <div class="row">
         <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
-        <div class="col-sm-2">
+        <div class="col-2 pb-4">
           <div class="card album">
             <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
             <div class="card-block">

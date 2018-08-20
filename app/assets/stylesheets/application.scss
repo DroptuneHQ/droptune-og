@@ -73,48 +73,36 @@ $headings-font-family: 'Nunito', sans-serif;
 
 .card.album {
   border: 0;
+  font-family: 'Nunito', sans-serif;
   .card-block {
     padding: 0.5rem 0.1rem;
   }
   .card-title {
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 100;
     white-space: nowrap; 
     text-overflow: ellipsis;
     overflow: hidden;
     padding-bottom:2px;
-    margin-bottom: 0.3rem
+    margin-bottom: 0.1rem;
+    a {
+      color: $dark!important;
+    }
   }
   h6 {
-    font-size: 12px;
-    font-weight: 400;
-    margin-bottom: 0.1rem;
+    font-size: 13px;
+    font-weight: 100;
+    margin-bottom: 0.05rem;
     white-space: nowrap; 
     text-overflow: ellipsis;
     overflow: hidden;
+    a {
+      color: #9DA2A4;
+    }
   }
   .release-date {
-    font-size: 14px;
-    
+    font-size: 13px; 
     margin-bottom: 0;
-  }
-  .card-img-overlay {
-    margin-bottom: 62%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    a {
-      visibility: hidden;
-      color: white;
-      text-shadow: black 0 0 5px;
-    }
-    &:hover {
-      a {
-        visibility: visible;
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
+    color: $dark;
   }
 }

@@ -1,35 +1,25 @@
 <% title "New Albums" %>
 <div class="container">
-  <div class="row">
-    <h1>
-      New Albums
-      <% if current_user %>
-      <small class="text-muted">The latest music by the artists you follow</small>
-      <% else %>
-      <small class="text-muted">The latest music on Spotify</small>
-      <% end %>
-    </h1>
-
-    <div class="row">
-      <div class="col-sm-3">
-        <div class="list-group">
-          <%= link_to "Most recent", albums_path, class: 'list-group-item' %>
-          <% @months.each do |month| %>
-            <%= link_to(albums_path(month: month[0].to_date.month, year: month[0].to_date.year), class: 'list-group-item d-flex justify-content-between align-items-center') do %>
-              <%= month[0] %> <span class="badge badge-primary badge-pill"><%= month[1] %></span>
-            <% end %>
-          <% end %>
-          <% @years.each do |year| %>
-            <%= link_to(albums_path(year: year[0]), class: 'list-group-item') do %>
-              <%= year[0] %> <span class="badge badge-primary badge-pill"><%= year[1] %></span>
-            <% end %>
-          <% end %>
+    <div class="row justify-content-between">
+      <div class="col-6"><h2>Latest Releases</h2></div>
+      <div class="col-3 text-right">
+        <div class="dropdown">
+          <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+            <%= link_to "Last 7 days", albums_path(days: 7), class: 'dropdown-item' %>
+            <%= link_to "Last 14 days", albums_path(days: 14), class: 'dropdown-item' %>
+            <%= link_to "Last 30 days", albums_path(days: 30), class: 'dropdown-item' %>
+            <%= link_to "Last 60 days", albums_path(days: 60), class: 'dropdown-item' %>
+            <%= link_to "Last 90 days", albums_path(days: 90), class: 'dropdown-item' %>
+          </div>
         </div>
       </div>
-      <div class="col-sm-9">
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
         <div class="row">
         <% @albums.each do |a| %>
-        <div class="col-sm-2">
+        <div class="col-2 pb-4">
           <div class="card album">
             <a href="<%= album_path(a) %>"><img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>"></a>
             <div class="card-block">
@@ -44,6 +34,5 @@
         <% end %>
         </div>
       </div>
-    </div>
   </div>
 </div>

@@ -17,7 +17,8 @@ class AlbumsController < ApplicationController
     elsif params[:year]
       @albums = query.where("extract(year from release_date) = ?", params[:year]).uniq
     else
-      @albums = query.uniq.first(18)
+      @num_days = params[:days].present? ? params[:days].to_i : 7
+      @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
     end
 
     @months = query.where('release_date > ?', 6.months.ago).uniq.map { |album| [Date::MONTHNAMES[album.release_date.month], album.release_date.year].join(' ') }.each_with_object(Hash.new(0)) { |month_year, counts| counts[month_year] += 1 }

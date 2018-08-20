@@ -47,8 +47,7 @@
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <img src="<%= current_user.avatar %>" class="rounded-circle float-left" style="max-width:24px">  <%= current_user.screename %>
             </a>
-            
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
               <%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %>
               <%= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item' %>
               <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
