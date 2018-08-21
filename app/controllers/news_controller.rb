@@ -3,9 +3,9 @@ class NewsController < ApplicationController
     @user = current_user
 
     if @user
-      @news = @user.news.includes(:artist).order(published_at: :desc).limit(20)
+      @news = @user.news.active.includes(:artist).order(published_at: :desc).uniq.first(20)
     else
-      @news = News.all.includes(:artist).order(published_at: :desc).limit(20)
+      @news = News.all.includes(:artist).order(published_at: :desc).uniq.first(20)
     end
   end
 end
