@@ -15,7 +15,7 @@ cache('sitemap-albums', expires_in: 12.hours) do
     Album.find_each do |album|
       xml.url do
         xml.loc album_url(album)
-        xml.lastmod album.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
+        xml.lastmod album.updated_at
       end
     end
   end

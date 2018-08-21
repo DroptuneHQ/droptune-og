@@ -10,7 +10,7 @@ cache('sitemap-artists', expires_in: 12.hours) do
     Artist.find_each do |artist|
       xml.url do
         xml.loc artist_url(artist)
-        xml.lastmod artist.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%L%z')
+        xml.lastmod artist.updated_at
       end
     end
   end
