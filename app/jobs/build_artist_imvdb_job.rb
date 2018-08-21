@@ -34,10 +34,12 @@ class BuildArtistImvdbJob
           if source.present?
             source_data = source['source_data'].to_s
 
-            if video['release_date_string'].blank?
+            if video['release_date_string'].blank? and video['year'].present?
               release_date = Date.strptime("#{video['year']}-01-01", '%Y-%m-%d')
-            else
+            elsif video['release_date_string'].present?
               release_date = Date.parse(video['release_date_string'])
+            else
+              release_date = Date.today-1.year
             end
 
             music_video = MusicVideo.where('artist_id = ? AND source_data = ?', artist.id, source_data).first_or_create(
