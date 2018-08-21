@@ -31,7 +31,7 @@ class BuildArtistImvdbJob
           video = response.parsed_response
           source = video['sources'].first
 
-          if source.present?
+          if source.present? and video['image'].present?
             source_data = source['source_data'].to_s
 
             if video['release_date_string'].blank? and video['year'].present?
