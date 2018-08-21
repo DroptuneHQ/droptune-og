@@ -11,4 +11,10 @@ class PagesController < ApplicationController
     @token = ENV['apple_token']
     render :layout => false
   end
+
+  def sitemap
+    respond_to do |format|
+      format.xml
+    end
+  end
 end

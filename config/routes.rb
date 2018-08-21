@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
   get 'pages/index'
   require 'sidekiq/web'
   require 'sidekiq-scheduler/web'
