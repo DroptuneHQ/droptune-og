@@ -6,6 +6,11 @@ cache('sitemap', expires_in: 12.hours) do
     xml.sitemap do
       xml.loc sitemap_albums_url
     end
+    20.times do |p|
+      xml.sitemap do
+        xml.loc sitemap_albums_url(p:p)
+      end
+    end
     xml.sitemap do
       xml.loc sitemap_artists_url
     end

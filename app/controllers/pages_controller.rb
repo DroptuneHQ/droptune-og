@@ -19,6 +19,18 @@ class PagesController < ApplicationController
   end
 
   def sitemap_albums
+    @page = params[:p].to_i
+    @cache_name = "sitemap-albums-#{@page}"
+    @batch_size = 1000
+
+    if @page == 0
+      @start = 0
+      @finish = 25000
+    else
+      @start = @page * 25000
+      @finish = 25000 + (@page * 25000)
+    end
+
     respond_to do |format|
       format.xml
     end

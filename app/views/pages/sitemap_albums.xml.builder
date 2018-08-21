@@ -1,4 +1,4 @@
-cache('sitemap-albums', expires_in: 12.hours) do
+cache(@cache_name, expires_in: 12.hours) do
   base_url = "https://droptune.co/"
 
   xml.instruct! :xml, :version=>"1.0"
@@ -11,8 +11,8 @@ cache('sitemap-albums', expires_in: 12.hours) do
       xml.loc upcoming_albums_url
       xml.changefreq 'daily'
     end
-  
-    Album.find_each do |album|
+
+    Album.find_each(start: @start, finish: @finish, batch_size: @batch_size) do |album|
       xml.url do
         xml.loc album_url(album)
         xml.lastmod album.updated_at
