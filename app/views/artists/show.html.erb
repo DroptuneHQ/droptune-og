@@ -52,7 +52,7 @@
           <% if @artist.news.present? %>
           <h3>News</h3>
           <div class="row">
-          <% @artist.news.order('published_at desc').limit(5).each do |news| %>
+          <% @artist.news.order('published_at desc').limit(2).each do |news| %>
             <div class="col-12 pb-4">
             <div class="card album news">
               <div class="album_cover">
