@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   end
 
   resources :music_videos, path: '/music-videos'
+  resources :news
   
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'

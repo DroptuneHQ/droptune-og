@@ -119,6 +119,15 @@ $headings-font-family: 'Nunito', sans-serif;
     margin-bottom: 0;
     color: $dark;
   }
+  &.news {
+    .card-img-top {
+      width: 100%;
+      display: block;
+      min-height: 140px;
+      max-height: 200px;
+      background-position: center 15%;
+    }
+  }
 }
 
 .video_wrapper {

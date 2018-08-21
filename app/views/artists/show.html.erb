@@ -22,12 +22,12 @@
       
       <div class="row">
 
-        <div class="col-<% if @artist.music_videos.present? %>7<% else %>12<% end %>">
+        <div class="col-<% if @artist.music_videos.present? or @artist.news.present? %>7<% else %>12<% end %>">
           <h3>Releases</h3>
           <div class="row">
             <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
             <% cache a do %>
-            <div class="col-<% if @artist.music_videos.present? %>3<% else %>2<% end %> pb-4">
+            <div class="col-<% if @artist.music_videos.present? or @artist.news.present? %>3<% else %>2<% end %> pb-4">
               <div class="card album">
                 <div class="album_cover">
                   <a href="<%= album_path(a) %>">
@@ -47,8 +47,31 @@
             <% end %>
           </div>
         </div>
-        <% if @artist.music_videos.present? %>
+        <% if @artist.music_videos.present? or @artist.news.present? %>
         <div class="col-5">
+          <% if @artist.news.present? %>
+          <h3>News</h3>
+          <div class="row">
+          <% @artist.news.order('published_at desc').limit(5).each do |news| %>
+            <div class="col-12 pb-4">
+            <div class="card album news">
+              <div class="album_cover">
+                <a href="<%= news.url %>">
+                <div class="sources"><i class="fas fa-newspaper"></i></div>
+                <div class="card-img-top img-fluid rounded" style="background-image: url('<%= news.article_image %>')"></div>
+                </a>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title"><%= link_to news.title, news.url %></h4>
+                <p class="release-date"><small><%= news.published_at.strftime("%B %-e, %Y") %></small></p>
+              </div>
+            </div>
+            </div>
+          <% end %>
+          <hr>
+          </div>
+          <% end %>
+          <% if @artist.music_videos.present? %>
           <h3>Music Videos</h3>
           <div class="row">
           <% @artist.music_videos.order('release_date desc').each do |video| %>
@@ -68,6 +91,7 @@
             </div>
           <% end %>
           </div>
+          <% end %>
         </div>
         <% end %>
 
