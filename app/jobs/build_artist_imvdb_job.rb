@@ -31,19 +31,21 @@ class BuildArtistImvdbJob
           video = response.parsed_response
           source = video['sources'].first
 
-          if video['release_date_string'].blank?
-            release_date = Date.strptime("#{video['year']}-01-01", '%Y-%m-%d')
-          else
-            release_date = Date.parse(video['release_date_string'])
-          end
+          if source.present?
+            if video['release_date_string'].blank?
+              release_date = Date.strptime("#{video['year']}-01-01", '%Y-%m-%d')
+            else
+              release_date = Date.parse(video['release_date_string'])
+            end
 
-          music_video = MusicVideo.where('artist_id = ? AND source_data = ?', artist.id, source['source_data']).first_or_create(
-              artist_id: artist.id, 
-              name: video['song_title'],
-              release_date: release_date,
-              image: video['image']['o'],
-              source: source['source'],
-              source_data: source['source_data'])
+            music_video = MusicVideo.where('artist_id = ? AND source_data = ?', artist.id, source['source_data']).first_or_create(
+                artist_id: artist.id, 
+                name: video['song_title'],
+                release_date: release_date,
+                image: video['image']['o'],
+                source: source['source'],
+                source_data: source['source_data'])
+          end
         end
       end
       page += 1
