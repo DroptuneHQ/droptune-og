@@ -14,6 +14,6 @@ class DailyAlbumUpdateJob
       BuildArtistJob.perform_async(artist.id)
     end
 
-    NewsJob.perform_async
+    #NewsJob.perform_async
   end
 end
