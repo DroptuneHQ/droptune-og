@@ -13,5 +13,7 @@ class DailyAlbumUpdateJob
     Artist.find_each do |artist|
       BuildArtistJob.perform_async(artist.id)
     end
+
+    NewsJob.perform_async
   end
 end
