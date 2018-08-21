@@ -15,7 +15,7 @@ cache(@cache_name, expires_in: 12.hours) do
     Album.find_each(start: @start, finish: @finish, batch_size: @batch_size) do |album|
       xml.url do
         xml.loc album_url(album)
-        xml.lastmod album.updated_at
+        xml.lastmod album.updated_at.strftime('%Y-%m-%dT%H:%M:%S%z')
       end
     end
   end
