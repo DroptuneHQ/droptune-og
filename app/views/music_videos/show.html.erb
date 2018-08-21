@@ -12,9 +12,16 @@
       <h5>Released on <%= @video.release_date.strftime("%B %-e, %Y") %></h5>
       <div class="row">
         <div class="col">
-          <div class="video_wrapper">
+
+          <% if @video.source == 'youtube' %>
+            <div class="video_wrapper">
             <iframe src="https://www.youtube.com/embed/<%= @video.source_data %>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" class="video" allowfullscreen></iframe>
           </div>
+          <% end %>
+          
+          <% if @video.source == 'vimeo' %>
+            <div style="padding:42.86% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/<%= @video.source_data %>?color=15B6FB&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+          <% end %>
         </div>
       </div>
     </div>
