@@ -19,7 +19,7 @@ class BuildArtistImvdbJob
         query: {q: artist.name, per_page: 50, page: page},
         headers: {"IMVDB-APP-KEY" => ENV['imvdb_key']}
       })
-      break if response.parsed_response['results'].blank?
+      break if response.parsed_response.blank? or response.parsed_response['results'].blank?
 
       response.parsed_response['results'].each do |vid|
         vid_artist_name = vid['artists'].first['name']
