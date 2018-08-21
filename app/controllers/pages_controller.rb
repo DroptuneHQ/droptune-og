@@ -35,7 +35,7 @@ class PagesController < ApplicationController
       format.xml
     end
   end
-  
+
   def sitemap_pages
     respond_to do |format|
       format.xml

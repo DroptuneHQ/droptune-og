@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_20_212634) do
+ActiveRecord::Schema.define(version: 2018_08_21_185909) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,9 +34,11 @@ ActiveRecord::Schema.define(version: 2018_08_20_212634) do
     t.bigint "applemusic_id"
     t.string "applemusic_image"
     t.string "applemusic_link"
+    t.string "artist_slug"
     t.index ["album_type"], name: "index_albums_on_album_type"
     t.index ["artist_id", "name"], name: "index_albums_on_artist_id_and_name"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
+    t.index ["artist_slug"], name: "index_albums_on_artist_slug"
     t.index ["name"], name: "index_albums_on_name"
     t.index ["release_date"], name: "index_albums_on_release_date"
   end
@@ -90,7 +92,9 @@ ActiveRecord::Schema.define(version: 2018_08_20_212634) do
     t.string "source_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "artist_slug"
     t.index ["artist_id"], name: "index_music_videos_on_artist_id"
+    t.index ["artist_slug"], name: "index_music_videos_on_artist_slug"
   end
 
   create_table "news", force: :cascade do |t|
