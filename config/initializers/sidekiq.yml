@@ -5,5 +5,5 @@
 
 :schedule:
   DailyAlbumUpdateJob:
-    cron: '0 20 * * *'  # Runs every day at 8pm
+    cron: '0 5 * * *'  # Runs every day at 5am
     class: DailyAlbumUpdateJob
