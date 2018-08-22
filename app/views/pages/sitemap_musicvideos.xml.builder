@@ -10,7 +10,7 @@ cache('sitemap-musicvideos', expires_in: 12.hours) do
     MusicVideo.find_each do |video|
       xml.url do
         xml.loc music_video_url(video)
-        xml.lastmod video.updated_at.strftime('%Y-%m-%dT%H:%M:%S%z')
+        xml.lastmod video.updated_at.iso8601
       end
     end
   end
