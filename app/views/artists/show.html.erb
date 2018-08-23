@@ -9,8 +9,8 @@
           <li class="breadcrumb-item active" aria-current="page"><%= @artist.name %></li>
         </ol>
       </nav>
-      
-      <h1><%= @artist.name %> 
+
+      <h1><%= @artist.name %>
         <% if current_user %>
           <% if Follow.where(user: current_user, artist: @artist, active: true).present? %>
           <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-outline-success', data: { confirm: "Are you sure?" } %>
@@ -19,7 +19,7 @@
           <% end %>
         <% end %>
       </h1>
-      
+
       <% if @artist.follows.present? %>
       <div class="row">
         <div class="col">
@@ -32,12 +32,15 @@
       <hr>
       <% end %>
       <div class="row">
-        <div class="col-<% if @artist.music_videos.present? %>7<% else %>12<% end %>">
+        <% releases_size_css = @artist.music_videos.present? ? "col-7" : "col-12" %>
+        <% album_size_css = @artist.music_videos.present? ? "col-sm-6 col-md-4 col-xl-3" : "col-6 col-sm-4 col-md-3 col-lg-2" %>
+        <div class="<%= releases_size_css %>">
           <h3>Releases</h3>
           <div class="row">
             <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
+
             <% cache a do %>
-            <div class="col-<% if @artist.music_videos.present? %>3<% else %>2<% end %> pb-4">
+            <div class="<%= album_size_css %> pb-4">
               <div class="card album">
                 <div class="album_cover">
                   <a href="<%= album_path(a) %>">
@@ -52,7 +55,7 @@
                   <% end %>
                 </div>
               </div>
-            </div>  
+            </div>
             <% end %>
             <% end %>
           </div>
@@ -62,7 +65,7 @@
           <h3>Music Videos</h3>
           <div class="row">
           <% @artist.music_videos.order('release_date desc').each do |video| %>
-              <div class="col-6 pb-4">
+              <div class="col-md-6 pb-4">
               <div class="card album">
                 <div class="album_cover">
                   <a href="<%= music_video_path(video) %>">

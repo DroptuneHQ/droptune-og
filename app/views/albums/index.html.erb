@@ -2,8 +2,8 @@
 <% if @albums.present? %>
 <div class="container">
   <div class="row justify-content-between">
-    <div class="col-6"><h2>Latest Music Releases</h2></div>
-    <div class="col-3 text-right">
+    <div class="col-sm-9"><h2>Latest Music Releases</h2></div>
+    <div class="col-sm-3 text-right">
       <div class="dropdown">
         <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
@@ -21,7 +21,7 @@
       <div class="row">
       <% @albums.each do |a| %>
       <% cache a do %>
-      <div class="col-2 pb-4">
+      <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
         <div class="card album">
           <div class="album_cover">
             <a href="<%= album_path(a) %>">
@@ -37,7 +37,7 @@
             <% end %>
           </div>
         </div>
-      </div>  
+      </div>
       <% end %>
       <% end %>
       </div>
