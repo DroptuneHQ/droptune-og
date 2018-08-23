@@ -31,7 +31,7 @@ class AlbumsController < ApplicationController
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
-      query = Album.has_release_date.includes(:artist).where("release_date >= ?", Date.today).order(release_date: :asc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
+      query = Album.has_release_date.includes(:artist).where("release_date > ?", Date.today).order(release_date: :asc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
     end
 
     @albums = query.uniq
