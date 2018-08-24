@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_21_185909) do
+ActiveRecord::Schema.define(version: 2018_08_24_001404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,12 @@ ActiveRecord::Schema.define(version: 2018_08_21_185909) do
     t.string "applemusic_id"
     t.integer "year_started"
     t.integer "year_ended"
+    t.string "external_homepage"
+    t.string "external_twitter"
+    t.string "external_facebook"
+    t.string "external_instagram"
+    t.string "external_wikipedia"
+    t.string "external_youtube"
     t.index ["name"], name: "index_artists_on_name"
   end
 
