@@ -26,9 +26,11 @@ class AlbumsController < ApplicationController
     @user = current_user
 
     if @user
-      query = @user.albums.active.has_release_date.includes(:artist).where("release_date >= ?", Date.today).order(release_date: :asc)
+      query = Album.has_release_date.where.not(album_type: 'compilation').where("release_date >= ?", Date.today).where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :desc)
 
-      query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
+      #query = @user.albums.active.has_release_date.includes(:artist).where("release_date >= ?", Date.today).order(release_date: :asc)
+
+      #query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       #query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
       query = Album.has_release_date.includes(:artist).where("release_date > ?", Date.today).order(release_date: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
