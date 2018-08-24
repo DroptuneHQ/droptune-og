@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
-  get "/sitemap-albums.xml" => "pages#sitemap_albums", :format => "xml", :as => :sitemap_albums
-  get "/sitemap-artists.xml" => "pages#sitemap_artists", :format => "xml", :as => :sitemap_artists
-  get "/sitemap-musicvideos.xml" => "pages#sitemap_musicvideos", :format => "xml", :as => :sitemap_musicvideos
-  get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
+  # get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
+  # get "/sitemap-albums.xml" => "pages#sitemap_albums", :format => "xml", :as => :sitemap_albums
+  # get "/sitemap-artists.xml" => "pages#sitemap_artists", :format => "xml", :as => :sitemap_artists
+  # get "/sitemap-musicvideos.xml" => "pages#sitemap_musicvideos", :format => "xml", :as => :sitemap_musicvideos
+  # get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
   get 'pages/index'
   
   require 'sidekiq/web'
