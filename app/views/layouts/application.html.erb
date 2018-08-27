@@ -21,9 +21,9 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-main">
+    <nav class="navbar navbar-expand-lg navbar-light navbar-main">
       <%#= link_to "Droptune", root_path, class: 'navbar-brand mb-0 h1' %>
-      <%= link_to image_tag('logo-droptune-white.svg', height: '30', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand mr-3 mt-2' %>
+      <%= link_to image_tag('logo-droptune-black.svg', height: '30', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand mr-3 pt-2' %>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -67,7 +67,7 @@
         </ul>
       </div>
     </nav>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark bg-lightdark mb-5">
+    <nav class="navbar navbar-expand-lg mb-5">
       <%= form_tag(search_artists_path, method: 'get', class: 'd-inline w-100', enforce_utf8:false) do %>
         <%= text_field_tag :artist, nil, class: 'form-control input-lg', placeholder: "Search for artists" %>
       <% end %>
