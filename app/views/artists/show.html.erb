@@ -19,6 +19,26 @@
           <% end %>
         <% end %>
       </h1>
+      <ul class="list-inline">
+        <% if @artist.external_homepage.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fas fa-globe-americas"></i>'), @artist.external_homepage %></li>
+        <% end %>
+        <% if @artist.external_twitter.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fab fa-twitter"></i>'), @artist.external_twitter %></li>
+        <% end %>
+        <% if @artist.external_facebook.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fab fa-facebook"></i>'), @artist.external_facebook %></li>
+        <% end %>
+        <% if @artist.external_instagram.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fab fa-instagram"></i>'), @artist.external_instagram %></li>
+        <% end %>
+        <% if @artist.external_youtube.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fab fa-youtube"></i>'), @artist.external_youtube %></li>
+        <% end %>
+        <% if @artist.external_wikipedia.present? %>
+          <li class="list-inline-item"><%= link_to raw('<i class="fab fa-wikipedia-w"></i>'), @artist.external_wikipedia %></li>
+        <% end %>
+      </ul>
 
       <% if @artist.follows.present? %>
       <div class="row">

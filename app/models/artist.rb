@@ -3,7 +3,7 @@ class Artist < ApplicationRecord
   has_many :music_videos
   has_many :news
   has_many :follows, dependent:  :destroy
-  has_many :users, -> { distinct }, through: :follows
+  has_many :users, through: :follows
 
   scope :active, -> {where('follows.active = ?', true)}
 

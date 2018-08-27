@@ -3,9 +3,9 @@ class ArtistsController < ApplicationController
     @user = current_user
 
     if @user
-      @artists = @user.artists.active.where.not(name: nil).order(name: :asc)
+      @artists = @user.artists.active.where.not(name: nil).order("lower(artists.name) ASC").uniq
     else
-      @artists = Artist.where.not(name: nil).order(name: :asc).limit(30)
+      @artists = Artist.where.not(name: nil).order(name: :asc).limit(30).uniq
     end
   end
 

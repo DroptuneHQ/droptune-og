@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_many :follows, dependent:  :destroy
-  has_many :artists, -> { distinct }, through: :follows
+  has_many :artists, through: :follows
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
   has_many :news, through: :artists

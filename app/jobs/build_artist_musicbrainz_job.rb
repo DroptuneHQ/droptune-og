@@ -22,9 +22,9 @@ class BuildArtistMusicbrainzJob
 
       urls = musicbrainz_full_artist.urls
       external_homepage = urls.select{|key| key == 'official homepage'}['official homepage']
-      external_twitter = urls['social network'].select{|key| key.include?("twitter")}.try(:first) if urls['social network'].present?
-      external_facebook = urls['social network'].select{|key| key.include?("facebook")}.try(:first) if urls['social network'].present?
-      external_instagram = urls['social network'].select{|key| key.include?("instagram")}.try(:first) if urls['social network'].present?
+      external_twitter = Array.wrap(urls['social network']).select{|key| key.include?("twitter")}.try(:first) if urls['social network'].present?
+      external_facebook = Array.wrap(urls['social network']).select{|key| key.include?("facebook")}.try(:first) if urls['social network'].present?
+      external_instagram = Array.wrap(urls['social network']).select{|key| key.include?("instagram")}.try(:first) if urls['social network'].present?
       external_wikipedia = urls['wikipedia']
       external_youtube = Array.wrap(urls['youtube']).try(:first)
 
