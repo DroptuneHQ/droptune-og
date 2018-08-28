@@ -1,39 +1,39 @@
-<div class="jumbotron">
-  <h1 class="display-3">Droptune</h1>
-  <h2>Never miss another album release</h2>
-  <p class="lead">Find out when new music from the artists you love is available!</p>
-  <hr class="my-4">
-  <%= link_to "Sign in with Twitter", omniauth_authorize_path("user", "twitter"), class: 'btn btn-primary btn-lg' %>
+<div class="container">
+<div class="jumbotron text-light text-center">
+  <h2>Never miss a beat</h2>
+  <p class="lead">Find out about new music from the artists you love!</p>
+  <%= link_to raw("<i class='fab fa-twitter'></i> Sign in with Twitter"), omniauth_authorize_path("user", "twitter"), class: 'btn btn-light btn-lg' %>
+</div>
 </div>
 
 <div class="latest">
   <div class="container">
-    <div class="row">
       <h1>
         Latest Releases
         <small class="text-muted">The latest music releases</small>
       </h1>
       <div class="row">
         <% @albums.each do |a| %>
-        <div class="col-sm-2">
-          <div class="card album">
-            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>" alt="Card image cap">
-            <div class="card-img-overlay">
-              <% if a.spotify_link %>
-              <a href="<%= a.spotify_link %>" class="card-link">Spotify</a>
-              <% end %>
-            </div>
-            <div class="card-block">
-              <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
-              <h6><%= a.artist.name %></h6>
-              <% if a.release_date %>
-              <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-              <% end %>
+        <% cache a do %>
+          <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
+            <div class="card album">
+              <div class="album_cover">
+                <a href="<%= album_path(a) %>">
+                <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
+                <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
+                </a>
+              </div>
+              <div class="card-block">
+                <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
+                <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
+                <% if a.release_date %>
+                <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>  
+          <% end %>
         <% end %>
       </div>
-    </div>
   </div>
 </div>

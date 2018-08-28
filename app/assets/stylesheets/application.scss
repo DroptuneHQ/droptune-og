@@ -2,18 +2,26 @@ $dark: #202425;
 $primary: #15B6FB;
 $font-family-sans-serif:      'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
 $headings-font-family: 'Nunito', sans-serif;
+$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
+$h1-font-size: $font-size-base * 1.5 !default;
 
 @import "bootstrap";
 
 .navbar {
   font-family: 'Nunito', sans-serif;
-  background: $light;
   form {
     .input-lg {
       background-color: rgba($dark, 0.05);
       border: 0;
     }
   }
+  font-size: .95em;
+  .row {
+    flex-grow: 1;
+  }
+}
+.navbar-nav {
+  margin-top:-5px;
 }
 .navbar-main {
   padding-top: 0!important;
@@ -24,6 +32,13 @@ $headings-font-family: 'Nunito', sans-serif;
   }
   &:hover {
     box-shadow: 0 2px $primary inset;
+  }
+}
+.jumbotron {
+  background-image: url('bgr-jumbo.png');
+  background-size: 100%;
+  .fa-twitter {
+    color: $primary;
   }
 }
 .bg-lightdark {
