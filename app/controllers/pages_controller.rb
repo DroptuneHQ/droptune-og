@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def index
-    @follows = Follow.group('artist_id').order('count_id desc').count('id').first(200).map(&:first)
+    @follows = Follow.group('artist_id').order('count_id desc').count('id').first(300).map(&:first)
 
     @albums = Album.includes(:artist).where(artist_id: @follows).has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').where("release_date <= ?", Date.today).limit(18)
   end
