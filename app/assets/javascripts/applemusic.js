@@ -17,15 +17,21 @@ $(document).ready(function() {
       
       music = MusicKit.getInstance();
       dev_token=data['token'];
+
+      if (music.isAuthorized) {
+        apple_music_id.text('Refresh Apple Music Library').addClass('btn btn-light');
+      }
     }
   });
+
+
 
   apple_music_id.on('click', function () {
     var auth = music.authorize();
 
     auth.then(function (value) {
         if (music.isAuthorized) {
-            apple_music_id.text('Scanning iCloud Music Library').prop('disabled', true);
+            apple_music_id.text('Scanning Apple Music Library').prop('disabled', true);
             apple_music_id.addClass('blink');
             importAppleMusic(dev_token, value)
         }

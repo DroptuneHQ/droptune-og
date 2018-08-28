@@ -3,7 +3,12 @@
   <div class="row">
     <div class="col">
       <h2>Connections</h2>
-      <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-primary' %> 
+      <% if current_user.connections.spotify.present? %>
+        <%= link_to "Re-connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-light' %> 
+      <% else %>
+        <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-primary' %> 
+      <% end %>
+
       <button id="apple-music-authorize" class="btn btn-primary">Connect Apple Music</button>
       <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
       <%= javascript_include_tag 'applemusic' %>
