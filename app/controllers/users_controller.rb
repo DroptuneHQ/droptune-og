@@ -6,7 +6,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    #@new_albums = @user.albums.active.has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').uniq.first(12)
+
+    @new_albums = Album.includes(:artist).has_release_date.where.not(album_type: 'compilation').where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :desc).where("release_date <= ?", Date.today).uniq.first(12)
   end
 
   def import_apple_music
