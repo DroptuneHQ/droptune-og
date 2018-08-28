@@ -17,3 +17,7 @@
 //= require popper
 //= require bootstrap
 //= require_tree .
+
+$( document ).on('turbolinks:load', function() {
+  $('[data-toggle="tooltip"]').tooltip()
+})

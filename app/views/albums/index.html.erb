@@ -30,7 +30,7 @@
             </a>
           </div>
           <div class="card-block">
-            <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
+            <h4 class="card-title"><%= link_to a.name, album_path(a) %><% if a.album_type == 'single' %> <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Single">S</span><% end %></h4>
             <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
             <% if a.release_date %>
             <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
