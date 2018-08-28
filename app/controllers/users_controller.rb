@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   end
 
   def import_apple_music
+    current_user.update_attributes(apple_music_token: params['user_token']) if params['user_token']
+
     results = []
     artists = []
     offset = 0
