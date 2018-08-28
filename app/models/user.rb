@@ -57,12 +57,15 @@ class User < ApplicationRecord
   end
 
   def self.create_from_provider_data(provider_data)
-    where(provider: provider_data.provider, uid: provider_data.uid).first_or_create.tap do | user |
-      user.email = provider_data.info.email
-      user.username = provider_data.info.nickname
-      user.name = provider_data.info.name
-      user.avatar = provider_data.info.image
-      user.password = Devise.friendly_token[0, 20]
-    end
+    user = User.find_or_initialize_by(provider: provider_data.provider, uid: provider_data.uid)
+
+    user.email = provider_data.info.email
+    user.username = provider_data.info.nickname
+    user.name = provider_data.info.name
+    user.avatar = provider_data.info.image
+    user.password = Devise.friendly_token[0, 20]
+    user.save 
+
+    user
   end
 end
