@@ -1,15 +1,15 @@
 <% title "Community" %>
-<h1>Community</h1>
-<div class="row">
-<% @users.each do |user| %>
-<div class="col-sm-2">
-  <div class="card artist">
-    <a href="<%= user_path(user) %>"><div class="card-img-top rounded" style="background-image: url(<%= user.avatar_image %>)"></div></a>
-    <div class="card-block">
-      <h4 class="card-title"><%= link_to user.screename, user_path(user) %></h4>
+<div class="container">
+  <h1>Community</h1>
+</div>
+
+  <% @users.each do |user| %>
+  <div class="col-sm-2">
+    <div class="card artist">
+      <a href="<%= user_path(user) %>"><div class="card-img-top rounded" style="background-image: url(<%= user.avatar_image %>)"></div></a>
+      <div class="card-block">
+        <h4 class="card-title"><%= link_to user.screename, user_path(user) %></h4>
+      </div>
     </div>
   </div>
-</div>
-<% end %>
-
-</div>
+  <% end %>
