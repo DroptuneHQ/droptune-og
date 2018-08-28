@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'pages/index'
   
   require 'sidekiq/web'
-  require 'sidekiq-scheduler/web'
+  require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
   
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }

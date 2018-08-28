@@ -111,7 +111,7 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     equalizer (0.0.11)
     erubi (1.7.1)
-    et-orbi (1.1.4)
+    et-orbi (1.1.5)
       tzinfo
     execjs (2.7.0)
     faker (1.9.1)
@@ -261,8 +261,6 @@ GEM
       rest-client (~> 2.0.2)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
-    rufus-scheduler (3.5.2)
-      fugit (~> 1.1, >= 1.1.5)
     sass (3.5.7)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -285,11 +283,9 @@ GEM
       connection_pool (~> 2.2, >= 2.2.2)
       rack-protection (>= 1.5.0)
       redis (>= 3.3.5, < 5)
-    sidekiq-scheduler (3.0.0)
-      redis (>= 3, < 5)
-      rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      tilt (>= 1.4.0)
+    sidekiq-cron (1.0.4)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
     sidekiq-throttled (0.8.2)
       redis-prescription
       sidekiq
@@ -380,7 +376,7 @@ DEPENDENCIES
   selenium-webdriver
   sentry-raven
   sidekiq
-  sidekiq-scheduler
+  sidekiq-cron
   sidekiq-throttled
   spring
   spring-watcher-listen (~> 2.0.0)
