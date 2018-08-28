@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
   def index
-    @albums = Album.includes(:artist).has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(18)
+    @follows = Follow.group('artist_id').order('count_id desc').count('id').first(50).map(&:first)
+
+    @albums = Album.includes(:artist).where(artist_id: @follows).has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(18)
   end
 
   def test
