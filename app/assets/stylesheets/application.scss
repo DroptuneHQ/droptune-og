@@ -95,13 +95,19 @@ $h1-font-size: $font-size-base * 1.5 !default;
   .card-title {
     font-size: 15px;
     font-weight: 100;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
-    overflow: hidden;
     padding-bottom:2px;
     margin-bottom: 0.1rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between; // or could be flex-start 
     a {
       color: $dark!important;
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+      overflow: hidden;      
+    }
+    .badge {
+      margin-left: 0.25em;
     }
   }
   h6 {
