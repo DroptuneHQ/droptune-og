@@ -1,5 +1,29 @@
 <div class="container">
 <h1>Settings</h2>
+   <div class="row">     
+    
+     <div class="col">    
+      <h2>Preferences</h2>
+       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>   
+         <%= devise_error_messages! %>    
+      
+         <div class="form-group form-check">
+             <input type="checkbox" class="form-check-input" id="exampleCheck1">
+             <%= f.check_box :show_compilations, class: 'form-check-input' %>
+             <%= f.label :show_compilations, class: 'form-check-label' %>
+         </div>
+         <div class="form-group form-check">
+             <input type="checkbox" class="form-check-input" id="exampleCheck1">
+             <%= f.check_box :show_singles, class: 'form-check-input' %>
+             <%= f.label :show_singles, class: 'form-check-label' %>
+         </div>  
+            
+         <%= f.submit "Update", class: 'btn btn-primary' %>   
+    
+       <% end %>    
+     </div>   
+   </div>   
+  <hr>
   <div class="row">
     <div class="col">
       <h2>Connections</h2>

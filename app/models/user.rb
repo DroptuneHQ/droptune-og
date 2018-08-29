@@ -8,7 +8,7 @@ class User < ApplicationRecord
   include Storext.model
   store_attributes :settings do
     show_compilations Boolean, default: false
-    show_singles Boolean, default: false
+    show_singles Boolean, default: true
   end
 
   devise :database_authenticatable, :registerable,
