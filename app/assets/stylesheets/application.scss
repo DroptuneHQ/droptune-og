@@ -7,6 +7,10 @@ $h1-font-size: $font-size-base * 1.5 !default;
 
 @import "bootstrap";
 
+.btn.disabled {
+  pointer-events: auto;
+}
+
 .navbar {
   font-family: 'Nunito', sans-serif;
   form {

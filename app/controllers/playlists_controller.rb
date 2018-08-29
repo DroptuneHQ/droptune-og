@@ -8,6 +8,7 @@ class PlaylistsController < ApplicationController
 
     if params[:service] == 'spotify'
       @user.update_attributes(generate_playlist_spotify: true)
+      BuildPlaylistJob.perform_async(@user.id)
     elsif params[:service] == 'applemusic'
       @user.update_attributes(generate_playlist_applemusic: true)
     end

@@ -10,12 +10,12 @@
         <%= link_to raw("<i class='fab fa-spotify'></i> Enable for Spotify"), enable_playlists_path(service: 'spotify'), class: 'btn btn-success' %> 
       <% end %>
     <% end %>
-    
+    <i class="text-muted ml-2">(Apple Music coming soon)</i>
     <% if current_user and current_user.apple_music_token.present? %>
       <% if current_user.generate_playlist_applemusic.present? %>
-        <%= link_to raw("<i class='fab fa-apple'></i> Disable for Apple Music"), disable_playlists_path(service: 'applemusic'), class: 'btn btn-light' %> 
+        <%#= link_to raw("<i class='fab fa-apple'></i> Disable for Apple Music"), disable_playlists_path(service: 'applemusic'), class: 'btn btn-light' %> 
       <% else %>
-        <%= link_to raw("<i class='fab fa-apple'></i> Enable for Apple Music"), enable_playlists_path(service: 'applemusic'), class: 'btn btn-success' %>  
+        <%#= link_to raw("<i class='fab fa-apple'></i> Enable for Apple Music"), enable_playlists_path(service: 'applemusic'), class: 'btn btn-success', "data-toggle": "tooltip", "data-placement": "top", title: "Coming Soon" %>  
       <% end %>
     <% end %>
   </div>
