@@ -76,7 +76,9 @@ class BuildPlaylistJob
 
         tracks_response = album_tracks.parsed_response['data']
 
-        playlist = HTTParty.post("https://api.music.apple.com/v1/me/library/playlists/#{playlist_id}/tracks", 
+        # TODO: Only add new tracks
+
+        HTTParty.post("https://api.music.apple.com/v1/me/library/playlists/#{playlist_id}/tracks", 
           body: {data: tracks_response}.to_json,
           headers: {
             'Content-Type' => 'application/json', 
@@ -84,13 +86,6 @@ class BuildPlaylistJob
             "music-user-token" => user.apple_music_token
           }
         )
-
-
-
-
-        spotify_album = RSpotify::Album.find(album.spotify_id)
-        tracks = spotify_album.tracks
-        playlist.add_tracks!(tracks)
       end
     end
     

@@ -11,6 +11,7 @@ class PlaylistsController < ApplicationController
       BuildPlaylistJob.perform_async(@user.id)
     elsif params[:service] == 'applemusic'
       @user.update_attributes(generate_playlist_applemusic: true)
+      BuildPlaylistJob.perform_async(@user.id)
     end
 
     redirect_to playlists_path
