@@ -9,6 +9,11 @@ class User < ApplicationRecord
   store_attributes :settings do
     show_compilations Boolean, default: false
     show_singles Boolean, default: false
+    generate_playlist_spotify Boolean, default: false
+    generate_playlist_spotify_id String, default: nil
+    generate_playlist_applemusic Boolean, default: false
+    generate_playlist_applemusic_id String, default: nil
+    generate_playlist_frequency String, default: 'daily'
   end
 
   devise :database_authenticatable, :registerable,
