@@ -2,7 +2,8 @@
 <div class="container">
   <div class="">
     <h1>New Music Playlist Generator</h1>
-    <p class="lead">Droptune will automatically create and update a daily playlist of new music for you in Spotify & Apple Music!</p>
+     <p class="lead">Droptune will automatically create and update a daily playlist of new music for you in Spotify & Apple Music!</p>
+    <% if current_user.present? %>
     <% if current_user and current_user.connections.spotify.present? %>
       <% if current_user.generate_playlist_spotify.present? %>
         <%= link_to raw("<i class='fab fa-spotify'></i> Disable for Spotify"), disable_playlists_path(service: 'spotify'), class: 'btn btn-light' %> 
@@ -17,6 +18,9 @@
       <% else %>
         <%#= link_to raw("<i class='fab fa-apple'></i> Enable for Apple Music"), enable_playlists_path(service: 'applemusic'), class: 'btn btn-success', "data-toggle": "tooltip", "data-placement": "top", title: "Coming Soon" %>  
       <% end %>
+    <% end %>
+    <% else %>
+    <%= link_to raw("<i class='fab fa-twitter'></i> Sign in with Twitter"), omniauth_authorize_path("user", "twitter"), class: 'btn btn-primary btn-lg' %>
     <% end %>
   </div>
 </div>
