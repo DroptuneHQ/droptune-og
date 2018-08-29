@@ -45,8 +45,7 @@ class BuildPlaylistJob
       dt_playlist = results.select{|key| key['attributes']['name'] == 'Droptune New Music'}
 
       if dt_playlist.present?
-        #playlist = RSpotify::Playlist.find(spotify.id, dt_playlist.first.id)
-        #playlist.remove_tracks!(playlist.tracks)
+        playlist_id = dt_playlist.first['id']
       else
         playlist = HTTParty.post('https://api.music.apple.com/v1/me/library/playlists', {
           body: {attributes: { name: 'Droptune New Music', description: 'New music from Droptune'}}.to_json,
@@ -76,7 +75,21 @@ class BuildPlaylistJob
 
         tracks_response = album_tracks.parsed_response['data']
 
-        # TODO: Only add new tracks
+        delete_list = []
+        tracks_response.each_with_index do |item, index|
+          if playlist_track_names.include? item["attributes"]["name"]
+            delete_list << index
+          end
+        end
+
+        # For some reason this isn't removing them all
+        delete_list.each do |del|
+          tracks_response.delete_at(del)
+        end
+
+        tracks_response
+
+        # TODO: Filter through playlist_track_names and remove from tracks_response so we don't get duplicates
 
         HTTParty.post("https://api.music.apple.com/v1/me/library/playlists/#{playlist_id}/tracks", 
           body: {data: tracks_response}.to_json,
