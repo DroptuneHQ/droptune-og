@@ -54,5 +54,6 @@ class BuildArtistImvdbJob
       end
       page += 1
     end
+    artist.touch(:imvdb_last_updated_at)
   end
 end

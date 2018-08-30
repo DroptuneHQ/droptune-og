@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_28_224933) do
+ActiveRecord::Schema.define(version: 2018_08_30_225752) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,7 +64,15 @@ ActiveRecord::Schema.define(version: 2018_08_28_224933) do
     t.string "external_instagram"
     t.string "external_wikipedia"
     t.string "external_youtube"
+    t.datetime "imvdb_last_updated_at"
+    t.datetime "musicbrainz_last_updated_at"
+    t.datetime "spotify_last_updated_at"
+    t.datetime "applemusic_last_updated_at"
+    t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
+    t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
+    t.index ["musicbrainz_last_updated_at"], name: "index_artists_on_musicbrainz_last_updated_at"
     t.index ["name"], name: "index_artists_on_name"
+    t.index ["spotify_last_updated_at"], name: "index_artists_on_spotify_last_updated_at"
   end
 
   create_table "connections", force: :cascade do |t|

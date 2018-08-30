@@ -36,7 +36,8 @@ class BuildArtistMusicbrainzJob
         external_facebook: external_facebook, 
         external_instagram: external_instagram,
         external_wikipedia: external_wikipedia,
-        external_youtube: external_youtube)
+        external_youtube: external_youtube,
+        musicbrainz_last_updated_at: Time.now)
     end
   end
 end
