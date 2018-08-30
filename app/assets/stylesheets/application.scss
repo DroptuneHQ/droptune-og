@@ -157,15 +157,6 @@ $h1-font-size: $font-size-base * 1.5 !default;
     margin-bottom: 0;
     color: $dark;
   }
-  &.news {
-    .card-img-top {
-      width: 100%;
-      display: block;
-      min-height: 140px;
-      max-height: 200px;
-      background-position: center 15%;
-    }
-  }
 }
 
 .video_wrapper {
