@@ -12,18 +12,16 @@ class BuildAlbumApplemusicJob
     if albums.present?
       albums.each do |album|  
         Album.with_advisory_lock("#{album['id']}") do
-          albums.each do |album|
-            details = album['attributes']
-            album_name = details['name'].gsub(' - Single', '')
-            new_album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first_or_create(artist_id: artist.id, name: album_name)
-            if details['isSingle'] == true
-              album_type = 'single'
-            else
-              album_type = 'album'
-            end
-
-            new_album.update_attributes applemusic_id: album['id'], applemusic_image: details['artwork']['url'], applemusic_link: details['url'], album_type: album_type, release_date: details['releaseDate']
+          details = album['attributes']
+          album_name = details['name'].gsub(' - Single', '')
+          new_album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first_or_create(artist_id: artist.id, name: album_name)
+          if details['isSingle'] == true
+            album_type = 'single'
+          else
+            album_type = 'album'
           end
+
+          new_album.update_attributes applemusic_id: album['id'], applemusic_image: details['artwork']['url'], applemusic_link: details['url'], album_type: album_type, release_date: details['releaseDate']
         end
       end
     end
