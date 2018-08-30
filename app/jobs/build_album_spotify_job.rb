@@ -11,6 +11,7 @@ class BuildAlbumSpotifyJob
       Album.with_advisory_lock("#{album.id}") do
         albums.each do |album|
           new_album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album.name.downcase).first_or_create(artist_id: artist.id, name: album.name)
+
           if album.artists.present? && album.artists.first.name == 'Various Artists'
             album_type = 'compilation'
           else
@@ -18,8 +19,6 @@ class BuildAlbumSpotifyJob
           end
 
           image = album.images.first['url'] if album.images.present?
-
-          new_album.update_attributes spotify_id: album.id, spotify_image: image, spotify_link: album.external_urls['spotify'], spotify_popularity: album.popularity, album_type: album_type
 
           if new_album.release_date.blank? and album.try(:release_date)
             if album.release_date_precision == 'year'
@@ -29,8 +28,11 @@ class BuildAlbumSpotifyJob
             else
               date = album.release_date.to_date
             end
-            new_album.update_attribute(:release_date, date)
+          else
+            date = nil
           end
+
+          new_album.update_attributes spotify_id: album.id, spotify_image: image, spotify_link: album.external_urls['spotify'], spotify_popularity: album.popularity, album_type: album_type, release_date: date
         end
       end
     end
