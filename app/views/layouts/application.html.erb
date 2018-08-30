@@ -45,7 +45,7 @@
     drift.SNIPPET_VERSION = '0.3.1';
     drift.load('b2ws5yxhkrn7');
     <% if current_user.present? %>
-      drift.identify(userId, {
+      drift.identify(<%= current_user.id %>, {
         email: '<%= current_user.email %>',
         nickname: '<%= current_user.screename %>'
       })
