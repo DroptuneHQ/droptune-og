@@ -18,6 +18,7 @@
       gtag('config', 'UA-23290403-19');
     </script>
     <meta name="google-site-verification" content="mE1Q9uuICo4eQJ3DyPi4uK6PwovXCZYpGH0ib1a4PXE" />
+    <% if Rails.env.production? %>
     <!-- Start of Async Drift Code -->
     <script>
     "use strict";
@@ -52,6 +53,7 @@
     <% end %>
     </script>
     <!-- End of Async Drift Code -->
+    <% end %>
   </head>
 
   <body>
