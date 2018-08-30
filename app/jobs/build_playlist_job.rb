@@ -63,9 +63,9 @@ class BuildPlaylistJob
           query: {limit: 100 },
           headers: {'Content-Type' => 'application/json', "Authorization" => "Bearer #{ENV['apple_token']}", "music-user-token" => user.apple_music_token}
         })
-      playlist_tracks_data = playlist_tracks.parsed_response['data']
-      playlist_track_names = playlist_tracks_data.map{|i| i["attributes"]["name"]}
 
+      playlist_tracks_data = playlist_tracks.parsed_response['data']
+      playlist_track_names = playlist_tracks_data.map{|i| i["attributes"]["name"]} if playlist_tracks_data.present?
 
       albums.each do |album|
         album_tracks = HTTParty.get("https://api.music.apple.com/v1/catalog/us/albums/#{album.applemusic_id}/tracks", {
@@ -75,21 +75,9 @@ class BuildPlaylistJob
 
         tracks_response = album_tracks.parsed_response['data']
 
-        delete_list = []
-        tracks_response.each_with_index do |item, index|
-          if playlist_track_names.include? item["attributes"]["name"]
-            delete_list << index
-          end
+        if playlist_tracks_data.present?
+          tracks_response.delete_if { |i| playlist_track_names.include? i["attributes"]["name"] }
         end
-
-        # For some reason this isn't removing them all
-        delete_list.each do |del|
-          tracks_response.delete_at(del)
-        end
-
-        tracks_response
-
-        # TODO: Filter through playlist_track_names and remove from tracks_response so we don't get duplicates
 
         HTTParty.post("https://api.music.apple.com/v1/me/library/playlists/#{playlist_id}/tracks", 
           body: {data: tracks_response}.to_json,
