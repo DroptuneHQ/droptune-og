@@ -20,6 +20,10 @@ class User < ApplicationRecord
 
   has_many :connections
 
+  def is_admin?
+    admin
+  end
+
   def to_param
     [id, screename.parameterize].join("-")
   end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
   # get "/sitemap-albums.xml" => "pages#sitemap_albums", :format => "xml", :as => :sitemap_albums
   # get "/sitemap-artists.xml" => "pages#sitemap_artists", :format => "xml", :as => :sitemap_artists
