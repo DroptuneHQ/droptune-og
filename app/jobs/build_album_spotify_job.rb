@@ -40,7 +40,14 @@ class BuildAlbumSpotifyJob
           date = nil
         end
 
-        new_album.update_attributes spotify_id: album.id, spotify_image: image, spotify_link: album.external_urls['spotify'], spotify_popularity: album.popularity, album_type: album_type, release_date: date
+        new_album.spotify_id = album.id
+        new_album.spotify_image = image
+        new_album.spotify_link = album.external_urls['spotify']
+        new_album.spotify_popularity = album.popularity
+        new_album.album_type = album_type
+        new_album.release_date = date if date.present?
+
+        new_album.save
       end
     end
     
