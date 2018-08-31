@@ -1,0 +1,55 @@
+/* Reset */
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, img, ins, kbd, q, samp,
+small, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+hr { display: block; height: 1px; border: 0; border-bottom: 2px solid #f0f1f2; }
+input, select { vertical-align: middle; }
+body { font: 400 16px/27px $fonts; *font-size:small; color: $darkest; }
+select, input, textarea, button { font:99% sans-serif; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+a, a:hover, a:active { outline: none; }
+sub, sup { font-size: 50%; line-height: 0; position: relative; }
+sup { top: -0.9em; }
+a:link { -webkit-tap-highlight-color: transparent; }
+h1, h2, h3, h4, h5, h6 { font-weight: 400; margin: 0; padding: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+a { text-decoration: none; }
+strong, b { font-family: $fonts; }
+
+html, body {
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+}
+
+::placeholder {
+   color: $light-gray;
+   font-family: $fonts;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+
+  &.dark {
+    color: $gray;
+    background: $darkest;
+  }
+}

@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
     <title><%= content_for?(:title) ? ("#{yield(:title)} - Droptune").html_safe : "Droptune" %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <link href="https://fonts.googleapis.com/css?family=Nunito|Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="lOptimized" content="width" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,initial-scale=1,user-scalable=yes">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,400,600,800|Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -21,77 +25,38 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light navbar-main pb-0">
-      <div class="container px-5">
-        <div class="row">
-          <%= link_to image_tag('logo-droptune-color.svg', height: '21', class: 'd-inline-block align-top'), root_path, class: 'navbar-brand mr-3 pt-3' %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item pt-2 mr-1">
-                <%= link_to "Latest Albums", albums_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mr-1">
-                <%= link_to "Upcoming", upcoming_albums_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mr-1">
-                <%= link_to "Latest Videos", music_videos_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mr-1">
-                <%= link_to "Artists", artists_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mr-1">
-                <%= link_to "Charts", charts_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mx-0">
-                <%= link_to "Users", users_path, class: 'nav-link' %>
-              </li>
-              <li class="nav-item pt-2 mx-0">
-                <%= link_to "Playlists", playlists_path, class: 'nav-link' %>
-              </li>
-            </ul>
-            
-            <ul class="navbar-nav">
-              <% if user_signed_in? %>
-              <li class="nav-item pt-2 dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <img src="<%= current_user.avatar_image %>" class="rounded-circle float-left mr-2" style="max-width:24px">  <%= current_user.screename %>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                  <%= link_to 'Profile', user_path(current_user), class: 'dropdown-item' %>
-                  <%= link_to 'Settings', edit_user_registration_path, class: 'dropdown-item' %>
-                  <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
-                </div>
-              </li>
-              <% else %>
-              <li class="nav-item"><%= link_to 'Sign in with Twitter', omniauth_authorize_path("user", "twitter"), class: 'nav-link' %></li>
-              <% end %>
-            </ul>
-          </div>
+    <header role="main">
+      <div class="container">
+        <a href="#" id="logo">Droptune</a>
+        <a href="#" id="mobile-menu"><i class="fas fa-bars"></i></a>
+        <nav>
+          <%= link_to raw('<i class="fab fa-twitter"></i> Sign in with Twitter'), omniauth_authorize_path("user", "twitter"), id: 'twitter-sign-in' %>
+          <%= link_to "Albums", albums_path, class: 'active' %>
+          <%= link_to "Videos", music_videos_path %>
+          <%= link_to "Artists", artists_path %>
+          <%= link_to "Charts", charts_path %>
+          <%= link_to "Users", users_path %>
+          <%= link_to "Playlists", playlists_path %>
+        </nav>
+      </div>
+    </header>
+
+    <% if notice %>
+      <div class="alert success" role="alert">
+        <div class="container">
+          <i class="fas fa-check-circle"></i> <%= notice %>
         </div>
       </div>
-    </nav>
-    <nav class="navbar navbar-expand-lg mb-3">
-      <div class="container px-5">
-        <div class="row">
-          <%= form_tag(search_artists_path, method: 'get', class: 'd-inline w-100', enforce_utf8:false) do %>
-            <%= text_field_tag :artist, nil, class: 'form-control input-lg py-4', placeholder: "Search for artists" %>
-          <% end %>
+    <% end %>
+    <% if alert %>
+      <div class="alert error" role="alert">
+        <div class="container">
+          <i class="fas fa-exclamation-triangle"></i> <%= alert %>
         </div>
       </div>
-    </nav>
+    <% end %>
 
-
-    <div class="container px-3"> 
-      <% if notice %>
-        <div class="alert alert-success mt-3" role="alert"><%= notice %></div>
-      <% end %>
-      <% if alert %>
-        <div class="alert alert-danger mt-3" role="alert"><%= alert %></div>
-      <% end %>
-
+    <main class="container">
       <% if user_signed_in? %>
         <% unless current_user.follows.present? %>
         <h1>Connect</h1>
@@ -102,15 +67,18 @@
           <hr>
         <% end %>
       <% end %>
+
+      
       <%= yield %>
-    </div>
-    <footer class="bd-footer text-muted">
-      <div class="container-fluid p-2 p-md-5">
+    </main>
+
+    <footer>
+      <div class="container">
         <p>Got feedback? Want to contribute? <a href="https://github.com/Shpigford/droptune">Droptune is open source!</a></p>
         <p>Original idea by <a href="https://twitter.com/Shpigford">@Shpigford</a>. Maintained by <a href="https://twitter.com/Shpigford">@Shpigford</a> with the help of <a href="https://github.com/Shpigford/droptune/graphs/contributors">our contributors</a>!</p>
       </div>
     </footer>
-    <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+
     <script type="text/javascript">
       document.addEventListener('musickitloaded', function() {
         // MusicKit global is now defined

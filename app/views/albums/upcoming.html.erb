@@ -1,33 +1,30 @@
-<% title "Upcoming Releases" %>
-<div class="container">
-    <div class="row justify-content-between">
-      <div class="col-sm-9"><h1>Upcoming Releases</h1></div>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="row">
-        <% @albums.each do |a| %>
-        <% cache a do %>
-        <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
-          <div class="card album">
-            <div class="album_cover">
-              <a href="<%= album_path(a) %>">
-              <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
-              <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
-              </a>
-            </div>
-            <div class="card-block">
-              <h4 class="card-title"><%= link_to a.name, album_path(a) %><% if a.album_type == 'single' %> <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Single">S</span><% end %></h4>
-              <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
-              <% if a.release_date %>
-              <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-              <% end %>
-            </div>
-          </div>
-        </div>
+<% title "Upcoming Music Releases" %>
+<% if @albums.present? %>
+<h1>Albums</h1>
+<div class="latest-upcoming">
+  <ul class="subnav">
+    <li><%= link_to "Latest Releases", albums_path %></li>
+    <li><%= link_to "Upcoming Releases", upcoming_albums_path, class: 'active' %></li>
+  </ul>
+  <div class="album-grid">
+    <% @albums.each do |a| %>
+    <% cache a do %>
+      <div class="album">
+        <a href="<%= album_path(a) %>" class="album_cover">
+          <span class="sources">
+            <% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %>
+          </span>
+          <img src="<%= album_image(a) %>" />
+        </a>
+        <% if a.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
+        <%= link_to a.name, album_path(a), class: 'album-title' %>
+        <%= link_to a.artist.name, artist_path(a.artist), class: 'album-artist' %>
+        <% if a.release_date %>
+        <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
         <% end %>
-        <% end %>
-        </div>
       </div>
+    <% end %>
+    <% end %>
   </div>
 </div>
+<% end %>
