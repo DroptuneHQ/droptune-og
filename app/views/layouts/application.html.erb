@@ -31,12 +31,12 @@
         <a href="#" id="mobile-menu"><i class="fas fa-bars"></i></a>
         <nav>
           <%= link_to raw('<i class="fab fa-twitter"></i> Sign in with Twitter'), omniauth_authorize_path("user", "twitter"), id: 'twitter-sign-in' %>
-          <%= link_to "Albums", albums_path, class: 'active' %>
-          <%= link_to "Videos", music_videos_path %>
-          <%= link_to "Artists", artists_path %>
-          <%= link_to "Charts", charts_path %>
-          <%= link_to "Users", users_path %>
-          <%= link_to "Playlists", playlists_path %>
+          <%= link_to "Albums", albums_path, class: controller_name=='albums' ? 'active' : '' %>
+          <%= link_to "Videos", music_videos_path, class: controller_name=='music_videos' ? 'active' : '' %>
+          <%= link_to "Artists", artists_path, class: controller_name=='artists' ? 'active' : '' %>
+          <%= link_to "Charts", charts_path, class: controller_name=='charts' ? 'active' : '' %>
+          <%= link_to "Users", users_path, class: controller_name=='users' ? 'active' : '' %>
+          <%= link_to "Playlists", playlists_path, class: controller_name=='playlists' ? 'active' : '' %>
         </nav>
       </div>
     </header>

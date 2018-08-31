@@ -1,24 +1,13 @@
 <% title "Artists" %>
-<div class="container">
-    <h1>
-      Artists
-      <% if current_user %>
-      <small class="text-muted">The artists you follow</small>
-      <% else %>
-      <small class="text-muted">Popular artists</small>
-      <% end %>
-    </h1>
+<h1>Artists</h1>
 
-    <div class="row">
-      <% @artists.each do |a| %>
-      <div class="col-sm-2">
-        <div class="card artist">
-          <a href="<%= artist_path(a) %>"><div class="card-img-top rounded" style="background-image: url(<%= a.spotify_image %>)"></div></a>
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to a.name, artist_path(a) %></h4>
-          </div>
-        </div>
-      </div>
-      <% end %>
-    </div>
+<div class="artist-grid">
+  <% @artists.each do |a| %>
+  <div class="artist">
+    <a href="<%= artist_path(a) %>">
+      <div class="artist-image" style="background-image: url(<%= a.spotify_image %>)"></div>
+    </a>
+    <%= link_to a.name, artist_path(a), class: 'artist-title' %>
+  </div>
+  <% end %>
 </div>
