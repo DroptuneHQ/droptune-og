@@ -87,6 +87,10 @@ header {
       &:hover, &.active {
         color: $white;
         border-top-color: $blue;
+        @include max-screen(910px) {
+          float: none;
+          color: $black;
+        }
       }
 
       @include max-screen(1023px) { margin: 0 20px 0 0; }
@@ -117,6 +121,9 @@ header {
     .user-link {
       float: right;
       margin: 0;
+      @include max-screen(910px) {
+          float: none;
+        }
       img {
         border-radius: 100px;
         width: 30px;

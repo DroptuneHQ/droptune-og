@@ -17,7 +17,7 @@ class AlbumsController < ApplicationController
     elsif params[:year]
       @albums = query.where("extract(year from release_date) = ?", params[:year]).uniq
     else
-      @num_days = params[:days].present? ? params[:days].to_i : 7
+      @num_days = params[:days].present? ? params[:days].to_i : 21
       @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
     end
   end

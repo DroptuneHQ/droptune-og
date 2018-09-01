@@ -15,3 +15,20 @@
 //= require turbolinks
 //= require jquery3
 //= require_tree .
+
+
+$( document ).on('turbolinks:load', function() {
+
+  // Mobile Menu
+  $('#mobile-menu').on('click', function(e){
+    e.preventDefault();
+    $('nav').toggleClass('show');
+  });
+
+  $(window).resize(function(){
+    if ($('body').width() > 910) {
+        $('nav').removeClass('show');
+    }
+  });
+
+});
