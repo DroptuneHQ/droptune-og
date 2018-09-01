@@ -1,47 +1,73 @@
 <% title "Latest Music Releases" %>
 <% if @albums.present? %>
-<div class="container">
-  <div class="row justify-content-between">
-    <div class="col-sm-9"><h1>Latest Music Releases</h1></div>
-    <div class="col-sm-3 text-right">
-      <div class="dropdown">
-        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Last 7 days", albums_path(days: 7), class: 'dropdown-item' %>
-          <%= link_to "Last 14 days", albums_path(days: 14), class: 'dropdown-item' %>
-          <%= link_to "Last 30 days", albums_path(days: 30), class: 'dropdown-item' %>
-          <%= link_to "Last 60 days", albums_path(days: 60), class: 'dropdown-item' %>
-          <%= link_to "Last 90 days", albums_path(days: 90), class: 'dropdown-item' %>
-        </div>
+<h1>Albums</h1>
+<div class="latest-upcoming">
+  <ul class="subnav">
+    <li><%= link_to "Latest Releases", albums_path, class: 'active' %></li>
+    <li><%= link_to "Upcoming Releases", upcoming_albums_path %></li>
+  </ul>
+  <div class="album-grid">
+    <% @albums.each do |a| %>
+    <% cache a do %>
+      <div class="album">
+        <a href="<%= album_path(a) %>" class="album_cover">
+          <span class="sources">
+            <% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %>
+          </span>
+          <img src="<%= album_image(a) %>" />
+        </a>
+        <% if a.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
+        <%= link_to a.name, album_path(a), class: 'album-title' %>
+        <%= link_to a.artist.name, artist_path(a.artist), class: 'album-artist' %>
+        <% if a.release_date %>
+        <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
+        <% end %>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-      <% @albums.each do |a| %>
-      <% cache a do %>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
-        <div class="card album">
-          <div class="album_cover">
-            <a href="<%= album_path(a) %>">
-            <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
-            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
-            </a>
-          </div>
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to a.name, album_path(a) %><% if a.album_type == 'single' %> <span class="badge badge-secondary" data-toggle="tooltip" data-placement="top" title="Single">S</span><% end %></h4>
-            <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
-            <% if a.release_date %>
-            <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
-      </div>
-    </div>
+    <% end %>
+    <% end %>
   </div>
 </div>
+<!-- <div class="past-albums">
+  <div class="past-date">
+    <h3>August 17, 2018</h3>
+    <div class="album-grid">
+      <div class="album">
+        <a href="#" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-spotify"></i>
+            <i class="fab fa-apple"></i>
+          </span>
+          <img src="../images/500x500bb.jpg" />
+        </a>
+        <span class="single" title="Single">S</span>
+        <a href="#" class="album-title">Album Title</a>
+        <a href="#" class="album-artist">Artist</a>
+      </div>
+      <div class="album">
+        <a href="#" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-spotify"></i>
+            <i class="fab fa-apple"></i>
+          </span>
+          <img src="../images/500x500bb.jpg" />
+        </a>
+        <span class="single" title="Single">S</span>
+        <a href="#" class="album-title">Album Title</a>
+        <a href="#" class="album-artist">Artist</a>
+      </div>
+      <div class="album">
+        <a href="#" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-spotify"></i>
+            <i class="fab fa-apple"></i>
+          </span>
+          <img src="../images/500x500bb.jpg" />
+        </a>
+        <span class="single" title="Single">S</span>
+        <a href="#" class="album-title">Album Title</a>
+        <a href="#" class="album-artist">Artist</a>
+      </div>
+    </div>
+  </div>
+</div> -->
 <% end %>

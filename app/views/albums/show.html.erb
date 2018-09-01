@@ -1,25 +1,34 @@
 <% title "#{@album.name} by #{@album.artist.name}" %>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-        <li class="breadcrumb-item"><%= link_to "Artists", artists_path %></li>
-        <li class="breadcrumb-item"><%= link_to @album.artist.name, artist_path(@album.artist) %></li>
-        <li class="breadcrumb-item active"><%= @album.name %></li>
-      </ol>
-      <h1><%= @album.name %></h1>
 
-      <div class="row">
-        <div class="col">
-          <% if @album.applemusic_id %>
-          <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="<% if @album.album_type == 'single' %>450<% else %>580<% end %>" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="500"></iframe>
-          <% end %>
-          <% if @album.spotify_id %>
-          <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="500" height="<% if @album.album_type == 'single' %>200<% else %>580<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-          <% end %>
-        </div>
-      </div>
+<nav class="breadcrumb">
+  <ol>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Artists", artists_path %></li>
+    <li><%= link_to @album.artist.name, artist_path(@album.artist) %></li>
+    <li class="active"><%= @album.name %></li>
+  </ol>
+</nav>
+<div class="grid">
+  <div class="col album-single">
+    <div class="album_cover">
+      <div><img src="<%= album_image(@album, '600') %>"></div>
     </div>
+    <div class="details">
+      <span><%= @album.album_type %></span>
+      <h1><%= @album.name %></h1>
+      <h2><%= link_to @album.artist.name, artist_path(@album.artist) %></h2>
+      <p class="released">Released <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
+      <!-- <p class="add">
+        <a href="#"><i class="fab fa-spotify"></i> Add</a>
+        <a href="#"><i class="fab fa-apple"></i> Add</a>
+      </p> -->
+    </div>
+  </div>
+  <div class="col album-player">
+    <% if @album.applemusic_id %>
+      <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="100%"></iframe>
+    <% elsif @album.spotify_id %>
+      <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <% end %>
   </div>
 </div>

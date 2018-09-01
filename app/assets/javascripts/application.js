@@ -14,10 +14,21 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require popper
-//= require bootstrap
 //= require_tree .
 
+
 $( document ).on('turbolinks:load', function() {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+
+  // Mobile Menu
+  $('#mobile-menu').on('click', function(e){
+    e.preventDefault();
+    $('nav').toggleClass('show');
+  });
+
+  $(window).resize(function(){
+    if ($('body').width() > 910) {
+        $('nav').removeClass('show');
+    }
+  });
+
+});

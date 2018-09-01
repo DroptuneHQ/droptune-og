@@ -1,29 +1,27 @@
 <% title "#{@video.name} by #{@video.artist.name}" %>
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><%= link_to "Home", root_path %></li>
-        <li class="breadcrumb-item"><%= link_to "Artists", artists_path %></li>
-        <li class="breadcrumb-item"><%= link_to @video.artist.name, artist_path(@video.artist) %></li>
-        <li class="breadcrumb-item active"><%= @video.name %></li>
-      </ol>
-      <h1><%= @video.name %> <small class="text-muted">by <%= @video.artist.name %></small></h1>
-      <h5>Released on <%= @video.release_date.strftime("%B %-e, %Y") %></h5>
-      <div class="row">
-        <div class="col">
 
-          <% if @video.source == 'youtube' %>
-            <div class="video_wrapper">
-            <iframe src="https://www.youtube.com/embed/<%= @video.source_data %>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" class="video" allowfullscreen></iframe>
-          </div>
-          <% end %>
-          
-          <% if @video.source == 'vimeo' %>
-            <div style="padding:42.86% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/<%= @video.source_data %>?color=15B6FB&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
-          <% end %>
-        </div>
-      </div>
+
+<nav class="breadcrumb">
+  <ol>
+    <li><%= link_to "Home", root_path %></li>
+    <li><%= link_to "Artists", artists_path %></li>
+    <li><%= link_to @video.artist.name, artist_path(@video.artist) %></li>
+    <li class="active"><%= @video.name %></li>
+  </ol>
+</nav>
+
+<div class="video-item">
+  <h1><%= @video.name %> <small>by <%= @video.artist.name %></small></h1>
+  <h2>Released on <%= @video.release_date.strftime("%B %-e, %Y") %></h2>
+  <div class="video-area">
+    <% if @video.source == 'youtube' %>
+      <div class="video_wrapper">
+      <iframe src="https://www.youtube.com/embed/<%= @video.source_data %>?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" class="video" allowfullscreen></iframe>
     </div>
+    <% end %>
+    
+    <% if @video.source == 'vimeo' %>
+      <div style="padding:42.86% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/<%= @video.source_data %>?color=15B6FB&title=0&byline=0&portrait=0" style="position:absolute;top:0;left:0;width:100%;height:100%;" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div><script src="https://player.vimeo.com/api/player.js"></script>
+    <% end %>
   </div>
 </div>

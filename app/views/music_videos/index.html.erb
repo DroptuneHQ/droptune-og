@@ -1,45 +1,25 @@
 <% title "Latest Music Videos" %>
 <% if @videos.present? %>
-<div class="container">
-  <div class="row justify-content-between">
-    <div class="col-sm-9"><h2>Latest Music Videos</h2></div>
-    <div class="col-sm-3 text-right">
-      <div class="dropdown">
-        <a href="#" class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Last <%= @num_days %> days</a>
-        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Last 30 days", music_videos_path(days: 30), class: 'dropdown-item' %>
-          <%= link_to "Last 60 days", music_videos_path(days: 60), class: 'dropdown-item' %>
-          <%= link_to "Last 90 days", music_videos_path(days: 90), class: 'dropdown-item' %>
-          <%= link_to "Last 120 days", music_videos_path(days: 120), class: 'dropdown-item' %>
-          <%= link_to "Last 365 days", music_videos_path(days: 365), class: 'dropdown-item' %>
-        </div>
+<h1>Latest Music Videos</h1>
+<div class="latest-upcoming">
+  <div class="album-grid">
+    <% @videos.each do |video| %>
+    <% cache video do %>
+      <div class="album">
+        <a href="<%= music_video_path(video) %>" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-youtube"></i>
+          </span>
+          <img src="<%= video.image %>" />
+        </a>
+        <%= link_to video.name, music_video_path(video), class: 'album-title' %>
+        <%= link_to video.artist.name, artist_path(video.artist), class: 'album-artist' %>
+        <% if video.release_date %>
+        <p class="release-date"><small><%= video.release_date.strftime("%B %-e, %Y") %></small></p>
+        <% end %>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-12">
-      <div class="row">
-      <% @videos.each do |video| %>
-      <% cache video do %>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
-        <div class="card album">
-          <div class="album_cover">
-            <a href="<%= music_video_path(video) %>">
-            <div class="sources"><i class="fab fa-youtube"></i></div>
-            <img class="card-img-top img-fluid rounded" src="<%= video.image %>">
-            </a>
-          </div>
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to video.name, music_video_path(video) %></h4>
-            <h6><%= link_to video.artist.name, artist_path(video.artist) %></h6>
-            <p class="release-date"><small><%= video.release_date.strftime("%B %-e, %Y") %></small></p>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
-      </div>
-    </div>
+    <% end %>
+    <% end %>
   </div>
 </div>
 <% end %>

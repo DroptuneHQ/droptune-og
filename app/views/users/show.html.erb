@@ -1,39 +1,30 @@
 <% title @user.screename %>
-<div class="container">
-<div class="row">
-  <div class="col">
-    <img src="<%= @user.avatar_image %>" class="rounded-circle float-left mr-3" style="max-width:65px">
 
-    <h1 class="display-4"><%= @user.screename %></h1>
+<div class="user-info">
+  <div><img src="<%= @user.avatar_image %>"></div>
+  <div class="about">
+    <h1><%= @user.screename %></h1>
+    <% if @user == current_user %>
+      <p><%= link_to 'Settings', edit_user_registration_path %> <%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
+    <% end %>
   </div>
 </div>
-<hr>
-<div class="row">
-  <div class="col">
-    <h1>New music from artists <%= @user.screename %> follows...</h1>
-    <div class="row">
-      <% @new_albums.each do |a| %>
-      <% cache a do %>
-      <div class="col-6 col-sm-4 col-md-3 col-lg-2 pb-4">
-        <div class="card album">
-          <div class="album_cover">
-            <a href="<%= album_path(a) %>">
-            <div class="sources"><% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %></div>
-            <img class="card-img-top img-fluid rounded" src="<%= album_image(a) %>">
-            </a>
-          </div>
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to a.name, album_path(a) %></h4>
-            <h6><%= link_to a.artist.name, artist_path(a.artist) %></h6>
-            <% if a.release_date %>
-            <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
+
+<h2>New music from artists <%= @user.screename %> follows...</h2>
+<div class="album-grid">
+  <% @new_albums.each do |a| %>
+  <% cache a do %>
+    <div class="album">
+      <a href="<%= album_path(a) %>" class="album_cover">
+        <span class="sources">
+          <% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %>
+        </span>
+        <img src="<%= album_image(a) %>" />
+      </a>
+      <% if a.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
+      <%= link_to a.name, album_path(a), class: 'album-title' %>
+      <%= link_to a.artist.name, artist_path(a.artist), class: 'album-artist' %>
     </div>
-  </div>
-</div>
+  <% end %>
+  <% end %>
 </div>

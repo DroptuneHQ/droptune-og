@@ -1,137 +1,511 @@
-$dark: #202425;
-$primary: #15B6FB;
-$font-family-sans-serif:      'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji" !default;
-$headings-font-family: 'Nunito', sans-serif;
-$font-size-base: 1rem !default; // Assumes the browser default, typically `16px`
-$h1-font-size: $font-size-base * 1.5 !default;
+@import "variables";
+@import "reset";
+@import "media-queries";
 
-@import "bootstrap";
+// Layout
 
-.btn.disabled {
-  pointer-events: auto;
+.container {
+  position: relative;
+  max-width: 1140px;
+  padding: 0 24px;
+  margin: 0 auto;
 }
 
-.navbar {
-  font-family: 'Nunito', sans-serif;
-  form {
-    .input-lg {
-      background-color: rgba($dark, 0.05);
-      border: 0;
+// Header
+header {
+  position: relative;
+  margin: 0 0 30px;
+  background: $black;
+
+  #logo {
+    float: left;
+    margin: 18px 40px 0 0;
+    display: block;
+    width: 116px;
+    height: 23px;
+    padding: 0;
+    text-indent: -9999em;
+    background: image-url('logo-droptune-color-white.svg') no-repeat top left;
+
+    &:hover {
+      border-top-color: #fff;
+    }
+    @include max-screen(910px) {
+      float: none;
+      margin: 0 0 0 0;
+      top: 20px;
+      position: relative;
+      padding: 20px 0;
     }
   }
-  font-size: .95em;
-  .row {
-    flex-grow: 1;
+
+  a#mobile-menu {
+      display: none;
+      position: absolute;
+      top: 18px;
+      right: 24px;
+      width: 24px;
+      height: 15px;
+      color: $white;
+      font-size: 1.5em;
+      @include max-screen(910px) {
+          display: block;
+      }
   }
-}
-.navbar-nav {
-  margin-top:-5px;
-}
-.navbar-main {
-  padding-top: 0!important;
-}
-.nav-item {
-  &.active {
-    box-shadow: 0 2px $primary inset;
+
+  nav {
+    height: 64px;
+    padding: 0;
+
+    &.show {
+      display: block;
+    }
+
+    @include max-screen(910px) {
+      position: absolute;
+      top: 57px;
+      left: 0;
+      right: 0;
+      padding: 0;
+      height: 56px;
+      display: none;
+      height: auto;
+      background: #fff;
+      z-index: 99;
+    }
+
+    a {
+      display: inline-block;
+      padding: 15px 0 0;
+      margin: 0 35px 0 0;
+      border-top: 2px solid transparent;
+      font-size: 15px;
+      font-weight: 400;
+      color: $gray;
+      transition: all 0.2s linear;
+
+      &:hover, &.active {
+        color: $white;
+        border-top-color: $blue;
+        @include max-screen(910px) {
+          float: none;
+          color: $black;
+        }
+      }
+
+      @include max-screen(1023px) { margin: 0 20px 0 0; }
+
+      &#twitter-sign-in {
+        float: right;
+        margin: 0;
+
+        @include max-screen(910px) {
+          float: none;
+        }
+      }
+
+      @include max-screen(910px) {
+        position: relative;
+        clear: left;
+        display: block;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-bottom: 1px solid $lighter-gray;
+        line-height: 43px;
+        text-align: center;
+        padding: 8px 0;
+        margin: 0;
+      }
+    }
+    .user-link {
+      float: right;
+      margin: 0;
+      @include max-screen(910px) {
+          float: none;
+        }
+      img {
+        border-radius: 100px;
+        width: 30px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+      }
+    }
   }
-  &:hover {
-    box-shadow: 0 2px $primary inset;
+
+  form {
+    padding: 25px 0px 0;
+
+    input[type=text] {
+      display: block;
+      width: 98%;
+      border: 2px solid $lighter-gray;
+      height: 49px;
+      padding-left: 2%;
+      line-height: 49px;
+      border-radius: 4px;
+      font-size: 18px;
+      outline: none;
+      background: #fff;
+    }
   }
-}
-.jumbotron {
-  background-image: image-url('bgr-jumbo.png');
-  background-size: 100%;
-  .fa-twitter {
-    color: $primary;
-  }
-}
-.bg-lightdark {
-  background: lighten($dark, 4%)!important;
 }
 
-.bd-footer {
-  border-top: 1px solid #f7f7f7;
-  background: #fcfcfc;
-  font-size:85%;
-  margin-top: 20px;
-  .text-muted {
-    color: #6c757d!important;
+// Typography
+h1 {
+  font: 400 45px/70px $fonts;
+}
+h2 {
+  font: 400 22px/35px $fonts;
+  margin: 0 0 24px;
+}
+h3 {
+  font: 400 20px/30px $fonts;
+  margin: 0 0 14px;
+}
+
+// Page elements
+.subnav {
+  display: block;
+  margin-bottom: 25px;
+  li {
+    display: inline-block;
+    margin-right: 18px;
+    a {
+      color: $light-gray;
+      font-size: 18px;
+      transition: all 0.2s linear;
+      &.active, &:hover {
+        color: $black;
+        border-bottom: 2px solid $blue;
+      }
+    }
   }
-  a {
-    font-weight: bold;
-    color: #495057;
+}
+.breadcrumb {
+  ol {
+    list-style: none;
+    margin: 0 0 25px 0;
+    padding: 0;
+    li {
+      display: inline-block;
+      a {
+        color: $gray;
+      }
+      &:after {
+        content: '/';
+        color: $gray;
+        padding: 0 8px 0 12px;
+      }
+      &.active {
+        &:after {
+          content: '';
+          padding: 0;
+        }
+      }
+    }
   }
-  p {
+}
+.alert {
+  padding: 15px 0;
+  margin: -30px 0 30px;
+  font-size: 1.1em;
+  text-align: center;
+  color: $white;
+  &.success {
+    background: $green;
+  }
+  &.error {
+    background: $red;
+  }
+}
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px 30px;
+  @include max-screen(700px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include max-screen(550px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.artist-header {
+  background-size: 100%;
+  background-position: 50% 40%;
+  background-color: $black;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  position: relative;
+  color: $white;
+  height: 300px;
+  .info, .links {
+    position: relative;
+    z-index: 100;
+  }
+  .info {
+    position: absolute;
+    bottom: 50px;
+    left: 35px;
+    h1 {
+      font-size: 5em;
+      line-height: 100px;
+    }
+  }
+  .links {
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    li {
+      display: inline;
+      margin-left: 10px;
+    }
+    a {
+      color: $white;
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $black;
+    border-radius: 5px;
+    opacity: 0.8;
+  }
+
+}
+
+.grid-artist {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px 50px;
+  @include max-screen(900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include max-screen(800px) {
+    grid-template-columns: 1fr;
+  }
+  .albums {
+    .album-grid {
+      grid-template-columns: repeat(4, 1fr);
+      @include max-screen(900px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+  .videos {
+    .album-grid {
+      grid-template-columns: repeat(2, 1fr);
+      @include max-screen(900px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  &.full {
+    grid-template-columns: 1fr;
+    .album-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}
+
+.fans, .media {
+  h2 {
     margin-bottom: 5px;
   }
 }
 
-.card.artist {
-  border: 0;
-  .card-img-top {
-    height: 150px;
-    max-height: 110px;
-    width: 100%;
-    display: block;
-    background-size: 100%;
-    background-position: center;
-  }
-  .card-block {
-    padding: 0.5rem 0.1rem;
-  }
-  .card-title {
-    font-size: 15px;
-    font-weight: 400;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
-    overflow: hidden;
-    padding-bottom:2px;
-    margin-bottom: 0.3rem
+.fans {
+  .user-grid {
+    grid-template-columns: repeat(15, 1fr);
+    @include max-screen(850px) {
+      grid-template-columns: repeat(8, 1fr);
+    }
   }
 }
 
-.card.album {
+.jumbotron {
+  text-align: center;
+  padding: 40px 20px;
+  color: $white;
+  border-radius: 10px;
+  background-image: image-url('bgr-jumbo.png');
+  background-size: 100%;
+  margin-bottom: 15px;
+  h2 {
+    font-weight: 400;
+    font-size: 3em;
+    margin: 0 0 15px;
+  }
+  p {
+    font-weight: 200;
+    font-size: 1.8em;
+    margin-bottom: 30px;
+  }
+  .fa-twitter {
+    color: $blue;
+  }
+}
+
+.btn {
+  padding: 10px 15px;
+  border-radius: 100px;
+  background: $blue;
   border: 0;
-  font-family: 'Nunito', sans-serif;
-  .card-block {
-    padding: 0.5rem 0.1rem;
+  color: $white;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($blue, 10%);
   }
-  .card-title {
-    font-size: 15px;
-    font-weight: 100;
-    padding-bottom:2px;
-    margin-bottom: 0.1rem;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between; // or could be flex-start 
-    a {
-      color: $dark!important;
-      white-space: nowrap; 
-      text-overflow: ellipsis;
-      overflow: hidden;      
-    }
-    .badge {
-      margin-left: 0.25em;
+  &.btn-white {
+    color: $black;
+    background: $white;
+    &:hover {
+      background-color: darken($white, 10%);
     }
   }
-  h6 {
-    font-size: 13px;
-    font-weight: 100;
-    margin-bottom: 0.05rem;
-    white-space: nowrap; 
-    text-overflow: ellipsis;
-    overflow: hidden;
-    a {
-      color: #9DA2A4;
+  &.btn-danger {
+    color: $white;
+    background: $red;
+    &:hover {
+      background-color: darken($red, 10%);
     }
+  }
+  &.btn-blue-gradient {
+    color: $white;
+    font-weight: 600;
+    background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+  }
+  &.btn-gray-border {
+    color: $white;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid $gray;
+  }
+  &.btn-light {
+    background: $lighter-gray;
+    color: $gray;
+    &:hover {
+      background-color: darken($lighter-gray, 5%);
+    }
+  }
+}
+button {
+  &.btn {
+    padding: 12px 15px;
+  }
+}
+
+.playlist-actions {
+  margin-top: 20px;
+}
+
+.latest {
+  margin-top: 20px;
+  h1 {
+    font: 400 35px/70px $fonts;
+  }
+}
+
+.album-single {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px 30px;
+  @include max-screen(700px) {
+    grid-template-columns: 1fr;
   }
   .album_cover {
-    position: relative;
-    img {
-      //border: 1px solid ;
+    div {
+      position: relative;
+      line-height: 0;
+      &:before {
+        box-shadow: inset 0 0 0 1px rgba($black, 0.1);
+        content: '';
+        display: block;
+        bottom: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        border-radius: 5px;
+      }
     }
-    & a:before {
-      box-shadow: inset 0 0 1px 0 rgba($dark, 0.5);
+  }
+  img {
+    width: 100%;
+    border-radius: 5px;
+  }
+  .details {
+    span {
+      text-transform: uppercase;
+      font-weight: 800;
+      font-size: .9em;
+      color: $light-gray;
+    }
+    h1 {
+      line-height: 40px;
+    }
+    h2 {
+      color: $gray;
+      margin-bottom: 0;
+      a {
+        color: $gray;
+      }
+    }
+    .released {
+      font-size: .9em;
+    }
+    .add {
+      margin-top: 25px;
+      a {
+        border-radius: 100px;
+        color: $white;
+        padding: 8px 15px;
+        margin-right: 5px;
+        font-weight: 600;
+        font-size: 1.1em;
+        background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+      }
+    }
+  }
+}
+
+// Album Layout
+.album-grid, .artist-grid, .user-grid {
+  display: grid;
+  grid-template-rows: repeat($album-grid-rows, auto);
+  grid-template-columns: repeat($album-grid-cols, 1fr);
+  grid-gap: 20px 30px;
+
+  @include max-screen(1023px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @include max-screen(768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @include max-screen(600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+
+.album, .artist, .user {
+  font-size: 13px;
+
+  .album_cover {
+    position: relative;
+    &:before {
+      box-shadow: inset 0 0 0 1px rgba($black, 0.1);
       content: '';
       display: block;
       height: 100%;
@@ -140,35 +514,152 @@ $h1-font-size: $font-size-base * 1.5 !default;
       width: 100%;
       border-radius: 5px;
     }
-  }
-  .sources {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.2rem;
-    i {
+    .sources {
+      position: absolute;
+      bottom: 6px;
+      right: 10px;
       color: $white;
-      padding-left: 3px;
-      text-shadow: 0 0 10px rgba($dark, 0.1);
-      //opacity: 0.8;
+      i {
+        font-size: 1.1em;
+        margin-left: 5px;
+        text-shadow: 0 0 10px rgba($black, 0.1);
+      }
     }
   }
+
+  img {
+    display: block;
+    max-width: 100%;
+    margin: 0 0 10px;
+    border-radius: 5px;
+  }
+
+  .single {
+    float: right;
+    background: $gray;
+    color: $white;
+    display: inline-block;
+    border-radius: 2px;
+    width: 14px;
+    height: 14px;
+    font-weight: 800;
+    text-align: center;
+    font-size: 9px;
+    line-height: 14px;
+  }
+
+  .artist-title {
+    font-size: 1.2em;
+  }
+  .artist-image {
+    display: block;
+    width: 100%;
+    height: 150px;
+    max-height: 110px;
+    background-size: 100%;
+    background-color: $gray;
+    background-position: center;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+  .user-image {
+    position: relative;
+    border-radius: 50%;
+    width: 100%;
+    height: auto;
+    padding-top: 100%;
+    background-size: 100%;
+    background-color: $gray;
+    background-position: center;
+  }
+  a {
+    display: block;
+    line-height: 17px;
+  }
+
+  a.album-title, a.artist-title {
+    color: $darker;
+  }
+
+  .album-artist {
+    color: $light-gray;
+  }
   .release-date {
-    font-size: 13px; 
-    margin-bottom: 0;
-    color: $dark;
+    margin: 0;
+    line-height: 17px;
+  }
+}
+.latest-upcoming {
+  margin-bottom: 60px;
+}
+.past-albums {
+  .past-date {
+    margin-bottom: 0px;
   }
 }
 
-.video_wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%;
-  .video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.video-item {
+  h1 {
+    small {
+      font-size: .8em;
+      color: $gray;
+    }
+    line-height: 40px;
   }
+  .video_wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 20px 30px;
+  margin-bottom: 30px;
+  img {
+    border-radius: 500px;
+    max-width: 100%;
+  }
+  .about {
+    margin-top: 2%;
+    a {
+      font-weight: bold;
+      color: $blue;
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+}
+
+// Forms
+.form-group {
+  margin-bottom: 30px;
+  h2 {
+    margin: 0;
+  }
+  .form-line {
+    margin-bottom: 10px;
+  }
+  .btn {
+    margin-top: 10px;
+  }
+}
+
+// Footer
+footer {
+  margin: 40px 0 0;
+  padding: 40px 0;
+  background: $lightest-gray;
+
+  a { color: $blue; }
 }
