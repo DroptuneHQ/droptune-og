@@ -52,6 +52,8 @@ $ bundle && rake db:setup # Installs the necessary gems and sets up the database
 $ foreman start # starts webserver and background jobs
 ```
 
+If you don't already have `foreman` installed, you can install it with `gem install foreman`
+
 ## Contributing
 It's still very early days for this so your mileage will vary here and lots of things will break.
 
