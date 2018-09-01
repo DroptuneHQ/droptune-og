@@ -1,5 +1,6 @@
 require "sidekiq/throttled"
 Sidekiq::Throttled.setup!
+Sidekiq::Extensions.enable_delay!
 
 if Rails.env.production?
 

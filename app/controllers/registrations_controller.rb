@@ -7,7 +7,7 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def account_update_params
-    params.require(:user).permit(:name, :username, :show_compilations, :show_singles)
+    params.require(:user).permit(:name, :username, :show_compilations, :show_singles, :weekly_report)
   end
 
   def after_update_path_for(resource)
