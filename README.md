@@ -13,13 +13,13 @@ So, what Droptune does is centralize all of that. New music, new videos, news an
 The design for Droptune is also open source! You can find our more about that as well as learn how to contribute in the [Droptune Design repo](https://github.com/Shpigford/droptune-design)!
 
 ## Codebase
-The codebase is vanilla Rails, Sidekiq, Puma and Postgres. Quite a simple setup.
+The codebase is vanilla Rails, Sidekiq, Puma, Postgres and Sidekiq w/ Redis. Quite a simple setup.
 
 ## How to start
 
 **1. You'll need to pull down the repo locally.** You can use GitHub's "Clone or download" button to make that happen.
 
-**2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys:
+**2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys, see below on how to get setup and get keys for Twitter and Spotify:
 ```yaml
 twitter_key: KEY
 twitter_secret: SECRET
@@ -27,11 +27,17 @@ spotify_key: KEY
 spotify_secret: SECRET
 ```
 
+**Twitter**
+
 For Twitter, you'll need to have a Developer account and create your own app, which is free: https://developer.twitter.com
+
+Make sure to set the Callback URL to `http://localhost:5000/users/auth/twitter/callback`. You will also need to set a Terms of Service URL, a Privacy Policy URL. Then make sure to check "Request email address" on the permissions page.
+
+**Spotify**
 
 For Spotify, you'll also need a Developer account and create your own app, which is also free: https://developer.spotify.com
 
-For both, you'll need to set the Redirect/Callback URI to `http://localhost:5000/users/auth/spotify/callback`
+Make sure to set the Redirect URI to `http://localhost:5000/users/auth/spotify/callback`
 
 These will get you the necessary keys for the app to fully function.
 
