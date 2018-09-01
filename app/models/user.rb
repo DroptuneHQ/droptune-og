@@ -72,8 +72,12 @@ class User < ApplicationRecord
     user.name = provider_data.info.name
     user.avatar = provider_data.info.image
     user.password = Devise.friendly_token[0, 20]
-    user.save 
+    user.save
 
-    user
+    if user.created_at > 10.seconds.ago
+      UserMailer.with(user: user).welcome_email.deliver_now
+    end
+
+    user    
   end
 end
