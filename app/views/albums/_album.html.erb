@@ -1,0 +1,16 @@
+<% cache album do %>
+  <div class="album">
+    <a href="<%= album_path(album) %>" class="album_cover">
+      <span class="sources">
+        <% if album.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if album.applemusic_id %><i class="fab fa-apple"></i><% end %>
+      </span>
+      <img src="<%= album_image(album) %>" />
+    </a>
+    <% if album.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
+    <%= link_to album.name, album_path(album), class: 'album-title' %>
+    <%= link_to album.artist.name, artist_path(album.artist), class: 'album-artist' %>
+    <% if album.release_date %>
+    <p class="release-date"><small><%= album.release_date.strftime("%B %-e, %Y") %></small></p>
+    <% end %>
+  </div>
+<% end %>

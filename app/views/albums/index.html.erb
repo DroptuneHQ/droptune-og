@@ -1,30 +1,15 @@
 <% title "Latest Music Releases" %>
-<% if @albums.present? %>
 <h1>Albums</h1>
 <div class="latest-upcoming">
   <ul class="subnav">
     <li><%= link_to "Latest Releases", albums_path, class: 'active' %></li>
     <li><%= link_to "Upcoming Releases", upcoming_albums_path %></li>
   </ul>
+  <% if @albums.empty? %>
+    <p>No new albums, make sure to check back later!</p>
+  <% end %>
   <div class="album-grid">
-    <% @albums.each do |a| %>
-    <% cache a do %>
-      <div class="album">
-        <a href="<%= album_path(a) %>" class="album_cover">
-          <span class="sources">
-            <% if a.spotify_id %><i class="fab fa-spotify"></i><% end %> <% if a.applemusic_id %><i class="fab fa-apple"></i><% end %>
-          </span>
-          <img src="<%= album_image(a) %>" />
-        </a>
-        <% if a.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
-        <%= link_to a.name, album_path(a), class: 'album-title' %>
-        <%= link_to a.artist.name, artist_path(a.artist), class: 'album-artist' %>
-        <% if a.release_date %>
-        <p class="release-date"><small><%= a.release_date.strftime("%B %-e, %Y") %></small></p>
-        <% end %>
-      </div>
-    <% end %>
-    <% end %>
+    <%= render(@albums) %>
   </div>
 </div>
 <!-- <div class="past-albums">
@@ -70,4 +55,3 @@
     </div>
   </div>
 </div> -->
-<% end %>
