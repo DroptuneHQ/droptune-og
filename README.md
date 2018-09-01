@@ -13,13 +13,14 @@ So, what Droptune does is centralize all of that. New music, new videos, news an
 The design for Droptune is also open source! You can find our more about that as well as learn how to contribute in the [Droptune Design repo](https://github.com/Shpigford/droptune-design)!
 
 ## Codebase
-The codebase is vanilla Rails, Sidekiq, Puma, Postgres and Sidekiq w/ Redis. Quite a simple setup.
+The codebase is vanilla [Rails](https://rubyonrails.org/), [Sidekiq](https://sidekiq.org/) w/ [Redis](https://redis.io/), [Puma](http://puma.io/), [Postgres](https://www.postgresql.org/). Quite a simple setup.
 
 ## How to start
 
 **1. You'll need to pull down the repo locally.** You can use GitHub's "Clone or download" button to make that happen.
 
 **2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys, see below on how to get setup and get keys for Twitter and Spotify:
+
 ```yaml
 twitter_key: KEY
 twitter_secret: SECRET
