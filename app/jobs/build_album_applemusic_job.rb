@@ -1,6 +1,13 @@
 class BuildAlbumApplemusicJob
   include Sidekiq::Worker
-  sidekiq_options :queue => :default
+  include Sidekiq::Throttled::Worker
+  
+  sidekiq_options :queue => :applemusic
+
+  sidekiq_throttle({
+    :concurrency => { :limit => 20 },
+    :threshold => { :limit => 100, :period => 1.minute }
+  })
 
   def perform(artist_id)
     artist = Artist.find artist_id
