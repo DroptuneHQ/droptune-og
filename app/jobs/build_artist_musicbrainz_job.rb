@@ -6,9 +6,9 @@ class BuildArtistMusicbrainzJob
 
   sidekiq_throttle({
     # Allow maximum 10 concurrent jobs of this class at a time.
-    :concurrency => { :limit => 20 },
+    :concurrency => { :limit => 10 },
     # Allow maximum 1K jobs being processed within one hour window.
-    :threshold => { :limit => 50, :period => 1.seconds }
+    :threshold => { :limit => 30, :period => 1.seconds }
   })
 
   def perform(artist_id)
