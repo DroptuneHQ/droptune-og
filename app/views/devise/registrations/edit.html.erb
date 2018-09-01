@@ -1,48 +1,38 @@
-<div class="container">
-<h1>Settings</h2>
-   <div class="row">     
-    
-     <div class="col">    
-      <h2>Preferences</h2>
-       <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>   
-         <%= devise_error_messages! %>    
-      
-         <div class="form-group form-check">
-             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-             <%= f.check_box :show_compilations, class: 'form-check-input' %>
-             <%= f.label :show_compilations, class: 'form-check-label' %>
-         </div>
-         <div class="form-group form-check">
-             <input type="checkbox" class="form-check-input" id="exampleCheck1">
-             <%= f.check_box :show_singles, class: 'form-check-input' %>
-             <%= f.label :show_singles, class: 'form-check-label' %>
-         </div>  
-            
-         <%= f.submit "Update", class: 'btn btn-primary' %>   
-    
-       <% end %>    
-     </div>   
-   </div>   
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h2>Connections</h2>
-      <% if current_user.connections.spotify.present? %>
-        <%= link_to "Re-connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-light' %> 
-      <% else %>
-        <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-primary' %> 
-      <% end %>
+<h1>Settings</h1>
 
-      <button id="apple-music-authorize" class="btn btn-primary">Connect Apple Music</button>
-      <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
-      <%= javascript_include_tag 'applemusic' %>
+<div class="form-group">
+  <h2>Preferences</h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>   
+    <%= devise_error_messages! %>  
+
+    <div class="form-line">
+      <%= f.check_box :show_compilations, class: 'form-check-input' %>
+      <%= f.label :show_compilations, class: 'form-check-label' %>
     </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col">
-      <h2>Cancel my account</h2>
-      <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %></p>
+    <div class="form-line">
+      <%= f.check_box :show_singles, class: 'form-check-input' %>
+      <%= f.label :show_singles, class: 'form-check-label' %>
     </div>
-  </div>
+
+    <%= f.submit "Update", class: 'btn' %>  
+  
+  <% end %>
+</div>
+
+<div class="form-group">
+  <h2>Connections</h2>
+  <% if current_user.connections.spotify.present? %>
+    <%= link_to "Re-connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-light' %> 
+  <% else %>
+    <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn' %> 
+  <% end %>
+
+  <button id="apple-music-authorize" class="btn">Connect Apple Music</button>
+  <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+  <%= javascript_include_tag 'applemusic' %>
+</div>
+
+<div class="form-group">
+  <h2>Cancel account</h2>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %></p>
 </div>

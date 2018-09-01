@@ -27,10 +27,14 @@
   <body>
     <header role="main">
       <div class="container">
-        <a href="#" id="logo">Droptune</a>
+        <a href="<%= root_path %>" id="logo">Droptune</a>
         <a href="#" id="mobile-menu"><i class="fas fa-bars"></i></a>
         <nav>
+          <% if user_signed_in? %>
+          <div class="user-link"><a href="<%= user_path(current_user) %>"><img src="<%= current_user.avatar_image %>"> <span><%= current_user.screename %></span></a></div>
+          <% else %>
           <%= link_to raw('<i class="fab fa-twitter"></i> Sign in with Twitter'), omniauth_authorize_path("user", "twitter"), id: 'twitter-sign-in' %>
+          <% end %>
           <%= link_to "Albums", albums_path, class: controller_name=='albums' ? 'active' : '' %>
           <%= link_to "Videos", music_videos_path, class: controller_name=='music_videos' ? 'active' : '' %>
           <%= link_to "Artists", artists_path, class: controller_name=='artists' ? 'active' : '' %>
@@ -59,16 +63,16 @@
     <main class="container">
       <% if user_signed_in? %>
         <% unless current_user.follows.present? %>
-        <h1>Connect</h1>
-        <p>To get started you'll need to connect a music streaming service!</p>
-          <%= link_to "Connect Spotify", omniauth_authorize_path('user', 'spotify'), class: 'btn btn-lg btn-primary' %> <button id="apple-music-authorize" class="btn btn-lg btn-primary">Connect Apple Music</button>
-      <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
-      <%= javascript_include_tag 'applemusic' %>
-          <hr>
+          <section class="jumbotron container">
+            <h2>Connect</h2>
+            <p>To get started you'll need to connect a music streaming service!</p>
+            <%= link_to raw('<i class="fab fa-spotify"></i> Connect Spotify'), omniauth_authorize_path('user', 'spotify'), class: 'btn btn-white' %> <button id="apple-music-authorize" class="btn btn-white"><i class="fab fa-apple"></i> Connect Apple Music</button>
+          <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
+          <%= javascript_include_tag 'applemusic' %>
+          </section>
         <% end %>
       <% end %>
 
-      
       <%= yield %>
     </main>
 

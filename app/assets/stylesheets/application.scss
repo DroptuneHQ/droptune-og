@@ -114,6 +114,21 @@ header {
         margin: 0;
       }
     }
+    .user-link {
+      float: right;
+      margin: 0;
+      img {
+        border-radius: 100px;
+        width: 30px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+      span {
+        display: inline-block;
+        vertical-align: top;
+        line-height: 30px;
+      }
+    }
   }
 
   form {
@@ -214,6 +229,103 @@ h3 {
   }
 }
 
+.artist-header {
+  background-size: 100%;
+  background-position: 50% 40%;
+  background-color: $black;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  position: relative;
+  color: $white;
+  height: 300px;
+  .info, .links {
+    position: relative;
+    z-index: 100;
+  }
+  .info {
+    position: absolute;
+    bottom: 50px;
+    left: 35px;
+    h1 {
+      font-size: 5em;
+      line-height: 100px;
+    }
+  }
+  .links {
+    position: absolute;
+    right: 40px;
+    bottom: 20px;
+    li {
+      display: inline;
+      margin-left: 10px;
+    }
+    a {
+      color: $white;
+    }
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $black;
+    border-radius: 5px;
+    opacity: 0.8;
+  }
+
+}
+
+.grid-artist {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-gap: 20px 50px;
+  @include max-screen(900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @include max-screen(800px) {
+    grid-template-columns: 1fr;
+  }
+  .albums {
+    .album-grid {
+      grid-template-columns: repeat(4, 1fr);
+      @include max-screen(900px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+  .videos {
+    .album-grid {
+      grid-template-columns: repeat(2, 1fr);
+      @include max-screen(900px) {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+  &.full {
+    grid-template-columns: 1fr;
+    .album-grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+}
+
+.fans, .media {
+  h2 {
+    margin-bottom: 5px;
+  }
+}
+
+.fans {
+  .user-grid {
+    grid-template-columns: repeat(15, 1fr);
+    @include max-screen(850px) {
+      grid-template-columns: repeat(8, 1fr);
+    }
+  }
+}
+
 .jumbotron {
   text-align: center;
   padding: 40px 20px;
@@ -221,6 +333,7 @@ h3 {
   border-radius: 10px;
   background-image: image-url('bgr-jumbo.png');
   background-size: 100%;
+  margin-bottom: 15px;
   h2 {
     font-weight: 400;
     font-size: 3em;
@@ -235,13 +348,58 @@ h3 {
     color: $blue;
   }
 }
+
 .btn {
   padding: 10px 15px;
   border-radius: 100px;
+  background: $blue;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  &:hover {
+    background-color: darken($blue, 10%);
+  }
   &.btn-white {
     color: $black;
     background: $white;
+    &:hover {
+      background-color: darken($white, 10%);
+    }
   }
+  &.btn-danger {
+    color: $white;
+    background: $red;
+    &:hover {
+      background-color: darken($red, 10%);
+    }
+  }
+  &.btn-blue-gradient {
+    color: $white;
+    font-weight: 600;
+    background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+  }
+  &.btn-gray-border {
+    color: $white;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid $gray;
+  }
+  &.btn-light {
+    background: $lighter-gray;
+    color: $gray;
+    &:hover {
+      background-color: darken($lighter-gray, 5%);
+    }
+  }
+}
+button {
+  &.btn {
+    padding: 12px 15px;
+  }
+}
+
+.playlist-actions {
+  margin-top: 20px;
 }
 
 .latest {
@@ -291,6 +449,9 @@ h3 {
     h2 {
       color: $gray;
       margin-bottom: 0;
+      a {
+        color: $gray;
+      }
     }
     .released {
       font-size: .9em;
@@ -413,7 +574,7 @@ h3 {
     color: $darker;
   }
 
-  a.album-artist {
+  .album-artist {
     color: $light-gray;
   }
   .release-date {
@@ -427,6 +588,63 @@ h3 {
 .past-albums {
   .past-date {
     margin-bottom: 0px;
+  }
+}
+
+.video-item {
+  h1 {
+    small {
+      font-size: .8em;
+      color: $gray;
+    }
+    line-height: 40px;
+  }
+  .video_wrapper {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%;
+    .video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.user-info {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-gap: 20px 30px;
+  margin-bottom: 30px;
+  img {
+    border-radius: 500px;
+    max-width: 100%;
+  }
+  .about {
+    margin-top: 2%;
+    a {
+      font-weight: bold;
+      color: $blue;
+      display: inline-block;
+      margin-right: 20px;
+    }
+  }
+}
+
+// Forms
+.form-group {
+  margin-bottom: 30px;
+  h2 {
+    margin: 0;
+  }
+  .form-line {
+    margin-bottom: 10px;
+  }
+  .btn {
+    margin-top: 10px;
   }
 }
 

@@ -14,9 +14,4 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require popper
 //= require_tree .
-
-$( document ).on('turbolinks:load', function() {
-  $('[data-toggle="tooltip"]').tooltip()
-})
