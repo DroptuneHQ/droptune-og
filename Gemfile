@@ -27,6 +27,7 @@ gem 'rspotify'
 gem 'sidekiq'
 gem "sidekiq-throttled"
 gem "sidekiq-cron"
+gem 'sidekiq-unique-jobs'
 gem 'storext'
 gem 'with_advisory_lock'
 gem 'sentry-raven'

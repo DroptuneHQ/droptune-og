@@ -1,6 +1,8 @@
 class MusicVideo < ApplicationRecord
   belongs_to :artist
 
+  validates_uniqueness_of :source_data, scope: :artist_id
+
   scope :active, -> {where('follows.active = ?', true)}
   
   before_save :set_slug

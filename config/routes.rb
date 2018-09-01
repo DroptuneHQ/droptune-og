@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   # get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
   get 'pages/index'
   
-  require 'sidekiq/web'
+  require 'sidekiq_unique_jobs/web'
   require 'sidekiq/cron/web'
   mount Sidekiq::Web => '/sidekiq'
   
