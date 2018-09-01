@@ -5,7 +5,7 @@ class BuildArtistImvdbJob
   sidekiq_options :queue => :imvdb
 
   sidekiq_throttle({
-    :concurrency => { :limit => 15 },
+    :concurrency => { :limit => 20 },
     :threshold => { :limit => 1_000, :period => 1.minute }
   })
 
