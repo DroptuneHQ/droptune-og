@@ -2,13 +2,13 @@ class BuildArtistMusicbrainzJob
   include Sidekiq::Worker
   include Sidekiq::Throttled::Worker
 
-  sidekiq_options :queue => :artists
+  sidekiq_options :queue => :musicbrainz
 
   sidekiq_throttle({
     # Allow maximum 10 concurrent jobs of this class at a time.
-    :concurrency => { :limit => 5 },
+    :concurrency => { :limit => 20 },
     # Allow maximum 1K jobs being processed within one hour window.
-    :threshold => { :limit => 5, :period => 5.seconds }
+    :threshold => { :limit => 50, :period => 1.seconds }
   })
 
   def perform(artist_id)
