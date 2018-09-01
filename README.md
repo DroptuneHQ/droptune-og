@@ -19,7 +19,7 @@ The codebase is vanilla [Rails](https://rubyonrails.org/), [Sidekiq](https://sid
 
 **1. You'll need to pull down the repo locally.** You can use GitHub's "Clone or download" button to make that happen.
 
-**2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys, see below on how to get setup and get keys for Twitter and Spotify:
+**2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys. See below on how to get setup and get keys for Twitter and Spotify.
 
 ```yaml
 twitter_key: KEY
