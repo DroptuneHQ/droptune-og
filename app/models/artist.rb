@@ -4,6 +4,8 @@ class Artist < ApplicationRecord
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
 
+  include Storext.model(genres: {})
+
   scope :active, -> {where('follows.active = ?', true)}
 
   def to_param
