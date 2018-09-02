@@ -29,6 +29,11 @@ $( document ).on('turbolinks:load', function() {
     }
   });
 
+  // Search bar
+  $('.search-button').on('click', function(e){
+    e.preventDefault();
+    $('.search-form').toggleClass('show');
+  })
   
 });
 

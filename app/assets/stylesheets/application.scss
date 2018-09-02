@@ -138,20 +138,26 @@ header {
     }
   }
 
-  form {
-    padding: 25px 0px 0;
+  .search-form {
+    display: none;
+
+    &.show {
+      padding: 0 0 20px 0;
+      display: block;
+    }
 
     input[type=text] {
       display: block;
       width: 98%;
-      border: 2px solid $lighter-gray;
+      border: 0 solid $lighter-gray;
       height: 49px;
-      padding-left: 2%;
-      line-height: 49px;
+      padding: 5px 2%;
+      line-height: 20px;
       border-radius: 4px;
       font-size: 18px;
       outline: none;
-      background: #fff;
+      color: $white;
+      background: $darker-gray;
     }
   }
 }

@@ -1,26 +1,17 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-    <h1>
-      Search results for <strong><%= params[:artist] %></strong>
-    </h1>
+<% title "Artists Search Results: #{params[:artist]}" %>
+<h1>Search results for <strong><%= params[:artist] %></strong></h1>
 
-    <div class="row">
-      <% if @artists.present? %>
-      <% @artists.each do |a| %>
-      <div class="col-md-2">
-        <div class="card artist">
-          <a href="<%= artist_path(a) %>"><div class="card-img-top rounded" style="background-image: url(<%= a.spotify_image %>)"></div></a>
-          <div class="card-block">
-            <h4 class="card-title"><%= link_to a.name, artist_path(a) %></h4>
-          </div>
-        </div>
-      </div>
-      <% end %>
-      <% else %>
-      <div class="col"><p>Couldn't find that artist!</p></div>
-      <% end %>
-    </div>
-    </div>
+<% if @artists.present? %>
+<div class="artist-grid">
+  <% @artists.each do |a| %>
+  <div class="artist">
+    <a href="<%= artist_path(a) %>">
+      <div class="artist-image" style="background-image: url(<%= a.spotify_image %>)"></div>
+    </a>
+    <%= link_to a.name, artist_path(a), class: 'artist-title' %>
   </div>
+  <% end %>
 </div>
+<% else %>
+  Sorry, couldn't find any artists matching that term!
+<% end %>
