@@ -1,0 +1,5 @@
+<% if Follow.where(user: current_user, artist: @artist, active: true).present? %>
+  <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-gray-border', remote: true %>
+<% else %>
+  <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-blue-gradient', remote: true %>
+<% end %>

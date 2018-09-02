@@ -19,7 +19,15 @@ class ArtistsController < ApplicationController
     current_user.follows.where(artist: @artist).delete_all
     current_user.artists << @artist
 
-    redirect_to artist_path(@artist)
+    if request.xhr?
+      render json: { 
+        artist: render_to_string('artists/_follow', 
+          layout: false, locals: { artist: @artist }
+        )
+      }
+    else
+      redirect_to artist_path(@artist)
+    end
   end
 
   def unfollow
@@ -28,7 +36,15 @@ class ArtistsController < ApplicationController
     current_user.follows.where(artist: @artist).delete_all
     current_user.follows.create(artist: @artist, active: false)
 
-    redirect_to artist_path(@artist)
+    if request.xhr?
+      render json: { 
+        artist: render_to_string('artists/_follow', 
+          layout: false, locals: { artist: @artist }
+        )
+      }
+    else
+      redirect_to artist_path(@artist)
+    end
   end
 
   def search

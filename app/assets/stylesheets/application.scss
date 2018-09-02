@@ -384,12 +384,18 @@ h3 {
     color: $white;
     font-weight: 600;
     background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+    &:hover {
+      background: linear-gradient(180deg, darken(#019BDD,4%) 0%, darken(#01C0DD,4%) 100%);
+    }
   }
   &.btn-gray-border {
     color: $white;
     font-weight: 600;
     background: transparent;
     border: 1px solid $gray;
+    &:hover {
+      background: rgba($gray, 0.1);
+    }
   }
   &.btn-light {
     background: $lighter-gray;

@@ -18,17 +18,23 @@
 
 
 $( document ).on('turbolinks:load', function() {
-
   // Mobile Menu
   $('#mobile-menu').on('click', function(e){
     e.preventDefault();
     $('nav').toggleClass('show');
   });
-
   $(window).resize(function(){
     if ($('body').width() > 910) {
-        $('nav').removeClass('show');
+      $('nav').removeClass('show');
     }
   });
 
+  
 });
+
+// Follow/unfollow
+$(document).on('ajax:success', '.follow a', function(event){
+  const [data, status, xhr] = Array.from(event.detail);
+  $('.follow').html(data.artist)
+});
+
