@@ -17,7 +17,7 @@
       <span><%= @album.album_type %></span>
       <h1><%= @album.name %></h1>
       <h2><%= link_to @album.artist.name, artist_path(@album.artist) %></h2>
-      <p class="released">Released <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
+      <p class="released"><% if @album.release_date > Date.today %>Releasing<% else %>Released<% end %> <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
       <!-- <p class="add">
         <a href="#"><i class="fab fa-spotify"></i> Add</a>
         <a href="#"><i class="fab fa-apple"></i> Add</a>
