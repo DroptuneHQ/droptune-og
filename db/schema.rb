@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_01_195232) do
+ActiveRecord::Schema.define(version: 2018_09_02_195931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,7 +68,9 @@ ActiveRecord::Schema.define(version: 2018_09_01_195232) do
     t.datetime "musicbrainz_last_updated_at"
     t.datetime "spotify_last_updated_at"
     t.datetime "applemusic_last_updated_at"
+    t.jsonb "genres", default: {}, null: false
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
+    t.index ["genres"], name: "index_artists_on_genres", using: :gin
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
     t.index ["musicbrainz_last_updated_at"], name: "index_artists_on_musicbrainz_last_updated_at"
     t.index ["name"], name: "index_artists_on_name"
