@@ -22,10 +22,10 @@ class GenresController < ApplicationController
   def show
     @user = User.find(params[:id])
 
-    #@keywords = Rails.cache.fetch("genre-cache", expires_in: 3.hours) do
+    @keywords = Rails.cache.fetch("#{@user.username}-genre-cache", expires_in: 3.hours) do
       genres = @user.artists.pluck(:genres).flatten.delete_if &:empty?
       output = Hash[genres.group_by {|x| x}.map {|k,v| [k,v.count]}].sort_by{|k,v| v}.to_h
-      @keywords = output.delete_if {|key, value| value < 80 }
-    #end
+      output.delete_if {|key, value| value < 80 }
+    end
   end
 end
