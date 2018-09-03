@@ -19,7 +19,7 @@ $(document).ready(function() {
       dev_token=data['token'];
 
       if (music.isAuthorized) {
-        apple_music_id.text('Refresh Apple Music Library').addClass('btn btn-light');
+        apple_music_id.html('<i class="fab fa-apple"></i> Refresh Apple Music Library').addClass('btn btn-light');
       }
     }
   });
