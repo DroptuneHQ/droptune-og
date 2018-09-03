@@ -59,7 +59,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :genres
+  resources :genres do
+    collection do
+      get 'search'
+    end
+  end
   
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'

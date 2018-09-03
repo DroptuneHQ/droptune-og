@@ -34,7 +34,7 @@
     <%= yield :head %>
   </head>
 
-  <body>
+  <body<% if content_for?(:body_attributes) %> <%= yield(:body_attributes) %><% end %>>
     <header role="main">
       <div class="container">
         <a href="<%= root_path %>" id="logo">Droptune</a>
@@ -51,6 +51,7 @@
           <%= link_to "Charts", charts_path, class: controller_name=='charts' ? 'active' : '' %>
           <%= link_to "Users", users_path, class: controller_name=='users' ? 'active' : '' %>
           <%= link_to "Playlists", playlists_path, class: controller_name=='playlists' ? 'active' : '' %>
+          <%= link_to "Genres", genres_path, 'data-turbolinks': "false", class: controller_name=='genres' ? 'active' : '' %>
           <%= link_to raw('<i class="fas fa-search"></i>'), '#', class: (controller_name=='artists' && action_name=='search') ? 'search-button active' : 'search-button' %>
         </nav>
         <%= form_tag(search_artists_path, method: 'get', class: 'search-form', enforce_utf8:false) do %>
