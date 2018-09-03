@@ -5,7 +5,14 @@
 
 // Layout
 
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
 .container {
+  flex: 1;
   position: relative;
   max-width: 1140px;
   padding: 0 24px;
@@ -166,6 +173,10 @@ header {
 // Typography
 h1 {
   font: 400 45px/70px $fonts;
+  @include max-screen(700px) {
+    font-size: 30px;
+    line-height: 50px;
+  }
 }
 h2 {
   font: 400 22px/35px $fonts;
@@ -252,6 +263,9 @@ h3 {
   position: relative;
   color: $white;
   height: 300px;
+  @include max-screen(700px) {
+    height: 240px;
+  }
   .info, .links {
     position: relative;
     z-index: 100;
@@ -260,9 +274,17 @@ h3 {
     position: absolute;
     bottom: 50px;
     left: 35px;
+    @include max-screen(700px) {
+      bottom: 40px;
+    }
     h1 {
       font-size: 5em;
       line-height: 100px;
+      @include max-screen(700px) {
+        font-size: 2.5em;
+        line-height: 55px;
+        margin-bottom: 15px;
+      }
     }
   }
   .links {
@@ -335,7 +357,7 @@ h3 {
   .user-grid {
     grid-template-columns: repeat(15, 1fr);
     @include max-screen(850px) {
-      grid-template-columns: repeat(8, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
   }
 }
