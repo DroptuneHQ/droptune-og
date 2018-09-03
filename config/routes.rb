@@ -58,6 +58,12 @@ Rails.application.routes.draw do
       get 'disable'
     end
   end
+
+  resources :genres do
+    collection do
+      get 'search'
+    end
+  end
   
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'

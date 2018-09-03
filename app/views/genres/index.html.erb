@@ -1,0 +1,19 @@
+<% title "Genre Cloud" %>
+<h1>Genre Cloud</h1>
+<p>See what the most popular genres are!</p>
+<div id="cloud" style=" width:100%; height:600px;"></div>
+
+<script type="text/javascript">
+  var words = [
+  <% @keywords.each do |keyword| %>
+  {text: '<%= keyword[0] %>', weight: <%= keyword[1] %>, link: '<%= search_genres_path(genre: keyword[0]) %>'},
+  <% end %>
+  ];
+
+  $(document).on('turbolinks:load', function() {
+    $('#cloud').jQCloud(words, {
+      height: 600,
+      autoResize: true
+    });
+  });
+</script>

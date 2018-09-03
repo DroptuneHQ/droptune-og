@@ -13,6 +13,8 @@ class Artist < ApplicationRecord
     "#{id}-#{permalink}"
   end
 
+
+
 private
   def permalink
     "#{name.parameterize}"
