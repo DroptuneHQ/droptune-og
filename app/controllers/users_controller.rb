@@ -38,4 +38,12 @@ class UsersController < ApplicationController
 
     FollowArtistsJob.perform_async(current_user.id, artists)
   end
+
+  def lastfm_callbacks
+    token = params[:token]
+    current_user.update_attributes(lastfm_token: token) if token
+
+    flash[:notice] = 'Last.fm connected!'
+    redirect_to root_path
+  end
 end

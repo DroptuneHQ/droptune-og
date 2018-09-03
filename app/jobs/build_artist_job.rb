@@ -31,6 +31,9 @@ class BuildArtistJob
     # MusicBrainz
     BuildArtistMusicbrainzJob.perform_async(artist_id) if artist.musicbrainz_last_updated_at.blank? or artist.musicbrainz_last_updated_at < 14.days.ago
 
+    # Lastfm
+    BuildArtistLastfmJob.perform_async(artist_id) if artist.lastfm_last_updated_at.blank? or artist.lastfm_last_updated_at < 7.days.ago
+
     # IMVDb
     imvdb_days = days * 2
     BuildArtistImvdbJob.perform_async(artist_id) if artist.imvdb_last_updated_at.blank? or artist.imvdb_last_updated_at < imvdb_days.days.ago

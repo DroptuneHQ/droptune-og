@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_02_195931) do
+ActiveRecord::Schema.define(version: 2018_09_03_000624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,12 @@ ActiveRecord::Schema.define(version: 2018_09_02_195931) do
     t.datetime "spotify_last_updated_at"
     t.datetime "applemusic_last_updated_at"
     t.jsonb "genres", default: {}, null: false
+    t.datetime "lastfm_last_updated_at"
+    t.string "external_lastfm"
+    t.string "lastfm_image"
+    t.integer "lastfm_stats_listeners"
+    t.integer "lastfm_stats_playcount"
+    t.text "lastfm_bio"
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
     t.index ["genres"], name: "index_artists_on_genres", using: :gin
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
@@ -144,6 +150,7 @@ ActiveRecord::Schema.define(version: 2018_09_02_195931) do
     t.string "avatar"
     t.text "apple_music_token"
     t.boolean "admin", default: false
+    t.string "lastfm_token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
