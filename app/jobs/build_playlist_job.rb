@@ -18,7 +18,13 @@ class BuildPlaylistJob
         playlist = RSpotify::Playlist.find(spotify.id, dt_playlist.first.id)
         playlist.remove_tracks!(playlist.tracks)
       else
-        playlist = spotify.create_playlist!('Droptune New Music')
+        begin
+          playlist = spotify.create_playlist!('Droptune New Music')
+        rescue RestClient::Forbidden => e
+          # Disconnect if we don't have the right permissions
+          connection = user.connections.where(provider:'spotify').first.destroy
+        end
+
         user.update_attributes(generate_playlist_spotify_id: playlist.id)
       end
 
