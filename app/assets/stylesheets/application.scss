@@ -4,15 +4,7 @@
 @import "jqcloud";
 
 // Layout
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-}
-
 .container {
-  flex: 1;
   position: relative;
   max-width: 1140px;
   padding: 0 24px;
