@@ -6,7 +6,7 @@
 <script type="text/javascript">
   var words = [
   <% @keywords.each do |keyword| %>
-  {text: '<%= keyword[0].html_safe %>', weight: <%= keyword[1] %>, link: '<%= search_genres_path(genre: keyword[0]) %>'},
+  {text: "<%= keyword[0].html_safe %>", weight: <%= keyword[1] %>, link: '<%= search_genres_path(genre: keyword[0]) %>'},
   <% end %>
   ];
 
