@@ -3,6 +3,7 @@ class Artist < ApplicationRecord
   has_many :music_videos
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
+  has_many :streams
 
   include Storext.model(genres: {})
 
