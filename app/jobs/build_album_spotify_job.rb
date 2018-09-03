@@ -8,7 +8,7 @@ class BuildAlbumSpotifyJob
     # Allow maximum 10 concurrent jobs of this class at a time.
     :concurrency => { :limit => 3 },
     # Allow maximum 1K jobs being processed within one hour window.
-    :threshold => { :limit => 5, :period => 5.seconds }
+    :threshold => { :limit => 3, :period => 5.seconds }
   })
 
   def perform(artist_id)
