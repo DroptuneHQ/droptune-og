@@ -1,0 +1,24 @@
+<% content_for :head do %> 
+  <%= javascript_include_tag 'wordcloud2', 'data-turbolinks-track': 'reload' %>
+  
+<% end %> 
+<canvas id="my_canvas" width="1024" height="400" style="width:100%;"></canvas>
+
+<script type="text/javascript">
+  WordCloud(
+    document.getElementById('my_canvas'), { 
+      list: [['foo', 12], ['bar', 6]], 
+      gridSize: Math.round(16 * $('#my_canvas').width() / 1024),
+      weightFactor: 3,
+      fontFamily: 'Nunito, Arial, sans-serif',
+      color: function (word, weight) {
+          return (weight === 12) ? '#f02222' : '#c09292';
+      },
+      hover: window.drawBox,
+      click: function(item) {
+        alert(item[0] + ': ' + item[1]);
+      },
+      backgroundColor: '#ffffff' 
+    } 
+  );
+  </script>
