@@ -1,5 +1,6 @@
 class Album < ApplicationRecord
   belongs_to :artist
+  has_many :streams
 
   scope :has_release_date, -> { where.not(release_date: nil) }
   scope :active, -> {where('follows.active = ?', true)}
