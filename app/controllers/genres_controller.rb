@@ -7,6 +7,14 @@ class GenresController < ApplicationController
     end
   end
 
+  def obscure
+    #@obscure_keywords = Rails.cache.fetch("obscure-genre-cache-v1", expires_in: 3.hours) do
+      genres = Artist.all.pluck(:genres).flatten.delete_if &:empty?
+      output = Hash[genres.group_by {|x| x}.map {|k,v| [k,v.count]}].sort_by{|k,v| v}.to_h
+      @obscure_keywords = output.delete_if {|key, value| value < 5 && value > 40 }
+    #end
+  end
+
   def search
     @artists = Artist.basic_search(genres: params[:genre]).limit(100)
   end

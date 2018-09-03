@@ -2,8 +2,8 @@
 <h1>Genre Cloud</h1>
 
 <ul class="subnav">
-  <li><%= link_to "Most Popular", genres_path, 'data-turbolinks': "false", class: 'active' %></li>
-  <li><%= link_to "Most Obscure", obscure_genres_path, 'data-turbolinks': "false" %></li>
+  <li><%= link_to "Most Popular", genres_path, 'data-turbolinks': "false" %></li>
+  <li><%= link_to "Most Obscure", obscure_genres_path, 'data-turbolinks': "false", class: 'active' %></li>
 </ul>
 
 
@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
   var words = [
-  <% @keywords.each do |keyword| %>
+  <% @obscure_keywords.each do |keyword| %>
   {text: "<%= keyword[0].html_safe %>", weight: <%= keyword[1] %>, link: '<%= search_genres_path(genre: keyword[0]) %>'},
   <% end %>
   ];
@@ -20,7 +20,8 @@
     $('#cloud').jQCloud(words, {
       height: 600,
       autoResize: true,
-      encodeURI: false
+      encodeURI: false,
+      classPattern: 'w{n}-reverse'
     });
   });
 </script>

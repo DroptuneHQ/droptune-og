@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   resources :genres do
     collection do
       get 'search'
+      get 'obscure'
     end
   end
   
