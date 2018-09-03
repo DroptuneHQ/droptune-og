@@ -14,9 +14,8 @@ class RecentlyStreamedSpotifyJob
   def perform(user_id)
     user = User.find user_id
 
-    connection = user.connections.where(provider:'spotify').first.settings.to_hash
-
-    if connection.present?
+    if user.connections.where(provider:'spotify').present?
+      connection = user.connections.where(provider:'spotify').first.settings.to_hash
       spotify = RSpotify::User.new(connection)
 
       begin
