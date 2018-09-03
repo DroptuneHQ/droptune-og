@@ -64,6 +64,9 @@ Rails.application.routes.draw do
       get 'search'
       get 'obscure'
     end
+    member do
+      get 'users'
+    end
   end
   
   get '/test' => 'pages#test'

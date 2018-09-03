@@ -2,6 +2,9 @@
 <h1>Genre Cloud</h1>
 
 <ul class="subnav">
+  <% if current_user.present? %>
+    <li><%= link_to "Your Cloud", genre_path(current_user), 'data-turbolinks': "false" %></li>
+  <% end %>
   <li><%= link_to "Most Popular", genres_path, 'data-turbolinks': "false", class: 'active' %></li>
   <li><%= link_to "Most Obscure", obscure_genres_path, 'data-turbolinks': "false" %></li>
 </ul>
