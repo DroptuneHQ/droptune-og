@@ -5,7 +5,11 @@ class UpdateRecentlyStreamedJob
 
   def perform
     User.where.not(lastfm_token: nil).find_each do |user|
-      RecentlyStreamedJob.perform_async(user.id)
+      RecentlyStreamedLastfmJob.perform_async(user.id)
+    end
+
+    User.find_each do |user|
+      RecentlyStreamedSpotifyJob.perform_async(user.id) if user.connections.spotify.present?
     end
   end
 end
