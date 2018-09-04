@@ -25,10 +25,24 @@
     </div>
   </div>
   <div class="col album-player">
-    <% if @album.applemusic_id %>
+    <% if current_user and current_user.apple_music_token.present? %>
+      <% if @album.applemusic_id %>
+       <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="100%"></iframe>
+     <% elsif @album.spotify_id %>
+       <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+     <% end %>
+    <% elsif current_user and current_user.connections.spotify.present? %>
+      <% if @album.spotify_id %>
+        <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+      <% elsif @album.applemusic_id %>
+        <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="100%"></iframe>
+      <% end %>
+    <% else %>
+      <% if @album.applemusic_id %>
       <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="450" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="100%"></iframe>
     <% elsif @album.spotify_id %>
       <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    <% end %>
     <% end %>
   </div>
 </div>
