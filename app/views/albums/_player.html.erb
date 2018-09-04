@@ -1,0 +1,5 @@
+<% if locals[:type] == 'spotify' %>
+  <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+<% elsif locals[:type] == 'applemusic' %>
+  <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="550" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/thank-you-for-today/<%= @album.applemusic_id %>?app=music&at=1001lruc" width="100%"></iframe>
+<% end %>
