@@ -30,20 +30,22 @@ class RecentlyStreamedLastfmJob
           end
 
           album_name = track['album']['content']
-          album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first
+          if album_name.present?
+            album = Album.here('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first
 
-          datetime = Time.at(track['date']['uts'].to_i).to_datetime
-          stream = Stream.where('user_id = ? AND artist_id = ? AND listened_at = ?', user.id, artist.id, datetime)
+            datetime = Time.at(track['date']['uts'].to_i).to_datetime
+            stream = Stream.where('user_id = ? AND artist_id = ? AND listened_at = ?', user.id, artist.id, datetime)
 
-          if stream.blank?
-            stream = Stream.new
-            stream.artist = artist
-            stream.album = album
-            stream.user = user
-            stream.name = track['name']
-            stream.source = 'lastfm'
-            stream.listened_at = datetime
-            stream.save
+            if stream.blank?
+              stream = Stream.new
+              stream.artist = artist
+              stream.album = album
+              stream.user = user
+              stream.name = track['name']
+              stream.source = 'lastfm'
+              stream.listened_at = datetime
+              stream.save
+            end
           end
         end
       end
