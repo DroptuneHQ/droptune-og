@@ -32,8 +32,6 @@
   <% end %>
 
   <button id="apple-music-authorize" class="btn"><i class="fab fa-apple"></i> Connect Apple Music</button>
-  <script src="https://js-cdn.music.apple.com/musickit/v1/musickit.js"></script>
-  <%= javascript_include_tag 'applemusic' %>
 
   <% if current_user.lastfm_token.present? %>
     <%= link_to raw('<i class="fab fa-lastfm"></i> Re-connect Last.fm'), "https://www.last.fm/api/auth/?api_key=#{ENV['lastfm_key']}&cb=https://droptune.co/users/lastfm_callbacks", class: 'btn btn-light' %> 
