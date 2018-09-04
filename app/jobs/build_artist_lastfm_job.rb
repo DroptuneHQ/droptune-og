@@ -15,8 +15,12 @@ class BuildArtistLastfmJob
     artist = Artist.find artist_id
 
     lastfm = Lastfm.new(ENV['lastfm_key'], ENV['lastfm_secret'])
-    lastfm_artist = lastfm.artist.get_info(artist:artist.name)
 
+    begin
+      lastfm_artist = lastfm.artist.get_info(artist:artist.name)
+    rescue Lastfm::ApiError => e
+    end
+    
     if lastfm_artist.present?
 
       if lastfm_artist['tags'].present?
