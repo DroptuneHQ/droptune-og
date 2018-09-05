@@ -10,6 +10,7 @@ class User < ApplicationRecord
     show_compilations Boolean, default: false
     show_singles Boolean, default: true
     weekly_report Boolean, default: true
+    private_profile Boolean, default: false
     generate_playlist_spotify Boolean, default: false
     generate_playlist_spotify_id String, default: nil
     generate_playlist_applemusic Boolean, default: false

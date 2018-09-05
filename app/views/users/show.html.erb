@@ -10,6 +10,7 @@
   </div>
 </div>
 
+<% unless @user.private_profile %>
 <h2>New music from artists <%= @user.screename %> follows...</h2>
 <div class="album-grid">
   <% @new_albums.each do |a| %>
@@ -28,3 +29,4 @@
   <% end %>
   <% end %>
 </div>
+<% end %>
