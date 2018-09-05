@@ -16,7 +16,7 @@ class GenresController < ApplicationController
   end
 
   def search
-    @artists = Artist.basic_search(genres: params[:genre]).limit(100)
+    @artists = Artist.basic_search(genres:  params[:genre]).left_joins(:follows).group(:id).reorder('COUNT(follows.artist_id) DESC').limit(50)
   end
 
   def show
