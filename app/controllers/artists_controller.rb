@@ -48,6 +48,6 @@ class ArtistsController < ApplicationController
   end
 
   def search
-    @artists = Artist.basic_search(params[:artist])
+    @artists = Artist.basic_search(name: params[:artist]).left_joins(:follows).group(:id).reorder('COUNT(follows.artist_id) DESC').limit(50)
   end
 end
