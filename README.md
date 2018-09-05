@@ -1,4 +1,4 @@
-[![Gitter chat](https://badges.gitter.im/DroptuneHQ.png)](https://gitter.im/DroptuneHQ/Lobby)
+[![Gitter chat](https://img.shields.io/gitter/room/DroptuneHQ/Lobby.svg)](https://gitter.im/DroptuneHQ/Lobby)
 
 ## About
 Droptune is new music notifications for your favorite artists. It's something I've ([@Shpigford](https://twitter.com/Shpigford)) personally wanted to see exist for as long as I've been listening to music (i.e. forever). I don't passively listen to music. I don't just fire up some radio station or random playlist and listen to whatever is on. I choose what music I listen to and follow artists I love.
