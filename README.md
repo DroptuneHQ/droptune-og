@@ -12,7 +12,7 @@ On top of that, they don't surface the non-audio content (such as news articles 
 So, what Droptune does is centralize all of that. New music, new videos, news and more, all for the artists that I choose to follow, so I never miss beat.
 
 ## Design
-The design for Droptune is also open source! You can find our more about that as well as learn how to contribute in the [Droptune Design repo](https://github.com/Shpigford/droptune-design)!
+The design for Droptune is also open source! You can find our more about that as well as learn how to contribute in the [Droptune Design repo](https://github.com/DroptuneHQ/droptune-design)!
 
 ## Codebase
 The codebase is vanilla [Rails](https://rubyonrails.org/), [Sidekiq](https://sidekiq.org/) w/ [Redis](https://redis.io/), [Puma](http://puma.io/), [Postgres](https://www.postgresql.org/). Quite a simple setup.
@@ -61,7 +61,7 @@ It's still very early days for this so your mileage will vary here and lots of t
 
 But almost any contribution will be beneficial at this point.
 
-If you've got an improvement, just send in a pull request. If you've got feature ideas, simply [open a new issues](https://github.com/Shpigford/droptune/issues/new)!
+If you've got an improvement, just send in a pull request. If you've got feature ideas, simply [open a new issues](https://github.com/DroptuneHQ/droptune/issues/new)!
 
 Also, ask questions and discuss the project on Gitter: https://gitter.im/DroptuneHQ/Lobby
 
