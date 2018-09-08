@@ -21,6 +21,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       if connection
         connection.settings = spotify_user
         connection.save
+        current_user.update_attributes(spotify_connected_at: DateTime.current)
         
         flash[:notice] = 'Spotify connected!'
         redirect_to root_path

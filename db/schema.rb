@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_03_021432) do
+ActiveRecord::Schema.define(version: 2018_09_08_161418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -168,6 +168,12 @@ ActiveRecord::Schema.define(version: 2018_09_03_021432) do
     t.string "lastfm_username"
     t.integer "lastfm_playcount"
     t.string "lastfm_country"
+    t.datetime "spotify_connected_at"
+    t.datetime "spotify_disconnected_at"
+    t.datetime "applemusic_connected_at"
+    t.datetime "applemusic_disconnected_at"
+    t.datetime "lastfm_connected_at"
+    t.datetime "lastfm_disconnected_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

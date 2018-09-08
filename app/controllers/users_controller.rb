@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
   def import_apple_music
-    current_user.update_attributes(apple_music_token: params['user_token']) if params['user_token']
+    current_user.update_attributes(applemusic_connected_at: DateTime.current, apple_music_token: params['user_token']) if params['user_token']
 
     results = []
     artists = []
@@ -48,6 +48,7 @@ class UsersController < ApplicationController
     current_user.lastfm_username = lastfm.user.get_info['name']
     current_user.lastfm_playcount = lastfm.user.get_info['playcount'].to_i
     current_user.lastfm_country = lastfm.user.get_info['country']
+    current_user.lastfm_connected_at = DateTime.current
 
     current_user.save
 
