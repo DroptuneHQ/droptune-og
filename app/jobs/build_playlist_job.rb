@@ -22,7 +22,7 @@ class BuildPlaylistJob
           playlist = spotify.create_playlist!('Droptune New Music')
         rescue RestClient::Forbidden => e
           # Disconnect if we don't have the right permissions
-          connection = user.connections.where(provider:'spotify').first.destroy
+          # connection = user.connections.where(provider:'spotify').first.destroy
         end
 
         user.update_attributes(generate_playlist_spotify_id: playlist.id)

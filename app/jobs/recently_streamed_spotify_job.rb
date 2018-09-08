@@ -22,7 +22,7 @@ class RecentlyStreamedSpotifyJob
         recent_tracks = spotify.recently_played
       rescue RestClient::Forbidden => e
         # Disconnect if we don't have the right permissions
-        connection = user.connections.where(provider:'spotify').first.destroy
+        #connection = user.connections.where(provider:'spotify').first.destroy
       end
 
       if recent_tracks.present?
