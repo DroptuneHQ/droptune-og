@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/DroptuneHQ/eventful_api.git
+  revision: 958c713c9e4523d5a49d290ce029481e61067ed5
+  specs:
+    eventful_api (0.0.1)
+      addressable (~> 2.5.2)
+      multi_json (~> 1.5)
+      oauth (~> 0.5.4)
+
+GIT
   remote: https://github.com/inkstak/musicbrainz.git
   revision: e83fd26e2b252e738d2923ad2642e6045eac2e4b
   tag: 1.0.0
@@ -396,6 +405,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   dalli
   devise
+  eventful_api!
   faker
   feedjira
   figaro

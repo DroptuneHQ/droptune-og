@@ -44,6 +44,7 @@ gem 'scout_apm'
 gem 'rails_admin', '~> 1.3'
 gem "intercom-rails"
 gem 'lastfm'
+gem 'eventful_api', github: 'DroptuneHQ/eventful_api'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
