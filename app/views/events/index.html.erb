@@ -1,7 +1,6 @@
 <% title "Events" %>
-<% if current_user.present? %>
 
-<h1>Events near <strong><%= current_user.location %></strong></h1>
+<h1>Events near <strong><%= @location %></strong></h1>
 
 <div class="events-grid">
 <% @events.each do |event| %>
@@ -21,4 +20,3 @@
   </div>
 <% end %>
 </div>
-<% end %>
