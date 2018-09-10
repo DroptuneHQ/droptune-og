@@ -6,8 +6,8 @@ class CreateEvents < ActiveRecord::Migration[5.2]
       t.string :city
       t.string :region
       t.string :country
-      t.decimal :lat
-      t.decimal :lng
+      t.decimal :lat, precision: 15, scale: 10
+      t.decimal :lng, precision: 15, scale: 10
       t.datetime :starts_at
       t.decimal :price
       t.string :venue_name

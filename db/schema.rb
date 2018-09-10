@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_030310) do
+ActiveRecord::Schema.define(version: 2018_09_10_184935) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(version: 2018_09_10_030310) do
     t.integer "lastfm_stats_listeners"
     t.integer "lastfm_stats_playcount"
     t.text "lastfm_bio"
+    t.datetime "songkick_last_updated_at"
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
     t.index ["genres"], name: "index_artists_on_genres", using: :gin
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
@@ -100,8 +101,8 @@ ActiveRecord::Schema.define(version: 2018_09_10_030310) do
     t.string "city"
     t.string "region"
     t.string "country"
-    t.decimal "lat"
-    t.decimal "lng"
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
     t.datetime "starts_at"
     t.decimal "price"
     t.string "venue_name"
@@ -112,6 +113,10 @@ ActiveRecord::Schema.define(version: 2018_09_10_030310) do
     t.string "eventful_ticket_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "songkick_popularity", precision: 15, scale: 10
+    t.integer "songkick_id"
+    t.string "songkick_url"
+    t.string "songkick_ticket_url"
     t.index ["artist_id"], name: "index_events_on_artist_id"
   end
 
@@ -195,6 +200,7 @@ ActiveRecord::Schema.define(version: 2018_09_10_030310) do
     t.datetime "applemusic_disconnected_at"
     t.datetime "lastfm_connected_at"
     t.datetime "lastfm_disconnected_at"
+    t.string "location"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

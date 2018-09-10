@@ -1,0 +1,19 @@
+<% title "Events" %>
+<% if current_user.present? %>
+
+<h1>Events near <strong><%= current_user.location %></strong></h1>
+
+<div class="events-grid">
+<% @events.each do |event| %>
+  <div class="event">
+    <a href="<%= artist_path(event.artist) %>">
+      <div class="artist-image" style="background-image: url(<%= event.artist.spotify_image %>)"></div>
+    </a>
+    <h2><%= link_to event.artist.name, artist_path(event.artist), class: 'artist-title' %></h2>
+    <h3><%= event.venue_name %></h3>
+    <p class="location"><%= event.city %>, <%= event.region %></p>
+    <p class="date"><%= event.starts_at.strftime("%B %-e, %Y") %></p>
+  </div>
+<% end %>
+</div>
+<% end %>
