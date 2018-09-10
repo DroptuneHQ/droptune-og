@@ -11,8 +11,13 @@
     </a>
     <h2><%= link_to event.artist.name, artist_path(event.artist), class: 'artist-title' %></h2>
     <h3><%= event.venue_name %></h3>
-    <p class="location"><%= event.city %>, <%= event.region %></p>
-    <p class="date"><%= event.starts_at.strftime("%B %-e, %Y") %></p>
+    <div class="details">
+      <div class="info">
+        <p class="location"><%= event.city %>, <%= event.region %></p>
+        <p class="date"><%= event.starts_at.strftime("%B %-e, %Y") %></p>
+      </div>
+      <div class="view"><a href="<%= event.songkick_url %>" class="btn">View Event</a></div>
+    </div>
   </div>
 <% end %>
 </div>
