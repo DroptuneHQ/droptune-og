@@ -6,7 +6,7 @@ class BuildArtistSongkickJob
   
     sidekiq_throttle({
       :concurrency => { :limit => 20 },
-      :threshold => { :limit => 100, :period => 1.minute }
+      :threshold => { :limit => 500, :period => 1.minute }
     })
   
     def perform(artist_id)
