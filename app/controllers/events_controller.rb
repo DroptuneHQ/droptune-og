@@ -4,14 +4,14 @@ class EventsController < ApplicationController
       @location = current_user.location
     else 
       if Rails.env.development?
-        ip = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
+        @ip = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
       elsif request.headers["X-Forwarded-For"].present?
-        ip = request.headers["X-Forwarded-For"]
+        @ip = request.headers["X-Forwarded-For"]
       else
-        ip = request.remote_ip
+        @ip = request.remote_ip
       end
 
-      loc = Geokit::Geocoders::MultiGeocoder.geocode(ip.to_s)
+      loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip.to_s)
       @location = []
       @location.push(loc.city)
       @location.push(loc.state)
