@@ -6,7 +6,7 @@ class EventsController < ApplicationController
       if Rails.env.development?
         @ip = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
       elsif request.headers["X-Forwarded-For"].present?
-        @ip = request.headers["X-Forwarded-For"]
+        @ip = request.headers["X-Forwarded-For"].split(' ').first
       else
         @ip = request.remote_ip
       end
