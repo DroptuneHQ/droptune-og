@@ -25,7 +25,7 @@ header {
     height: 23px;
     padding: 0;
     text-indent: -9999em;
-    background: image-url('logo-droptune-color-white.svg') no-repeat top left;
+    background: image-url("logo-droptune-color-white.svg") no-repeat top left;
 
     &:hover {
       border-top-color: #fff;
@@ -40,17 +40,17 @@ header {
   }
 
   a#mobile-menu {
-      display: none;
-      position: absolute;
-      top: 18px;
-      right: 24px;
-      width: 24px;
-      height: 15px;
-      color: $white;
-      font-size: 1.5em;
-      @include max-screen(910px) {
-          display: block;
-      }
+    display: none;
+    position: absolute;
+    top: 18px;
+    right: 24px;
+    width: 24px;
+    height: 15px;
+    color: $white;
+    font-size: 1.5em;
+    @include max-screen(910px) {
+      display: block;
+    }
   }
 
   nav {
@@ -84,7 +84,8 @@ header {
       color: $gray;
       transition: all 0.2s linear;
 
-      &:hover, &.active {
+      &:hover,
+      &.active {
         color: $white;
         border-top-color: $blue;
         @include max-screen(910px) {
@@ -93,7 +94,9 @@ header {
         }
       }
 
-      @include max-screen(1023px) { margin: 0 20px 0 0; }
+      @include max-screen(1023px) {
+        margin: 0 20px 0 0;
+      }
 
       &#twitter-sign-in {
         float: right;
@@ -122,8 +125,8 @@ header {
       float: right;
       margin: 0;
       @include max-screen(910px) {
-          float: none;
-        }
+        float: none;
+      }
       img {
         border-radius: 100px;
         width: 30px;
@@ -146,7 +149,7 @@ header {
       display: block;
     }
 
-    input[type=text] {
+    input[type="text"] {
       display: block;
       width: 98%;
       border: 0 solid $lighter-gray;
@@ -190,7 +193,8 @@ h3 {
       color: $light-gray;
       font-size: 18px;
       transition: all 0.2s linear;
-      &.active, &:hover {
+      &.active,
+      &:hover {
         color: $black;
         border-bottom: 2px solid $blue;
       }
@@ -208,13 +212,13 @@ h3 {
         color: $gray;
       }
       &:after {
-        content: '/';
+        content: "/";
         color: $gray;
         padding: 0 8px 0 12px;
       }
       &.active {
         &:after {
-          content: '';
+          content: "";
           padding: 0;
         }
       }
@@ -258,7 +262,8 @@ h3 {
   @include max-screen(700px) {
     height: 240px;
   }
-  .info, .links {
+  .info,
+  .links {
     position: relative;
     z-index: 100;
   }
@@ -292,7 +297,7 @@ h3 {
     }
   }
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     right: 0;
@@ -302,7 +307,6 @@ h3 {
     border-radius: 5px;
     opacity: 0.8;
   }
-
 }
 
 .grid-artist {
@@ -339,7 +343,8 @@ h3 {
   }
 }
 
-.fans, .media {
+.fans,
+.media {
   h2 {
     margin-bottom: 5px;
   }
@@ -359,7 +364,7 @@ h3 {
   padding: 40px 20px;
   color: $white;
   border-radius: 10px;
-  background-image: image-url('bgr-jumbo.png');
+  background-image: image-url("bgr-jumbo.png");
   background-size: 100%;
   margin-bottom: 15px;
   h2 {
@@ -407,9 +412,13 @@ h3 {
   &.btn-blue-gradient {
     color: $white;
     font-weight: 600;
-    background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+    background: linear-gradient(180deg, #019bdd 0%, #01c0dd 100%);
     &:hover {
-      background: linear-gradient(180deg, darken(#019BDD,4%) 0%, darken(#01C0DD,4%) 100%);
+      background: linear-gradient(
+        180deg,
+        darken(#019bdd, 4%) 0%,
+        darken(#01c0dd, 4%) 100%
+      );
     }
   }
   &.btn-gray-border {
@@ -459,7 +468,7 @@ button {
       line-height: 0;
       &:before {
         box-shadow: inset 0 0 0 1px rgba($black, 0.1);
-        content: '';
+        content: "";
         display: block;
         bottom: 0;
         position: absolute;
@@ -477,7 +486,7 @@ button {
     span {
       text-transform: uppercase;
       font-weight: 800;
-      font-size: .9em;
+      font-size: 0.9em;
       color: $light-gray;
     }
     h1 {
@@ -491,7 +500,7 @@ button {
       }
     }
     .released {
-      font-size: .9em;
+      font-size: 0.9em;
     }
     .add {
       margin-top: 25px;
@@ -502,14 +511,17 @@ button {
         margin-right: 5px;
         font-weight: 600;
         font-size: 1.1em;
-        background: linear-gradient(180deg, #019BDD 0%, #01C0DD 100%);
+        background: linear-gradient(180deg, #019bdd 0%, #01c0dd 100%);
       }
     }
   }
 }
 
 // Album Layout
-.album-grid, .artist-grid, .user-grid {
+.album-grid,
+.artist-grid,
+.user-grid,
+.events-grid {
   display: grid;
   grid-template-rows: repeat($album-grid-rows, auto);
   grid-template-columns: repeat($album-grid-cols, 1fr);
@@ -528,15 +540,17 @@ button {
   }
 }
 
-
-.album, .artist, .user {
+.album,
+.artist,
+.user,
+.event {
   font-size: 13px;
 
   .album_cover {
     position: relative;
     &:before {
       box-shadow: inset 0 0 0 1px rgba($black, 0.1);
-      content: '';
+      content: "";
       display: block;
       height: 100%;
       position: absolute;
@@ -607,7 +621,8 @@ button {
     line-height: 17px;
   }
 
-  a.album-title, a.artist-title {
+  a.album-title,
+  a.artist-title {
     color: $darker;
   }
 
@@ -628,10 +643,40 @@ button {
   }
 }
 
+.events-grid {
+  grid-template-columns: repeat(3, 1fr);
+  @include max-screen(800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include max-screen(600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+.event {
+  line-height: 20px;
+  .artist-image {
+    margin-bottom: 15px;
+  }
+  h2 {
+    margin: 0 0 5px 0;
+  }
+  h3 {
+    margin: 0;
+  }
+  .location {
+    margin: 0;
+    padding: 0;
+  }
+  .date {
+    margin: 0;
+    padding: 0;
+  }
+}
+
 .video-item {
   h1 {
     small {
-      font-size: .8em;
+      font-size: 0.8em;
       color: $gray;
     }
     line-height: 40px;
@@ -679,6 +724,13 @@ button {
   }
   .form-line {
     margin-bottom: 10px;
+
+    input[type="text"] {
+      padding: 5px 8px;
+      border-radius: 2px;
+      background: $lightest-gray;
+      border: 1px solid $lighter-gray;
+    }
   }
   .btn {
     margin-top: 10px;
@@ -691,5 +743,7 @@ footer {
   padding: 40px 0;
   background: $lightest-gray;
 
-  a { color: $blue; }
+  a {
+    color: $blue;
+  }
 }

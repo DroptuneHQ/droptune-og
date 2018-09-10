@@ -83,4 +83,13 @@ class User < ApplicationRecord
 
     user    
   end
+
+  protected
+  def extract_ip_from(request)
+    if request.headers["X-Forwarded-For"].present?
+      request.headers["X-Forwarded-For"]
+    else
+      request.remote_ip
+    end
+  end
 end

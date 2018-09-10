@@ -1,0 +1,19 @@
+class UpdateUserLocation
+  include Sidekiq::Worker
+
+  sidekiq_options :queue => :default
+
+  def perform(user_id)
+    user = User.find user_id
+    if user.location.blank? and user.last_sign_in_ip.present?
+      loc = Geokit::Geocoders::MultiGeocoder.geocode(user.last_sign_in_ip)
+      
+      location = []
+      location.push(loc.city)
+      location.push(loc.state)
+      location.push(loc.country_code)
+
+      user.update_attributes(location: location.reject(&:blank?).join(', '))
+    end
+  end
+end

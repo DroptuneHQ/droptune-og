@@ -4,6 +4,7 @@ class Artist < ApplicationRecord
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
   has_many :streams
+  has_many :events
 
   include Storext.model(genres: {})
 
