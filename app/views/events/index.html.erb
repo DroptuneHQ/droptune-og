@@ -1,12 +1,12 @@
 <% title "Events" %>
 
-<h1>Events near <strong><%= @location %></strong> (<%= @ip.html_safe.inspect %>)</h1>
+<h1>Events near <strong><%= @location %></strong> (<%= @ip %>)</h1>
 
 <div class="events-grid">
 <% if @events %>
 <% @events.each do |event| %>
   <div class="event">
-    <a href="<%= artist_path(event.artist) %>">i
+    <a href="<%= artist_path(event.artist) %>">
       <div class="artist-image" style="background-image: url(<%= event.artist.spotify_image %>)"></div>
     </a>
     <h2><%= link_to event.artist.name, artist_path(event.artist), class: 'artist-title' %></h2>
