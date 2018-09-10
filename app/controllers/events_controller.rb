@@ -10,7 +10,7 @@ class EventsController < ApplicationController
       else
         ip = request.remote_ip
       end
-      
+
       loc = Geokit::Geocoders::MultiGeocoder.geocode(ip.to_s)
       @location = []
       @location.push(loc.city)
@@ -19,10 +19,14 @@ class EventsController < ApplicationController
       @location = @location.reject(&:blank?).join(', ').to_s
     end
 
-    if current_user
-      @events = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
-    else
-      @events = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(20)
+    begin
+      if current_user
+        @events = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
+      else
+        @events = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(20)
+      end
+    rescue
+      @events = nil
     end
   end
 end

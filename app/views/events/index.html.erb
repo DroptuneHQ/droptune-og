@@ -3,6 +3,7 @@
 <h1>Events near <strong><%= @location %></strong></h1>
 
 <div class="events-grid">
+<% if @events %>
 <% @events.each do |event| %>
   <div class="event">
     <a href="<%= artist_path(event.artist) %>">
@@ -18,5 +19,8 @@
       <div class="view"><a href="<%= event.songkick_url %>" class="btn">View Event</a></div>
     </div>
   </div>
+<% end %>
+<% else %>
+<p>Can't find any events in the area!</p>
 <% end %>
 </div>
