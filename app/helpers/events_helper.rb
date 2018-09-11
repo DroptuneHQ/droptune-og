@@ -11,4 +11,10 @@ module EventsHelper
       "Next month"
     end
   end
+
+  def distance_wording(distance)
+    distance ? distance : 100
+    
+    "#{distance} mi"
+  end
 end

@@ -2,13 +2,24 @@
 
 <div class="page-header">
   <h1>Events near <strong><%= @location %></strong></h1>
-  <div class="dropdown">
-    <a href="#" class="current"><%= time_wording(params[:days]) %> <i class="fas fa-angle-down"></i></a>
-    <ul>
-      <li><a href="/events">Next month</a></li>
-      <li><a href="/events?days=90">Next 3 months</a></li>
-      <li><a href="/events?days=180">Next 6 months</a></li>
-    </ul>
+  <div class="options">
+    <div class="dropdown">
+      <a href="#" class="current" data-target="time"><%= time_wording(params[:days]) %> <i class="fas fa-angle-down"></i></a>
+      <ul data-dropdown="time">
+        <li><%= link_to "Next month", request.params.merge(days: "30") %></li>
+        <li><%= link_to "Next 3 months", request.params.merge(days: "90") %></li>
+        <li><%= link_to "Next 6 months", request.params.merge(days: "180") %></li>
+      </ul>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="current" data-target="distance"><%= distance_wording(params[:distance]) %> <i class="fas fa-angle-down"></i></a>
+      <ul data-dropdown="distance">
+        <li><%= link_to "25 mi", request.params.merge(distance: "25") %></li>
+        <li><%= link_to "50 mi", request.params.merge(distance: "50") %></li>
+        <li><%= link_to "100 mi", request.params.merge(distance: "100") %></li>
+        <li><%= link_to "250 mi", request.params.merge(distance: "250") %></li>
+      </ul>
+    </div>
   </div>
 </div>
 

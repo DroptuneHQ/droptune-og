@@ -21,6 +21,8 @@
   text-align: right;
   position: relative;
   flex: 1;
+  padding-left: 30px;
+  display: inline-block;
   .current {
     color: $gray;
     i {
@@ -50,7 +52,6 @@
       }
     }
     a {
-      padding: 10px;
       color: $blue;
       display: block;
       padding: 5px 10px;

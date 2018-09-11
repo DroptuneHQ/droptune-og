@@ -31,7 +31,8 @@ $(document).on("turbolinks:load", function() {
 
   $(".dropdown .current").on("click", function(e) {
     e.preventDefault();
-    $(".dropdown ul").toggleClass("show");
+    var target = $(this).attr("data-target");
+    $(".dropdown [data-dropdown='" + target + "']").toggleClass("show");
   });
 
   // Search bar

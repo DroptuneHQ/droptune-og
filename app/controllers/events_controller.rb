@@ -23,10 +23,12 @@ class EventsController < ApplicationController
     end
 
     begin
+      distance = params[:distance] ? params[:distance].to_i : 100
+      
       if current_user
-        query = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
+        query = Event.within(distance, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
       else
-        query = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(100)
+        query = Event.within(distance, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(100)
       end
       
       days = params[:days] ? params[:days].to_i : 30
