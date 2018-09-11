@@ -25,18 +25,18 @@ class EventsController < ApplicationController
     begin
       if current_user
         query = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
-
-        
       else
         query = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(100)
       end
-    rescue
-      @events = nil
-    end
-
+      
       days = params[:days] ? params[:days].to_i : 30
       query = query.where('starts_at <= ?', Date.today + days.days)
 
       @events = query
+    rescue
+      @events = nil
+    end
+
+      
   end
 end
