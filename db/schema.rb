@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_10_184935) do
+ActiveRecord::Schema.define(version: 2018_09_11_201904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,8 @@ ActiveRecord::Schema.define(version: 2018_09_10_184935) do
     t.string "applemusic_image"
     t.string "applemusic_link"
     t.string "artist_slug"
+    t.index "date_part('month'::text, release_date)", name: "index_on_albums_release_date_month"
+    t.index "date_part('year'::text, release_date)", name: "index_on_albums_release_date_year"
     t.index ["album_type"], name: "index_albums_on_album_type"
     t.index ["artist_id", "name"], name: "index_albums_on_artist_id_and_name"
     t.index ["artist_id"], name: "index_albums_on_artist_id"
