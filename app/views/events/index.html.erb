@@ -1,6 +1,16 @@
 <% title "Events" %>
 
-<h1>Events near <strong><%= @location %></strong> (<%= @ip %>)</h1>
+<div class="page-header">
+  <h1>Events near <strong><%= @location %></strong></h1>
+  <div class="dropdown">
+    <a href="#" class="current"><%= time_wording(params[:days]) %> <i class="fas fa-angle-down"></i></a>
+    <ul>
+      <li><a href="/events">Next month</a></li>
+      <li><a href="/events?days=90">Next 3 months</a></li>
+      <li><a href="/events?days=180">Next 6 months</a></li>
+    </ul>
+  </div>
+</div>
 
 <div class="events-grid">
 <% if @events %>

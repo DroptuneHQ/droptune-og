@@ -17,30 +17,32 @@
 //= require jqcloud
 //= require_tree .
 
-
-$( document ).on('turbolinks:load', function() {
+$(document).on("turbolinks:load", function() {
   // Mobile Menu
-  $('#mobile-menu').on('click', function(e){
+  $("#mobile-menu").on("click", function(e) {
     e.preventDefault();
-    $('nav').toggleClass('show');
+    $("nav").toggleClass("show");
   });
-  $(window).resize(function(){
-    if ($('body').width() > 910) {
-      $('nav').removeClass('show');
+  $(window).resize(function() {
+    if ($("body").width() > 910) {
+      $("nav").removeClass("show");
     }
   });
 
-  // Search bar
-  $('.search-button').on('click', function(e){
+  $(".dropdown .current").on("click", function(e) {
     e.preventDefault();
-    $('.search-form').toggleClass('show');
-  })
-  
+    $(".dropdown ul").toggleClass("show");
+  });
+
+  // Search bar
+  $(".search-button").on("click", function(e) {
+    e.preventDefault();
+    $(".search-form").toggleClass("show");
+  });
 });
 
 // Follow/unfollow
-$(document).on('ajax:success', '.follow a', function(event){
+$(document).on("ajax:success", ".follow a", function(event) {
   const [data, status, xhr] = Array.from(event.detail);
-  $('.follow').html(data.artist)
+  $(".follow").html(data.artist);
 });
-

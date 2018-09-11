@@ -87,7 +87,8 @@ Geokit::Geocoders::provider_order = [:yahoo, :geonames]
 
 # The IP provider order. Valid symbols are :ip,:geo_plugin.
 # As before, make sure you read up on relevant Terms of Use for each.
-Geokit::Geocoders::ip_provider_order = [:geo_plugin,:ip]
+Geokit::Geocoders::IpstackGeocoder.api_key = ENV['ipstack_key']
+Geokit::Geocoders::ip_provider_order = [:ipstack]
 
 # Disable HTTPS globally.  This option can also be set on individual
 # geocoder classes.

@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    if current_user
+    if current_user and current_user.location.present?
       @location = current_user.location
     else 
       if Rails.env.development?
@@ -14,6 +14,7 @@ class EventsController < ApplicationController
       @ip = @ip.squish
 
       loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
+      
       @location = []
       @location.push(loc.city)
       @location.push(loc.state)
@@ -23,12 +24,19 @@ class EventsController < ApplicationController
 
     begin
       if current_user
-        @events = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
+        query = Event.within(150, origin: @location).includes(:artist).where(artist_id: Follow.select(:artist_id).where(user_id: current_user.id, active: true)).order('starts_at asc').where('starts_at >= ?', Date.today)
+
+        
       else
-        @events = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(20)
+        query = Event.within(150, origin: @location).includes(:artist).order('starts_at asc').where('starts_at >= ?', Date.today).limit(100)
       end
     rescue
       @events = nil
     end
+
+      days = params[:days] ? params[:days].to_i : 30
+      query = query.where('starts_at <= ?', Date.today + days.days)
+
+      @events = query
   end
 end

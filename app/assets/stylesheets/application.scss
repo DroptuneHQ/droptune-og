@@ -11,6 +11,56 @@
   margin: 0 auto;
 }
 
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown {
+  text-align: right;
+  position: relative;
+  flex: 1;
+  .current {
+    color: $gray;
+    i {
+      margin-left: 4px;
+    }
+  }
+  ul {
+    display: none;
+    border: 0 solid $white;
+    position: absolute;
+    right: 0;
+    top: 25px;
+    border-radius: 5px;
+    background: $lightest-gray;
+    z-index: 300;
+    &.show {
+      display: inline-block;
+    }
+    li {
+      &:first-child a {
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+      }
+      &:last-child a {
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+      }
+    }
+    a {
+      padding: 10px;
+      color: $blue;
+      display: block;
+      padding: 5px 10px;
+      &:hover {
+        background: darken($lightest-gray, 5%);
+      }
+    }
+  }
+}
+
 // Header
 header {
   position: relative;
