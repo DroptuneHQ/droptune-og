@@ -13,7 +13,7 @@ module EventsHelper
   end
 
   def distance_wording(distance)
-    distance ? distance : 100
+    distance = distance ? distance : 100
     
     "#{distance} mi"
   end
