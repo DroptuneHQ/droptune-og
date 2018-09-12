@@ -17,4 +17,13 @@ module EventsHelper
     
     "#{distance} mi"
   end
+
+  def location_name(event)
+    location = []
+    location.push(event.city)
+    location.push(event.region)
+    location.push(event.country)
+
+    location.reject(&:blank?).join(', ')
+  end
 end

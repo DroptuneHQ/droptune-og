@@ -227,6 +227,8 @@ h1 {
 h2 {
   font: 400 22px/35px $fonts;
   margin: 0 0 24px;
+  display: flex;
+  justify-content: space-between;
 }
 h3 {
   font: 400 20px/30px $fonts;
@@ -430,6 +432,22 @@ h3 {
   }
   .fa-twitter {
     color: $blue;
+  }
+}
+
+.header-btn {
+  font-size: 14px;
+  padding: 0 15px;
+  border-radius: 100px;
+  background: $blue;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  i {
+    margin-right: 5px;
+  }
+  &:hover {
+    background-color: darken($blue, 10%);
   }
 }
 
@@ -728,6 +746,72 @@ button {
     justify-content: space-between;
     .view {
       text-align: right;
+    }
+  }
+}
+
+.events {
+  margin-bottom: 40px;
+  h2 {
+    margin-bottom: 5px;
+  }
+}
+.events-calendar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px 30px;
+  @include max-screen(800px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include max-screen(600px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .event-item {
+    a {
+      display: flex;
+
+      &:hover {
+        background: $lightest-gray;
+        border-radius: 3px;
+      }
+    }
+    .date {
+      text-align: center;
+      margin-right: 15px;
+      strong {
+        background: $red;
+        color: $white;
+        display: block;
+        border-top-right-radius: 3px;
+        border-top-left-radius: 3px;
+        padding: 2px 12px 0 12px;
+        line-height: 23px;
+        text-transform: uppercase;
+      }
+      em {
+        background: $lightest-gray;
+        color: $darker-gray;
+        display: block;
+        font-style: normal;
+        border-bottom-right-radius: 3px;
+        border-bottom-left-radius: 3px;
+        font-weight: bold;
+        font-size: 26px;
+        padding: 4px 8px;
+      }
+    }
+    .venue {
+      h3 {
+        margin: 0;
+        padding: 0;
+        color: $darker-gray;
+        font-weight: 600;
+      }
+      h4 {
+        margin: 0;
+        padding: 0;
+        color: $gray;
+      }
     }
   }
 }
