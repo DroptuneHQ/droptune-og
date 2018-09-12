@@ -39,22 +39,43 @@
   </ul>
 </section>
 
-<% if @artist.follows.present? %>
-<div class="fans">
-  <h2>Fans</h2>
-  <div class="user-grid">
-    <% @artist.follows.where(active:true).select("DISTINCT(USER_ID)").each do |follow| %>
-    <% unless follow.user.private_profile %>
-    <div class="user">
-      <a href="<%= user_path(follow.user) %>">
-        <div class="user-image" style="background-image: url(<%= follow.user.avatar_image %>)"></div>
-      </a>
+<div class="artist-people">
+  <% if @artist.streams.present? %>
+  <div class="streamed-by">
+    <h2>Recently Streamed</h2>
+    <div class="user-grid">
+
+      <% @artist.streams.select("DISTINCT(USER_ID)").each do |stream| %>
+      <% unless stream.user.private_profile %>
+      <div class="user">
+        <a href="<%= user_path(stream.user) %>">
+          <div class="user-image" style="background-image: url(<%= stream.user.avatar_image %>)"></div>
+        </a>
+      </div>
+      <% end %>
+      <% end %>
     </div>
-    <% end %>
-    <% end %>
   </div>
+  <% end %>
+
+  <% if @artist.follows.present? %>
+  <div class="fans">
+    <h2>Fans</h2>
+    <div class="user-grid">
+      <% @artist.follows.where(active:true).select("DISTINCT(USER_ID)").each do |follow| %>
+      <% unless follow.user.private_profile %>
+      <div class="user">
+        <a href="<%= user_path(follow.user) %>">
+          <div class="user-image" style="background-image: url(<%= follow.user.avatar_image %>)"></div>
+        </a>
+      </div>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
 </div>
-<% end %>
+
 
 <% if @artist.events.where('starts_at >= ?', Date.today).present? %>
 <div class="events">

@@ -397,15 +397,17 @@ h3 {
 }
 
 .fans,
-.media {
+.media,
+.streamed-by {
   h2 {
     margin-bottom: 5px;
   }
 }
 
-.fans {
+.fans,
+.streamed-by {
   .user-grid {
-    grid-template-columns: repeat(15, 1fr);
+    grid-template-columns: repeat(10, 1fr);
     @include max-screen(850px) {
       grid-template-columns: repeat(5, 1fr);
     }
@@ -813,6 +815,17 @@ button {
         color: $gray;
       }
     }
+  }
+}
+
+.artist-people {
+  display: flex;
+  @include max-screen(700px) {
+    display: block;
+  }
+  .streamed-by,
+  .fans {
+    flex: 1;
   }
 }
 
