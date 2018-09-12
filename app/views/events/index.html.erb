@@ -1,5 +1,10 @@
 <% title "Events" %>
-
+<p>
+  Amazon: <%= Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish %><br>
+  X: <%= request.headers["X-Forwarded-For"] %><br>
+  Remote: <%= request.remote_ip %><br>
+  Loc: <%= @loc.inspect %>
+</p>
 <div class="page-header">
   <h1>Events near <strong><%= @location %></strong></h1>
   <div class="options">

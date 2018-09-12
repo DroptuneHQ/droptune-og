@@ -13,12 +13,12 @@ class EventsController < ApplicationController
 
       @ip = @ip.squish
 
-      loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
+      @loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
       
       @location = []
-      @location.push(loc.city)
-      @location.push(loc.state)
-      @location.push(loc.country_code)
+      @location.push(@loc.city)
+      @location.push(@loc.state)
+      @location.push(@loc.country_code)
       @location = @location.reject(&:blank?).join(', ').to_s
     end
 
