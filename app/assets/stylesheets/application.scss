@@ -823,6 +823,9 @@ button {
   @include max-screen(700px) {
     display: block;
   }
+  .streamed-by {
+    margin-right: 20px;
+  }
   .streamed-by,
   .fans {
     flex: 1;
