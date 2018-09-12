@@ -13,8 +13,6 @@ class EventsController < ApplicationController
 
       @loc = JSON.parse(Net::HTTP.get(URI.parse("http://api.ipstack.com/#{@ip}?access_key=#{ENV['ipstack_key']}")))
 
-      #@loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
-      
       @location = []
       @location.push(@loc['city'])
       @location.push(@loc['region_name'])
@@ -37,8 +35,8 @@ class EventsController < ApplicationController
       @events = query
     rescue
       @events = nil
+      redirect_back(fallback_location: events_path)
     end
 
-      
   end
 end
