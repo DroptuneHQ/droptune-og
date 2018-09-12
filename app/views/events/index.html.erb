@@ -2,6 +2,7 @@
 <p>
   Amazon: <%= Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish %><br>
   X: <%= request.headers["X-Forwarded-For"] %><br>
+  IP: <%= @ip %><br>
   Remote: <%= request.remote_ip %><br>
   Loc: <%= @loc.inspect %>
 </p>

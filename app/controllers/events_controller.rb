@@ -6,19 +6,19 @@ class EventsController < ApplicationController
       if Rails.env.development?
         @ip = Net::HTTP.get(URI.parse('http://checkip.amazonaws.com/')).squish
       elsif request.headers["X-Forwarded-For"].present?
-        @ip = request.headers["X-Forwarded-For"].split(', ').select {|ip| ip if IPAddr.new(ip).ipv4? }.pop
+        @ip = request.headers["X-Forwarded-For"].split(', ').select {|ip| ip if IPAddr.new(ip).ipv6? }.pop
       else
         @ip = request.remote_ip
       end
 
-      @ip = @ip.squish
+      @loc = JSON.parse(Net::HTTP.get(URI.parse("http://api.ipstack.com/#{@ip}?access_key=#{ENV['ipstack_key']}")))
 
-      @loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
+      #@loc = Geokit::Geocoders::MultiGeocoder.geocode(@ip)
       
       @location = []
-      @location.push(@loc.city)
-      @location.push(@loc.state)
-      @location.push(@loc.country_code)
+      @location.push(@loc['city'])
+      @location.push(@loc['region_name'])
+      @location.push(@loc['country_code'])
       @location = @location.reject(&:blank?).join(', ').to_s
     end
 
