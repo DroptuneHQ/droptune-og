@@ -63,7 +63,7 @@
     <h2>Fans</h2>
     <div class="user-grid">
       <% @artist.follows.where(active:true).select("DISTINCT(USER_ID)").each do |follow| %>
-      <% if stream.user.present? and stream.user.private_profile == false %>
+      <% if follow.user.present? and follow.user.private_profile == false %>
       <div class="user">
         <a href="<%= user_path(follow.user) %>">
           <div class="user-image" style="background-image: url(<%= follow.user.avatar_image %>)"></div>
