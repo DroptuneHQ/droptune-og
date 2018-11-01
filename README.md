@@ -46,7 +46,7 @@ These will get you the necessary keys for the app to fully function.
 
 **3. In the command line, you'll then run the following to set up gems and the database...**
 ```bash
-$ bundle && rake db:setup # Installs the necessary gems and sets up the database
+$ bin/setup # Installs the necessary gems and sets up the database
 ```
 
 **4. Finally, start the server (also in the command line)!**
