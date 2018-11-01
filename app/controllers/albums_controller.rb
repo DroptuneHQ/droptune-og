@@ -4,12 +4,12 @@ class AlbumsController < ApplicationController
     @user = current_user
 
     if @user
-      query = Album.includes(:artist).has_release_date.where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :desc)
+      query = Album.includes(:artist).has_release_date.where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :desc, artist_id: :asc)
 
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
-      query = Album.includes(:artist).has_release_date.includes(:artist).order(release_date: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single')
+      query = Album.includes(:artist).has_release_date.includes(:artist).order(release_date: :desc, artist_id: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single')
     end
 
     if params[:month] and params[:year]
@@ -26,12 +26,12 @@ class AlbumsController < ApplicationController
     @user = current_user
 
     if @user
-      query = Album.includes(:artist).has_release_date.where.not(album_type: 'compilation').where("release_date > ?", Date.today).where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :asc)
+      query = Album.includes(:artist).has_release_date.where.not(album_type: 'compilation').where("release_date > ?", Date.today).where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :asc, artist_id: :asc)
 
       query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
       query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
     else
-      query = Album.has_release_date.includes(:artist).where("release_date > ?", Date.today).order(release_date: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
+      query = Album.has_release_date.includes(:artist).where("release_date > ?", Date.today).order(release_date: :asc, artist_id: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
     end
 
     @albums = query.uniq
