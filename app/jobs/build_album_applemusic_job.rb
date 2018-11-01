@@ -20,7 +20,7 @@ class BuildAlbumApplemusicJob
       albums.each do |album|  
         Album.with_advisory_lock("#{album['id']}") do
           details = album['attributes']
-          album_name = details['name'].gsub(' - Single', '')
+          album_name = details['name'].gsub(' - Single', '').gsub(' - EP', '')
           new_album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first_or_create(artist_id: artist.id, name: album_name)
           if details['isSingle'] == true
             album_type = 'single'
