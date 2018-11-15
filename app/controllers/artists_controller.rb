@@ -1,4 +1,6 @@
 class ArtistsController < ApplicationController
+  respond_to :html, :json
+
   def index
     @user = current_user
 
@@ -7,10 +9,14 @@ class ArtistsController < ApplicationController
     else
       @artists = Artist.where.not(name: nil).order(name: :asc).limit(30).uniq
     end
+
+    respond_with @artists#.paginate(page: params[:page], per_page: 20)
   end
 
   def show
     @artist = Artist.find(params[:id])
+
+    respond_with @artist
   end
 
   def follow

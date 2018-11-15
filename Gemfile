@@ -47,6 +47,8 @@ gem 'lastfm'
 gem 'songkickr'
 gem 'geokit-rails'
 gem "barnes"
+gem "active_model_serializers"
+gem 'will_paginate', '~> 3.1.0'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ExceptionHandler
   before_action :set_raven_context
 
 private
