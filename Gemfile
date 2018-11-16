@@ -1,86 +1,102 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
+
+source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.5.1'
+ruby "2.5.1"
 
 # Framework
-gem 'rails', '~> 5.2.0'
+gem "rails", "~> 5.2.0"
 
 # Data
-gem 'pg'
+gem "pg"
+gem "storext"
+gem "with_advisory_lock"
+gem "will_paginate", "~> 3.1.0"
+gem "geokit-rails"
+gem "textacular", "~> 5.0" # Full-text search in Postgres
+
+# REST-API
+gem "active_model_serializers"
+# gem 'jbuilder', '~> 2.5'
 
 # Webserver
-gem 'puma'
-gem 'puma_worker_killer'
+gem "puma"
+gem "puma_worker_killer"
 
-# Misc
-gem 'sass-rails', '~> 5.0' # Use SCSS for stylesheets
-gem 'uglifier', '>= 1.3.0' # Use Uglifier as compressor for JavaScript assets
-gem 'figaro' # environment variables
-gem 'omniauth'
-gem 'omniauth-facebook'
-gem 'omniauth-twitter'
-gem 'omniauth-spotify'
-gem 'devise'
-gem 'jquery-rails'
-gem 'rspotify'
-gem 'sidekiq'
+# Frontend
+gem "sass-rails", "~> 5.0" # Use SCSS for stylesheets
+gem "uglifier", ">= 1.3.0" # Use Uglifier as compressor for JavaScript assets
+gem "jquery-rails"
+gem "coffee-rails", "~> 4.2"
+gem "turbolinks", "~> 5"
+gem "rails_admin", "~> 1.3"
+
+# User Authentication
+gem "devise"
+gem "omniauth"
+gem "omniauth-facebook"
+gem "omniauth-twitter"
+gem "omniauth-spotify"
+
+# Music Services
+gem "rspotify"
+gem "musicbrainz", github: "inkstak/musicbrainz", tag: "1.0.0"
+gem "lastfm"
+gem "songkickr"
+gem "feedjira"          # A feed fetching and parsing library
+gem "opengraph_parser"  # library for parsing Open Graph Protocol information from a website
+
+# Background Processing
+gem "sidekiq"
 gem "sidekiq-throttled"
 gem "sidekiq-cron"
-gem 'sidekiq-unique-jobs'
-gem 'storext'
-gem 'with_advisory_lock'
-gem 'sentry-raven'
-gem 'textacular', '~> 5.0'
-gem 'faker'
-gem 'musicbrainz', github: 'inkstak/musicbrainz', tag: '1.0.0'
-gem 'httparty'
-gem 'jwt'
-gem "feedjira"
-gem "opengraph_parser"
-gem 'dalli'
-gem 'memcachier'
-gem 'scout_apm'
-gem 'rails_admin', '~> 1.3'
-gem "intercom-rails"
-gem 'lastfm'
-gem 'songkickr'
-gem 'geokit-rails'
-gem "barnes"
-gem "active_model_serializers"
-gem 'will_paginate', '~> 3.1.0'
+gem "sidekiq-unique-jobs"
 
-# Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.2'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+# Stats/Error Reporting
+gem "barnes"            # report GC usage data to statsd
+gem "scout_apm"         # Monitors Ruby apps and reports detailed metrics on performance to Scout.
+gem "sentry-raven"      # report errors to Sentry
+
+# Caching
+gem "dalli"
+gem "memcachier"
+
+# Misc
+gem "figaro"            # environment variables
+gem "faker"
+gem "httparty"
+gem "jwt"
+gem "intercom-rails"    # customer relationship management and messaging tool
+gem "colorize"          # ability to colorize output strings
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
+gem "bootsnap", ">= 1.1.0", require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem "byebug", platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
-  gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem "better_errors"
+  gem "binding_of_caller"
+  # gem "web-console", ">= 3.3.0"
+  gem "listen", ">= 3.0.5", "< 3.2"
+  gem "spring"
+  gem "spring-watcher-listen", "~> 2.0.0"
   gem "letter_opener"
+  gem "foreman", require: false
+  gem "bundleup", require: false
+  gem "rubocop", require: false
+  gem "rubocop-rspec", require: false
+  gem "rubocop-rails_config", require: false
 end
 
 group :test do
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 2.15', '< 4.0'
-  gem 'selenium-webdriver'
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem "capybara", ">= 2.15", "< 4.0"
+  gem "selenium-webdriver"
+  gem "chromedriver-helper"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem "tzinfo-data", platforms: [:mingw, :mswin, :x64_mingw, :jruby]
