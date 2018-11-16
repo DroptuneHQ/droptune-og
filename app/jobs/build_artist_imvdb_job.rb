@@ -10,6 +10,8 @@ class BuildArtistImvdbJob
   })
 
   def perform(artist_id)
+    return unless ENV['imvdb_key']
+
     artist = Artist.find artist_id
     page = 1
     loop do
@@ -40,13 +42,11 @@ class BuildArtistImvdbJob
               release_date = Date.today-1.year
             end
 
-            music_video = MusicVideo.where('artist_id = ? AND source_data = ?', artist.id, source_data).first_or_create(
-                artist_id: artist.id, 
+            music_video = MusicVideo.where(artist: artist, source_data: source_data).first_or_create(
                 name: video['song_title'],
                 release_date: release_date,
                 image: video['image']['o'],
-                source: source['source'],
-                source_data: source_data)
+                source: source['source'])
           end
         end
       end
