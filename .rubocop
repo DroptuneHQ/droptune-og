@@ -1,0 +1,14 @@
+inherit_gem:
+  rubocop-rails_config:
+    - config/rails.yml
+
+AllCops:
+  TargetRubyVersion: ~
+  TargetRailsVersion: 5.2
+  Exclude:
+    - '**/bin/**/*'
+    - '**/db/**/*'
+    - '**/tmp/**/*'
+    - '**/script/setup'
+    - '**/lib/tasks/**/*'
+    - '**/vendor/**/*'
