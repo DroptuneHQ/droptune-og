@@ -17,10 +17,9 @@ gem "geokit-rails"
 gem "textacular", "~> 5.0" # Full-text search in Postgres
 gem "ar_lazy_preload"      # automagic preloading defeats most N+1 queries
 
-
 # REST-API
 gem "active_model_serializers"
-# gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.5'
 
 # Webserver
 gem "puma"
