@@ -63,6 +63,7 @@ GEM
     annotate (2.7.4)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
+    ar_lazy_preload (0.2.2)
     archive-zip (0.11.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -444,6 +445,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   annotate
+  ar_lazy_preload
   barnes
   better_errors
   binding_of_caller

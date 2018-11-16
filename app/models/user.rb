@@ -47,7 +47,7 @@ class User < ApplicationRecord
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
   has_many :streams
-  
+
   include Storext.model
   store_attributes :settings do
     show_compilations Boolean, default: false
@@ -71,7 +71,7 @@ class User < ApplicationRecord
   end
 
   def to_param
-    [id, screename.parameterize].join("-")
+    @to_param ||= [id, screename.parameterize].join("-")
   end
 
   def screename
@@ -124,7 +124,7 @@ class User < ApplicationRecord
       UserMailer.with(user: user).welcome_email.deliver_now
     end
 
-    user    
+    user
   end
 
   protected
