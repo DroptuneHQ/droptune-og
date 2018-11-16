@@ -376,6 +376,8 @@ GEM
     sidekiq-cron (1.0.4)
       fugit (~> 1.1)
       sidekiq (>= 4.2.1)
+    sidekiq-failures (1.0.0)
+      sidekiq (>= 4.0.0)
     sidekiq-throttled (0.9.0)
       concurrent-ruby
       redis-prescription
@@ -488,6 +490,7 @@ DEPENDENCIES
   sentry-raven
   sidekiq
   sidekiq-cron
+  sidekiq-failures
   sidekiq-throttled
   sidekiq-unique-jobs
   songkickr

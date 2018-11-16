@@ -52,6 +52,7 @@ gem "sidekiq"
 gem "sidekiq-throttled"
 gem "sidekiq-cron"
 gem "sidekiq-unique-jobs"
+gem "sidekiq-failures"
 
 # Stats/Error Reporting
 gem "barnes"            # report GC usage data to statsd
