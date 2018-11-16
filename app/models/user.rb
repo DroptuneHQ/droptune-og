@@ -66,6 +66,10 @@ class User < ApplicationRecord
 
   has_many :connections
 
+  def email_required?
+    false
+  end
+
   def is_admin?
     admin
   end
