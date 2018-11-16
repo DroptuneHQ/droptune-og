@@ -1,6 +1,6 @@
 class DropNewsTable < ActiveRecord::Migration[5.2]
   def up
-    drop_table :news
+  	execute 'drop table if exists news'
   end
 
   def down
