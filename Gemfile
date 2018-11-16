@@ -78,6 +78,7 @@ group :development, :test do
 end
 
 group :development do
+  gem "annotate", require: false
   gem "better_errors"
   gem "binding_of_caller"
   # gem "web-console", ">= 3.3.0"
