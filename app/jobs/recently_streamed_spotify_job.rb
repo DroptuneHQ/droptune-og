@@ -39,7 +39,7 @@ class RecentlyStreamedSpotifyJob
           album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album_name.downcase).first
 
           datetime = track.played_at.to_datetime
-          stream = Stream.where('user_id = ? AND artist_id = ? AND listened_at = ?', user.id, artist.id, datetime)
+          stream = Stream.where(user: user, artist: artist, listened_at: datetime)
 
           if stream.blank?
             stream = Stream.new
