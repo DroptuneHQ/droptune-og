@@ -5,7 +5,7 @@ class UpdateUserLocation
 
   def perform(user_id)
     user = User.find user_id
-    if user.location.blank? and user.last_sign_in_ip.present?
+    if user.location.blank? && user.last_sign_in_ip.present?
       loc = Geokit::Geocoders::MultiGeocoder.geocode(user.last_sign_in_ip.to_s)
       
       location = []

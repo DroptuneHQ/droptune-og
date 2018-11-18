@@ -12,7 +12,7 @@ class AlbumsController < ApplicationController
       query = Album.includes(:artist).has_release_date.includes(:artist).order(release_date: :desc, artist_id: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single')
     end
 
-    if params[:month] and params[:year]
+    if params[:month] && params[:year]
       @albums = query.where("extract(month from release_date) = ? and extract(year from release_date) = ?", params[:month], params[:year]).uniq
     elsif params[:year]
       @albums = query.where("extract(year from release_date) = ?", params[:year]).uniq

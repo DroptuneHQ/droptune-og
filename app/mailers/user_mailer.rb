@@ -21,7 +21,7 @@ class UserMailer < ApplicationMailer
     upcoming_query = upcoming_query.where.not(album_type: 'single') if !@user.settings['show_singles']
     @upcoming_albums = upcoming_query.uniq.first(9)
 
-    if @new_albums.present? or @upcoming_albums.present?
+    if @new_albums.present? || @upcoming_albums.present?
       mail(to: @user.email, subject: "Droptune New Music: #{Date.today.strftime('%b %-d, %Y')}")
     end
   end

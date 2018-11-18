@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   def index
-    if current_user and current_user.location.present?
+    if current_user && current_user.location.present?
       @location = current_user.location
     else 
       if Rails.env.development?

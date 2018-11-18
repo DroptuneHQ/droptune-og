@@ -4,14 +4,14 @@
 
  <div class="playlist-actions">
  <% if current_user.present? %>
- <% if current_user and current_user.connections.spotify.present? %>
+ <% if current_user && current_user.connections.spotify.present? %>
    <% if current_user.generate_playlist_spotify.present? %>
      <%= link_to raw("<i class='fab fa-spotify'></i> Disable for Spotify"), disable_playlists_path(service: 'spotify'), class: 'btn btn-light' %> 
    <% else %>
      <%= link_to raw("<i class='fab fa-spotify'></i> Enable for Spotify"), enable_playlists_path(service: 'spotify'), class: 'btn btn-success' %> 
    <% end %>
  <% end %>
- <% if current_user and current_user.apple_music_token.present? %>
+ <% if current_user && current_user.apple_music_token.present? %>
    <% if current_user.generate_playlist_applemusic.present? %>
      <%= link_to raw("<i class='fab fa-apple'></i> Disable for Apple Music"), disable_playlists_path(service: 'applemusic'), class: 'btn btn-light' %> 
    <% elsif current_user.apple_music_token.present? %>

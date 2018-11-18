@@ -25,13 +25,13 @@
     </div>
   </div>
   <div class="col album-player">
-    <% if current_user and current_user.apple_music_token.present? %>
+    <% if current_user && current_user.apple_music_token.present? %>
       <% if @album.applemusic_id %>
       <%= render "player", locals: {album: @album, type: 'applemusic'} %>
      <% elsif @album.spotify_id %>
        <%= render "player", locals: {album: @album, type: 'spotify'} %>
      <% end %>
-    <% elsif current_user and current_user.connections.spotify.present? %>
+    <% elsif current_user && current_user.connections.spotify.present? %>
       <% if @album.spotify_id %>
         <%= render "player", locals: {album: @album, type: 'spotify'} %>
       <% elsif @album.applemusic_id %>

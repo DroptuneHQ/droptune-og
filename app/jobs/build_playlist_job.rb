@@ -7,7 +7,7 @@ class BuildPlaylistJob
     user = User.find user_id
 
     # SPOTIFY
-    if user.generate_playlist_spotify.present? and user.connections.spotify.present?
+    if user.generate_playlist_spotify.present? && user.connections.spotify.present?
       connection = user.connections.spotify.first.settings.to_hash
       spotify = RSpotify::User.new(connection)
 
@@ -41,7 +41,7 @@ class BuildPlaylistJob
     end
 
     # APPLE MUSIC
-    if user.generate_playlist_applemusic.present? and user.apple_music_token.present?
+    if user.generate_playlist_applemusic.present? && user.apple_music_token.present?
       response = HTTParty.get('https://api.music.apple.com/v1/me/library/playlists', {
         query: {limit: 100 },
         headers: {"Authorization" => "Bearer #{ENV['apple_token']}", "music-user-token" => user.apple_music_token}

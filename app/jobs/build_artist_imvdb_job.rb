@@ -19,7 +19,7 @@ class BuildArtistImvdbJob
         query: {q: artist.name, per_page: 50, page: page},
         headers: {"IMVDB-APP-KEY" => ENV['imvdb_key']}
       })
-      break if response.parsed_response.blank? or response.parsed_response['results'].blank?
+      break if response.parsed_response.blank? || response.parsed_response['results'].blank?
 
       response.parsed_response['results'].each do |vid|
         vid_artist_name = vid['artists'].first['name']
@@ -31,10 +31,10 @@ class BuildArtistImvdbJob
           video = response.parsed_response
           source = video['sources'].first
 
-          if source.present? and video['image'].present?
+          if source.present? && video['image'].present?
             source_data = source['source_data'].to_s
 
-            if video['release_date_string'].blank? and video['year'].present?
+            if video['release_date_string'].blank? && video['year'].present?
               release_date = Date.strptime("#{video['year']}-01-01", '%Y-%m-%d')
             elsif video['release_date_string'].present?
               release_date = Date.parse(video['release_date_string'])

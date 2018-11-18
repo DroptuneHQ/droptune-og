@@ -18,7 +18,7 @@ class BuildArtistSongkickJob
       songkick = Songkickr::Remote.new ENV['songkick_key']
       songkick_results = songkick.events(artist.name)
 
-      if songkick_results.present? and songkick_results.total_entries > 0
+      if songkick_results.present? && songkick_results.total_entries > 0
         songkick_events = songkick_results.results
 
         songkick_events.each do |songkick_event|
