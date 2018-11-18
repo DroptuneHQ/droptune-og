@@ -72,8 +72,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :events
-
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'
   root "pages#index"

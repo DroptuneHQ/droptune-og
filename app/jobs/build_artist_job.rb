@@ -43,10 +43,5 @@ class BuildArtistJob
       imvdb_days = days * 2
       BuildArtistImvdbJob.perform_async(artist_id) if artist.imvdb_last_updated_at.blank? || artist.imvdb_last_updated_at < imvdb_days.days.ago
     end
-
-    # Songkick
-    if ENV['songkick_key']
-      BuildArtistSongkickJob.perform_async(artist_id) if artist.songkick_last_updated_at.blank? || artist.songkick_last_updated_at < days.days.ago
-    end
   end
 end

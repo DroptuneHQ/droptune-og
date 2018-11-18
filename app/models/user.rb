@@ -20,7 +20,6 @@
 #  lastfm_playcount           :integer
 #  lastfm_token               :string
 #  lastfm_username            :string
-#  location                   :string
 #  name                       :string
 #  provider                   :string
 #  remember_created_at        :datetime

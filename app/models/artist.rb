@@ -20,7 +20,6 @@
 #  lastfm_stats_playcount      :integer
 #  musicbrainz_last_updated_at :datetime
 #  name                        :text
-#  songkick_last_updated_at    :datetime
 #  spotify_followers           :integer
 #  spotify_image               :text
 #  spotify_last_updated_at     :datetime
@@ -49,7 +48,6 @@ class Artist < ApplicationRecord
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
   has_many :streams
-  has_many :events
 
   include Storext.model(genres: {})
 

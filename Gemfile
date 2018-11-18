@@ -44,7 +44,6 @@ gem "omniauth-spotify"
 gem "rspotify"
 gem "musicbrainz", github: "inkstak/musicbrainz", tag: "1.0.0"
 gem "lastfm"
-gem "songkickr"
 gem "feedjira"          # A feed fetching and parsing library
 gem "opengraph_parser"  # library for parsing Open Graph Protocol information from a website
 
