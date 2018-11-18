@@ -2,7 +2,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def twitter
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
     if @user.persisted?
-      UpdateUserLocation.perform_async(@user.id)
       sign_in_and_redirect @user
       set_flash_message(:notice, :success, kind: 'Twitter') if is_navigational_format?
     else

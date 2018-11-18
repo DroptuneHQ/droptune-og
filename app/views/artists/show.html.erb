@@ -76,29 +76,6 @@
   <% end %>
 </div>
 
-
-<% if @artist.events.where('starts_at >= ?', Date.today).present? %>
-<div class="events">
-  <h2>Upcoming Shows <!--<a href="#" class="header-btn">View all <%= @artist.name %> events <i class="fas fa-angle-right"></i></a>--></h2>
-  <div class="events-calendar">
-    <% @artist.events.where('starts_at >= ?', Date.today).order('starts_at asc').limit(3).each do |event| %>
-    <div class="event-item">
-      <a href="<%= event.songkick_url %>">
-        <div class="date">
-          <strong><%= event.starts_at.strftime('%b') %></strong>
-          <em><%= event.starts_at.strftime('%-d') %></em>
-        </div>
-        <div class="venue">
-          <h3><%= event.venue_name %></h3>
-          <h4><%= location_name(event) %></h4>
-        </div>
-      </a>
-    </div>
-    <% end %>
-  </div>
-</div>
-<% end %>
-
 <div class="media grid-artist<% unless @artist.music_videos.present? %> full<% end %>">
   <div class="albums">
     <h2>Albums</h2>
