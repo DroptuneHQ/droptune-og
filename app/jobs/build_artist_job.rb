@@ -5,7 +5,7 @@ class BuildArtistJob
   def perform(artist_id)
     artist = Artist.find artist_id
     days = 1
-    last_release_date = artist.albums.order('release_date desc').first.try(:release_date)
+    last_release_date = artist.albums.order('release_date desc').first&.release_date
 
     if last_release_date.present?
       case
@@ -24,21 +24,29 @@ class BuildArtistJob
 
     # Spotify
     BuildArtistSpotifyJob.perform_async(artist_id) if artist.spotify_last_updated_at.blank? or artist.spotify_last_updated_at < days.day.ago
-    
+
     # Apple Music
-    BuildArtistApplemusicJob.perform_async(artist_id) if artist.applemusic_last_updated_at.blank? or artist.applemusic_last_updated_at < days.day.ago
+    if ENV['apple_token']
+      BuildArtistApplemusicJob.perform_async(artist_id) if artist.applemusic_last_updated_at.blank? or artist.applemusic_last_updated_at < days.day.ago
+    end
 
     # MusicBrainz
     BuildArtistMusicbrainzJob.perform_async(artist_id) if artist.musicbrainz_last_updated_at.blank? or artist.musicbrainz_last_updated_at < 14.days.ago
 
     # Lastfm
-    BuildArtistLastfmJob.perform_async(artist_id) if artist.lastfm_last_updated_at.blank? or artist.lastfm_last_updated_at < 7.days.ago
+    if ENV['lastfm_key']
+      BuildArtistLastfmJob.perform_async(artist_id) if artist.lastfm_last_updated_at.blank? or artist.lastfm_last_updated_at < 7.days.ago
+    end
 
     # IMVDb
-    imvdb_days = days * 2
-    BuildArtistImvdbJob.perform_async(artist_id) if artist.imvdb_last_updated_at.blank? or artist.imvdb_last_updated_at < imvdb_days.days.ago
+    if ENV['imvdb_key']
+      imvdb_days = days * 2
+      BuildArtistImvdbJob.perform_async(artist_id) if artist.imvdb_last_updated_at.blank? or artist.imvdb_last_updated_at < imvdb_days.days.ago
+    end
 
     # Songkick
-    BuildArtistSongkickJob.perform_async(artist_id) if artist.songkick_last_updated_at.blank? or artist.songkick_last_updated_at < days.days.ago
+    if ENV['songkick_key']
+      BuildArtistSongkickJob.perform_async(artist_id) if artist.songkick_last_updated_at.blank? or artist.songkick_last_updated_at < days.days.ago
+    end
   end
 end

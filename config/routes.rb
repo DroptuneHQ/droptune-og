@@ -1,3 +1,6 @@
+require 'sidekiq_unique_jobs/web'
+require 'sidekiq/cron/web'
+
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
@@ -6,11 +9,11 @@ Rails.application.routes.draw do
   # get "/sitemap-musicvideos.xml" => "pages#sitemap_musicvideos", :format => "xml", :as => :sitemap_musicvideos
   # get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
   get 'pages/index'
-  
-  require 'sidekiq_unique_jobs/web'
-  require 'sidekiq/cron/web'
-  mount Sidekiq::Web => '/sidekiq'
-  
+
+  authenticate :user, lambda { |u| u.admin? } do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'registrations' }
 
   authenticated :user do
@@ -70,7 +73,7 @@ Rails.application.routes.draw do
   end
 
   resources :events
-  
+
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'
   root "pages#index"

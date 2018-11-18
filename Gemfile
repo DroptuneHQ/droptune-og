@@ -15,10 +15,11 @@ gem "with_advisory_lock"
 gem "will_paginate", "~> 3.1.0"
 gem "geokit-rails"
 gem "textacular", "~> 5.0" # Full-text search in Postgres
+gem "ar_lazy_preload"      # automagic preloading defeats most N+1 queries
 
 # REST-API
 gem "active_model_serializers"
-# gem 'jbuilder', '~> 2.5'
+gem 'jbuilder', '~> 2.5'
 
 # Webserver
 gem "puma"
@@ -52,6 +53,7 @@ gem "sidekiq"
 gem "sidekiq-throttled"
 gem "sidekiq-cron"
 gem "sidekiq-unique-jobs"
+gem "sidekiq-failures"
 
 # Stats/Error Reporting
 gem "barnes"            # report GC usage data to statsd

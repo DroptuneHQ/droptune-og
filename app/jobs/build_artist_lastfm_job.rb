@@ -12,6 +12,8 @@ class BuildArtistLastfmJob
   })
 
   def perform(artist_id)
+    return unless ENV['lastfm_key']
+
     artist = Artist.find artist_id
 
     lastfm = Lastfm.new(ENV['lastfm_key'], ENV['lastfm_secret'])
@@ -20,7 +22,7 @@ class BuildArtistLastfmJob
       lastfm_artist = lastfm.artist.get_info(artist:artist.name)
     rescue Lastfm::ApiError => e
     end
-    
+
     if lastfm_artist.present?
 
       if lastfm_artist['tags'].present?
@@ -42,7 +44,7 @@ class BuildArtistLastfmJob
       artist.lastfm_stats_playcount = lastfm_artist['stats']['playcount'].to_i
       artist.lastfm_bio = lastfm_artist['bio']['content']
       artist.lastfm_last_updated_at = Time.now
-      
+
       artist.save
     end
   end

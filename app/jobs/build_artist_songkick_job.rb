@@ -1,21 +1,23 @@
 class BuildArtistSongkickJob
     include Sidekiq::Worker
     include Sidekiq::Throttled::Worker
-  
+
     sidekiq_options :queue => :songkick
-  
+
     sidekiq_throttle({
       :concurrency => { :limit => 20 },
       :threshold => { :limit => 500, :period => 1.minute }
     })
-  
+
     def perform(artist_id)
+      return unless ENV['songkick_key']
+
       artist = Artist.find artist_id
-      
+
       Songkickr::Remote.base_uri 'https://api.songkick.com/api/3.0'
       songkick = Songkickr::Remote.new ENV['songkick_key']
       songkick_results = songkick.events(artist.name)
-  
+
       if songkick_results.present? and songkick_results.total_entries > 0
         songkick_events = songkick_results.results
 
@@ -42,8 +44,8 @@ class BuildArtistSongkickJob
             event.save
           end
         end
-  
-  
+
+
         artist.update_attributes(songkick_last_updated_at: Time.now)
       end
     end

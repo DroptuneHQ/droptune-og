@@ -10,7 +10,7 @@
 #  avatar                     :string
 #  current_sign_in_at         :datetime
 #  current_sign_in_ip         :inet
-#  email                      :string           default(""), not null
+#  email                      :citext           default("")
 #  encrypted_password         :string           default(""), not null
 #  last_sign_in_at            :datetime
 #  last_sign_in_ip            :inet
@@ -47,7 +47,7 @@ class User < ApplicationRecord
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
   has_many :streams
-  
+
   include Storext.model
   store_attributes :settings do
     show_compilations Boolean, default: false
@@ -66,12 +66,16 @@ class User < ApplicationRecord
 
   has_many :connections
 
+  def email_required?
+    false
+  end
+
   def is_admin?
     admin
   end
 
   def to_param
-    [id, screename.parameterize].join("-")
+    @to_param ||= [id, screename.parameterize].join("-")
   end
 
   def screename
@@ -124,7 +128,7 @@ class User < ApplicationRecord
       UserMailer.with(user: user).welcome_email.deliver_now
     end
 
-    user    
+    user
   end
 
   protected

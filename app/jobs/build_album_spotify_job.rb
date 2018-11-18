@@ -28,7 +28,7 @@ class BuildAlbumSpotifyJob
 
         image = album.images.first['url'] if album.images.present?
 
-        if new_album.release_date.blank? and album.try(:release_date)
+        if new_album.release_date.blank? and album&.release_date
           if album.release_date_precision == 'year'
             date = Date.strptime("#{album.release_date}-01-01", '%Y-%m-%d')
           elsif album.release_date_precision == 'month'
