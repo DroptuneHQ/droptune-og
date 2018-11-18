@@ -8,19 +8,15 @@
 #  applemusic_link    :string
 #  artist_slug        :string
 #  artwork_link       :text
-#  explicity          :boolean          default(FALSE)
-#  itunes_link        :text
 #  name               :text
 #  release_date       :date
 #  spotify_image      :text
 #  spotify_link       :text
 #  spotify_popularity :integer
-#  track_count        :integer
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  applemusic_id      :bigint(8)
 #  artist_id          :bigint(8)
-#  itunes_id          :integer
 #  spotify_id         :text
 #
 # Indexes

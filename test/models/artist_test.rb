@@ -11,10 +11,8 @@
 #  external_twitter            :string
 #  external_wikipedia          :string
 #  external_youtube            :string
-#  genre                       :text
 #  genres                      :jsonb            not null
 #  imvdb_last_updated_at       :datetime
-#  itunes_link                 :text
 #  lastfm_bio                  :text
 #  lastfm_image                :string
 #  lastfm_last_updated_at      :datetime
@@ -33,7 +31,6 @@
 #  created_at                  :datetime         not null
 #  updated_at                  :datetime         not null
 #  applemusic_id               :string
-#  itunes_id                   :integer
 #  spotify_id                  :text
 #
 # Indexes

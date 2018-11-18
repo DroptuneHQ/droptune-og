@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_16_174940) do
+ActiveRecord::Schema.define(version: 2018_11_18_171728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -20,11 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_16_174940) do
     t.bigint "artist_id"
     t.text "name"
     t.text "artwork_link"
-    t.boolean "explicity", default: false
-    t.integer "track_count"
     t.date "release_date"
-    t.integer "itunes_id"
-    t.text "itunes_link"
     t.text "spotify_id"
     t.text "spotify_image"
     t.text "spotify_link"
@@ -48,9 +44,6 @@ ActiveRecord::Schema.define(version: 2018_11_16_174940) do
 
   create_table "artists", force: :cascade do |t|
     t.text "name"
-    t.text "genre"
-    t.integer "itunes_id"
-    t.text "itunes_link"
     t.text "spotify_id"
     t.integer "spotify_followers"
     t.integer "spotify_popularity"
