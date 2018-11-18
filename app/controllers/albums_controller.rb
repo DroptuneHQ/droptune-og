@@ -1,4 +1,5 @@
 class AlbumsController < ApplicationController
+  respond_to :html, :json
 
   def index
     @user = current_user
@@ -20,6 +21,8 @@ class AlbumsController < ApplicationController
       @num_days = params[:days].present? ? params[:days].to_i : 21
       @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
     end
+
+    respond_with @albums
   end
 
   def upcoming
@@ -35,9 +38,13 @@ class AlbumsController < ApplicationController
     end
 
     @albums = query.uniq
+
+    respond_with @albums
   end
 
   def show
     @album = Album.find(params[:id])
+
+    respond_with @album
   end
 end
