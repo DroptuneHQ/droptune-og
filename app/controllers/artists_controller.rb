@@ -5,12 +5,12 @@ class ArtistsController < ApplicationController
     @user = current_user
 
     if @user
-      @artists = @user.artists.active.where.not(name: nil).order("lower(artists.name) ASC").uniq
+      @artists = @user.artists.active.where.not(name: nil).order("lower(artists.name) ASC").limit(5).uniq
     else
       @artists = Artist.where.not(name: nil).order(name: :asc).limit(30).uniq
     end
 
-    respond_with @artists#.paginate(page: params[:page], per_page: 20)
+    respond_with @artists
   end
 
   def show

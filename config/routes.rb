@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # get "/sitemap.xml" => "pages#sitemap", :format => "xml", :as => :sitemap
   # get "/sitemap-albums.xml" => "pages#sitemap_albums", :format => "xml", :as => :sitemap_albums
   # get "/sitemap-artists.xml" => "pages#sitemap_artists", :format => "xml", :as => :sitemap_artists
-  # get "/sitemap-musicvideos.xml" => "pages#sitemap_musicvideos", :format => "xml", :as => :sitemap_musicvideos
+  # get "/sitemap-musicmusic_videos.xml" => "pages#sitemap_musicmusic_videos", :format => "xml", :as => :sitemap_musicmusic_videos
   # get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
   get 'pages/index'
 
@@ -54,7 +54,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :music_videos, path: '/music-videos'
+  resources :music_videos#, path: '/music-music_videos'
   resources :playlists do
     collection do
       get 'enable'

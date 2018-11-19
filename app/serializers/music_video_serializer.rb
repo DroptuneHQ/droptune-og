@@ -1,4 +1,4 @@
-class VideoSerializer < ActiveModel::Serializer
+class MusicVideoSerializer < ActiveModel::Serializer
   attributes :id,
     :name,
     :release_date,

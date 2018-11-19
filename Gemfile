@@ -92,6 +92,7 @@ group :development do
   gem "rubocop", require: false
   gem "rubocop-rspec", require: false
   gem "rubocop-rails_config", require: false
+  gem "rails_refactor"    # Specifically using to rename controllers
 end
 
 group :test do
