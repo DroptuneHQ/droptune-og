@@ -14,15 +14,18 @@ class AlbumsController < ApplicationController
     end
 
     if params[:month] && params[:year]
-      @albums = query.where("extract(month from release_date) = ? and extract(year from release_date) = ?", params[:month], params[:year]).uniq
+      @albums = query.where("extract(month from release_date) = ? and extract(year from release_date) = ?", params[:month], params[:year])
     elsif params[:year]
-      @albums = query.where("extract(year from release_date) = ?", params[:year]).uniq
+      @albums = query.where("extract(year from release_date) = ?", params[:year])
     else
       @num_days = params[:days].present? ? params[:days].to_i : 21
-      @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
+      @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago)
     end
 
-    respond_with @albums
+    respond_with(@albums) do |format|
+      format.html { @albums.uniq }
+      format.json { render json: @albums.paginate(:page => params[:page], :per_page => 25).uniq }
+    end
   end
 
   def upcoming
