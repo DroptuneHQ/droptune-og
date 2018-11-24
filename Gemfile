@@ -32,6 +32,7 @@ gem "jquery-rails"
 gem "coffee-rails", "~> 4.2"
 gem "turbolinks", "~> 5"
 gem "rails_admin", "~> 1.3"
+gem 'rack-cors'
 
 # User Authentication
 gem "devise"
