@@ -4,30 +4,32 @@ class ArtistsController < ApplicationController
   def index
     @user = current_user
 
-    if @user
-      @artists = @user.artists.active.where.not(name: nil).order("lower(artists.name) ASC").limit(5).uniq
-    else
-      @artists = Artist.where.not(name: nil).order(name: :asc).limit(30).uniq
-    end
+    @artists = Artist.followed_by(@user).with_name.order(name: :asc).limit(30)
 
     respond_with @artists
   end
 
   def show
-    @artist = Artist.find(params[:id])
+    @user = current_user
+
+    @artist = Artist.where(id: params[:id]).first
+
+    @albums = @artist.albums.order(release_date: :desc).types_for_user(@user)
+    @music_videos = @artist.music_videos.order(release_date: :desc)
 
     respond_with @artist
   end
 
   def follow
     @artist = Artist.find(params[:id])
-    
-    current_user.follows.where(artist: @artist).delete_all
-    current_user.artists << @artist
+
+    follow = Follow.where(user: current_user, artist: @artist).first_or_initialize
+    follow.active = true
+    follow.save!
 
     if request.xhr?
-      render json: { 
-        artist: render_to_string('artists/_follow', 
+      render json: {
+        artist: render_to_string('artists/_follow',
           layout: false, locals: { artist: @artist }
         )
       }
@@ -38,13 +40,14 @@ class ArtistsController < ApplicationController
 
   def unfollow
     @artist = Artist.find(params[:id])
-    
-    current_user.follows.where(artist: @artist).delete_all
-    current_user.follows.create(artist: @artist, active: false)
+
+    follow = Follow.where(user: current_user, artist: @artist).first_or_initialize
+    follow.active = false
+    follow.save!
 
     if request.xhr?
-      render json: { 
-        artist: render_to_string('artists/_follow', 
+      render json: {
+        artist: render_to_string('artists/_follow',
           layout: false, locals: { artist: @artist }
         )
       }
@@ -54,6 +57,10 @@ class ArtistsController < ApplicationController
   end
 
   def search
-    @artists = Artist.basic_search(name: params[:artist]).left_joins(:follows).group(:id).reorder('COUNT(follows.artist_id) DESC').limit(50)
+    @artists = Artist.basic_search(name: params[:artist])
+      .left_joins(:follows)
+      .group(:id)
+      .reorder('COUNT(follows.artist_id) DESC')
+      .limit(50)
   end
 end

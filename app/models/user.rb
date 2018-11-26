@@ -43,6 +43,7 @@
 class User < ApplicationRecord
   has_many :follows, dependent:  :destroy
   has_many :artists, through: :follows
+  has_many :active_artists, ->{where(follows: { active: true }) }, through: :follows, source: :artist
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
   has_many :streams

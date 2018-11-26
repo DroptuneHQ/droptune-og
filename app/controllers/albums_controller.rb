@@ -4,43 +4,35 @@ class AlbumsController < ApplicationController
   def index
     @user = current_user
 
-    if @user
-      query = Album.includes(:artist).has_release_date.where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :desc, artist_id: :asc)
-
-      query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
-      query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
-    else
-      query = Album.includes(:artist).has_release_date.includes(:artist).order(release_date: :desc, artist_id: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single')
-    end
+    @albums = Album.includes(:artist)
+      .followed_by_user(@user)
+      .types_for_user(@user)
+      .default_order
 
     if params[:month] && params[:year]
-      @albums = query.where("extract(month from release_date) = ? and extract(year from release_date) = ?", params[:month], params[:year])
+      @albums = @albums.for_month(params[:month]).for_year(params[:year])
     elsif params[:year]
-      @albums = query.where("extract(year from release_date) = ?", params[:year])
+      @albums = @albums.for_year(params[:year])
     else
-      @num_days = params[:days].present? ? params[:days].to_i : 21
-      @albums = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago)
+      @num_days = params.fetch(:days, 21).to_i
+
+      @albums = @albums.recent_releases(@num_days)
     end
 
     respond_with(@albums) do |format|
-      format.html { @albums.uniq }
-      format.json { render json: @albums.paginate(:page => params[:page], :per_page => 25).uniq }
+      format.html { @albums }
+      format.json { render json: @albums.paginate(:page => params[:page], :per_page => 25) }
     end
   end
 
   def upcoming
     @user = current_user
 
-    if @user
-      query = Album.includes(:artist).has_release_date.where.not(album_type: 'compilation').where("release_date > ?", Date.today).where(artist_id: Follow.select(:artist_id).where(user_id: @user.id, active: true)).order(release_date: :asc, artist_id: :asc)
-
-      query = query.where.not(album_type: 'compilation') if !@user.settings['show_compilations']
-      query = query.where.not(album_type: 'single') if !@user.settings['show_singles']
-    else
-      query = Album.has_release_date.includes(:artist).where("release_date > ?", Date.today).order(release_date: :asc, artist_id: :asc).where.not(album_type: 'compilation').where.not(album_type: 'single').limit(24)
-    end
-
-    @albums = query.uniq
+    @albums = Album.includes(:artist)
+      .future_releases
+      .followed_by_user(@user)
+      .types_for_user(@user)
+      .default_order
 
     respond_with @albums
   end
