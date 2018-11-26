@@ -32,10 +32,12 @@
 #
 
 class Album < ApplicationRecord
+  ## -- RELATIONSHIPS
+
   belongs_to :artist
   has_many :streams
 
-  ALBUM_TYPES = ["single","compilation","album",nil].freeze
+  ## -- SCOPES
 
   scope :has_release_date, -> { where.not(release_date: nil) }
   scope :active, -> {where('follows.active = ?', true)}
@@ -51,10 +53,14 @@ class Album < ApplicationRecord
 
   scope :default_order, -> { order('release_date desc', 'artists.name asc') }
 
+  ## -- CALLBACKS
+
   before_save :set_slug
 
+  ## — CLASS METHODS
+
   def self.calculate_types_for_user(user = nil)
-    album_types = ALBUM_TYPES.dup
+    album_types = Album.select(:album_type).distinct.pluck(:album_type)
     if user
       album_types -= %w[compilation] if !user.settings['show_compilations']
       album_types -= %w[single]       if !user.settings['show_singles']
@@ -63,6 +69,8 @@ class Album < ApplicationRecord
     end
     album_types
   end
+
+  ## — INSTANCE METHODS
 
   def to_param
     "#{id}-#{permalink}"
