@@ -19,7 +19,7 @@
 #  lastfm_stats_listeners      :integer
 #  lastfm_stats_playcount      :integer
 #  musicbrainz_last_updated_at :datetime
-#  name                        :text
+#  name                        :citext
 #  spotify_followers           :integer
 #  spotify_image               :text
 #  spotify_last_updated_at     :datetime
@@ -47,11 +47,14 @@ class Artist < ApplicationRecord
   has_many :music_videos
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
+  has_many :active_users, ->{ where(follows: { active: true } ) }, through: :follows, source: :user
   has_many :streams
 
   include Storext.model(genres: {})
 
   scope :active, -> {where('follows.active = ?', true)}
+  scope :with_name, -> { where.not(name: [nil, ""]) }
+  scope :followed_by, ->(user) { joins(:follows).where(follows: { user: user, active: true } ) if user.present? }
 
   def to_param
     "#{id}-#{permalink}"

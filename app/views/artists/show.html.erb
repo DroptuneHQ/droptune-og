@@ -12,9 +12,7 @@
   <div class="info">
     <h1><%= @artist.name %></h1>
     <div class="follow">
-    <% if current_user %>
-      <%= render "follow" %>
-    <% end %>
+      <%= render "follow" if current_user %>
     </div>
   </div>
   <ul class="links">
@@ -58,15 +56,15 @@
   </div>
   <% end %>
 
-  <% if @artist.follows.present? %>
+  <% if @artist.active_users.exists? %>
   <div class="fans">
     <h2>Fans</h2>
     <div class="user-grid">
-      <% @artist.follows.where(active:true).select("DISTINCT(USER_ID)").each do |follow| %>
-      <% if follow.user.present? && follow.user.private_profile == false %>
+      <% @artist.active_users.each do |user| %>
+      <% unless user.private_profile %>
       <div class="user">
-        <a href="<%= user_path(follow.user) %>">
-          <div class="user-image" style="background-image: url(<%= follow.user.avatar_image %>)"></div>
+        <a href="<%= user_path(user) %>">
+          <div class="user-image" style="background-image: url(<%= user.avatar_image %>)"></div>
         </a>
       </div>
       <% end %>
@@ -80,7 +78,7 @@
   <div class="albums">
     <h2>Albums</h2>
     <div class="album-grid">
-      <% @artist.albums.where.not(album_type: 'compilation').order(release_date: :desc, artist_id: :desc).limit(100).each do |a| %>
+      <% @albums.limit(100).each do |a| %>
       <% cache a do %>
         <div class="album">
           <a href="<%= album_path(a) %>" class="album_cover">
@@ -99,11 +97,11 @@
       <% end %>
     </div>
   </div>
-  <% if @artist.music_videos.present? %>
+  <% if @music_videos.present? %>
   <div class="videos">
     <h2>Videos</h2>
     <div class="album-grid">
-      <% @artist.music_videos.order('release_date desc').each do |video| %>
+      <% @music_videos.each do |video| %>
         <div class="album">
           <a href="<%= music_video_path(video) %>" class="album_cover">
             <span class="sources">
