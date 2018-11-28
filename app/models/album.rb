@@ -60,7 +60,7 @@ class Album < ApplicationRecord
   ## — CLASS METHODS
 
   def self.calculate_types_for_user(user = nil)
-    album_types = Album.select(:album_type).distinct.pluck(:album_type)
+    album_types = ::Album.reorder(nil).select(:album_type).distinct.pluck(:album_type)
     if user
       album_types -= %w[compilation] if !user.settings['show_compilations']
       album_types -= %w[single]       if !user.settings['show_singles']
