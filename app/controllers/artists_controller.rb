@@ -3,17 +3,14 @@ class ArtistsController < ApplicationController
 
   def index
     @user = current_user
-
-    @artists = Artist.followed_by(@user).with_name.order(name: :asc).limit(30)
+    @artists = Artist.select('DISTINCT ON ("artists"."name") *').followed_by(@user).with_name.order(name: :asc).limit(30)
 
     respond_with @artists
   end
 
   def show
     @user = current_user
-
-    @artist = Artist.where(id: params[:id]).first
-
+    @artist = Artist.find(params[:id])
     @albums = @artist.albums.order(release_date: :desc).types_for_user(@user)
     @music_videos = @artist.music_videos.order(release_date: :desc)
 
