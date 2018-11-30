@@ -4,7 +4,7 @@ class ArtistsController < ApplicationController
   def index
     @user = current_user
 
-    @artists = Artist.followed_by(@user).with_name.order(name: :asc).limit(30)
+    @artists = Artist.followed_by(@user).with_name.order(name: :asc).distinct
 
     respond_with @artists
   end
