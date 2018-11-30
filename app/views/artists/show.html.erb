@@ -60,7 +60,7 @@
   <div class="fans">
     <h2>Fans</h2>
     <div class="user-grid">
-      <% @artist.active_users.each do |user| %>
+      <% @artist.active_users.uniq.each do |user| %>
       <% unless user.private_profile %>
       <div class="user">
         <a href="<%= user_path(user) %>">
