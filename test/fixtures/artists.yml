@@ -19,7 +19,7 @@
 #  lastfm_stats_listeners      :integer
 #  lastfm_stats_playcount      :integer
 #  musicbrainz_last_updated_at :datetime
-#  name                        :text
+#  name                        :citext
 #  spotify_followers           :integer
 #  spotify_image               :text
 #  spotify_last_updated_at     :datetime

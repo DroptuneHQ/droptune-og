@@ -47,7 +47,7 @@ class Artist < ApplicationRecord
   has_many :music_videos
   has_many :follows, dependent:  :destroy
   has_many :users, through: :follows
-  has_many :active_users, ->{ where(follows: { active: true } ) }, through: :follows, source: :user
+  has_many :active_users, ->{ where(follows: { active: true } ).distinct }, through: :follows, source: :user
   has_many :streams
 
   include Storext.model(genres: {})

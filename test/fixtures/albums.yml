@@ -8,7 +8,7 @@
 #  applemusic_link    :string
 #  artist_slug        :string
 #  artwork_link       :text
-#  name               :text
+#  name               :citext
 #  release_date       :date
 #  spotify_image      :text
 #  spotify_link       :text
