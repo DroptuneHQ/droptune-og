@@ -1,4 +1,4 @@
-[![Gitter chat](https://img.shields.io/gitter/room/DroptuneHQ/Lobby.svg)](https://gitter.im/DroptuneHQ/Lobby)
+[![Discord](https://img.shields.io/discord/584040922954858497.svg)](https://discord.gg/CaMMptj)
 
 ## About
 Droptune is new music notifications for your favorite artists. It's something I've ([@Shpigford](https://twitter.com/Shpigford)) personally wanted to see exist for as long as I've been listening to music (i.e. forever). I don't passively listen to music. I don't just fire up some radio station or random playlist and listen to whatever is on. I choose what music I listen to and follow artists I love.
@@ -63,7 +63,7 @@ But almost any contribution will be beneficial at this point.
 
 If you've got an improvement, just send in a pull request. If you've got feature ideas, simply [open a new issues](https://github.com/DroptuneHQ/droptune/issues/new)!
 
-Also, ask questions and discuss the project on Gitter: https://gitter.im/DroptuneHQ/Lobby
+Also, ask questions and discuss the project on Discord: https://discord.gg/CaMMptj
 
 ## License & Copyright
 Released under the MIT license, see the [LICENSE](./LICENSE) file. Copyright (c) 2018 Sabotage Media LLC.
