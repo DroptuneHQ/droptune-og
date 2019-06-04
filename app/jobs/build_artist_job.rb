@@ -32,12 +32,7 @@ class BuildArtistJob
 
     # MusicBrainz
     BuildArtistMusicbrainzJob.perform_async(artist_id) if artist.musicbrainz_last_updated_at.blank? || artist.musicbrainz_last_updated_at < 14.days.ago
-
-    # Lastfm
-    if ENV['lastfm_key']
-      BuildArtistLastfmJob.perform_async(artist_id) if artist.lastfm_last_updated_at.blank? || artist.lastfm_last_updated_at < 7.days.ago
-    end
-
+    
     # IMVDb
     if ENV['imvdb_key']
       imvdb_days = days * 2

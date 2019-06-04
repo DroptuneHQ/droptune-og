@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_18_181954) do
+ActiveRecord::Schema.define(version: 2019_06_04_194514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -65,12 +65,6 @@ ActiveRecord::Schema.define(version: 2018_11_18_181954) do
     t.datetime "spotify_last_updated_at"
     t.datetime "applemusic_last_updated_at"
     t.jsonb "genres", default: {}, null: false
-    t.datetime "lastfm_last_updated_at"
-    t.string "external_lastfm"
-    t.string "lastfm_image"
-    t.integer "lastfm_stats_listeners"
-    t.integer "lastfm_stats_playcount"
-    t.text "lastfm_bio"
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
     t.index ["genres"], name: "index_artists_on_genres", using: :gin
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
@@ -160,16 +154,10 @@ ActiveRecord::Schema.define(version: 2018_11_18_181954) do
     t.string "avatar"
     t.text "apple_music_token"
     t.boolean "admin", default: false
-    t.string "lastfm_token"
-    t.string "lastfm_username"
-    t.integer "lastfm_playcount"
-    t.string "lastfm_country"
     t.datetime "spotify_connected_at"
     t.datetime "spotify_disconnected_at"
     t.datetime "applemusic_connected_at"
     t.datetime "applemusic_disconnected_at"
-    t.datetime "lastfm_connected_at"
-    t.datetime "lastfm_disconnected_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

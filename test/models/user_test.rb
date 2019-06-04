@@ -14,12 +14,6 @@
 #  encrypted_password         :string           default(""), not null
 #  last_sign_in_at            :datetime
 #  last_sign_in_ip            :inet
-#  lastfm_connected_at        :datetime
-#  lastfm_country             :string
-#  lastfm_disconnected_at     :datetime
-#  lastfm_playcount           :integer
-#  lastfm_token               :string
-#  lastfm_username            :string
 #  name                       :string
 #  provider                   :string
 #  remember_created_at        :datetime

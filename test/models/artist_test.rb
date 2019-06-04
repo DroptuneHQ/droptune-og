@@ -7,17 +7,11 @@
 #  external_facebook           :string
 #  external_homepage           :string
 #  external_instagram          :string
-#  external_lastfm             :string
 #  external_twitter            :string
 #  external_wikipedia          :string
 #  external_youtube            :string
 #  genres                      :jsonb            not null
 #  imvdb_last_updated_at       :datetime
-#  lastfm_bio                  :text
-#  lastfm_image                :string
-#  lastfm_last_updated_at      :datetime
-#  lastfm_stats_listeners      :integer
-#  lastfm_stats_playcount      :integer
 #  musicbrainz_last_updated_at :datetime
 #  name                        :text
 #  spotify_followers           :integer

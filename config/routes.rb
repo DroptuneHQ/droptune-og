@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get 'import_apple_music'
-      get 'lastfm_callbacks'
     end
   end
 
