@@ -38,24 +38,6 @@
 </section>
 
 <div class="artist-people">
-  <% if @artist.streams.present? %>
-  <div class="streamed-by">
-    <h2>Recently Streamed</h2>
-    <div class="user-grid">
-
-      <% @artist.streams.select("DISTINCT(USER_ID)").each do |stream| %>
-      <% if stream.user.present? && stream.user.private_profile == false %>
-      <div class="user">
-        <a href="<%= user_path(stream.user) %>">
-          <div class="user-image" style="background-image: url(<%= stream.user.avatar_image %>)"></div>
-        </a>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
-
   <% if @artist.active_users.exists? %>
   <div class="fans">
     <h2>Fans</h2>

@@ -35,7 +35,6 @@ class Album < ApplicationRecord
   ## -- RELATIONSHIPS
 
   belongs_to :artist
-  has_many :streams
 
   ## -- SCOPES
 

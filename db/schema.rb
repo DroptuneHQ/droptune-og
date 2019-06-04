@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_194514) do
+ActiveRecord::Schema.define(version: 2019_06_04_195403) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -117,20 +117,6 @@ ActiveRecord::Schema.define(version: 2019_06_04_194514) do
     t.datetime "updated_at", null: false
     t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
-  end
-
-  create_table "streams", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "artist_id"
-    t.bigint "album_id"
-    t.string "name"
-    t.datetime "listened_at"
-    t.string "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["album_id"], name: "index_streams_on_album_id"
-    t.index ["artist_id"], name: "index_streams_on_artist_id"
-    t.index ["user_id"], name: "index_streams_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

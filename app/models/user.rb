@@ -40,7 +40,6 @@ class User < ApplicationRecord
   has_many :active_artists, ->{where(follows: { active: true }) }, through: :follows, source: :artist
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
-  has_many :streams
 
   include Storext.model
   store_attributes :settings do
