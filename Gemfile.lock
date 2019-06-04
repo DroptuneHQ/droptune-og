@@ -1,14 +1,3 @@
-GIT
-  remote: https://github.com/inkstak/musicbrainz.git
-  revision: e83fd26e2b252e738d2923ad2642e6045eac2e4b
-  tag: 1.0.0
-  specs:
-    musicbrainz (1.0.0)
-      activesupport
-      faraday
-      faraday_middleware
-      hashie (>= 3.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,10 +143,6 @@ GEM
     fugit (1.1.6)
       et-orbi (~> 1.1, >= 1.1.6)
       raabro (~> 1.1)
-    geokit (1.13.1)
-    geokit-rails (2.3.1)
-      geokit (~> 1.5)
-      rails (>= 3.0)
     get_process_mem (0.2.3)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -200,10 +185,6 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
-    lastfm (1.27.2)
-      activesupport (>= 3.2.0)
-      httparty
-      xml-simple
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.6.0)
@@ -438,7 +419,6 @@ GEM
     will_paginate (3.1.6)
     with_advisory_lock (4.0.0)
       activerecord (>= 4.2)
-    xml-simple (1.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
 
@@ -465,17 +445,14 @@ DEPENDENCIES
   feedjira
   figaro
   foreman
-  geokit-rails
   httparty
   intercom-rails
   jbuilder (~> 2.5)
   jquery-rails
   jwt
-  lastfm
   letter_opener
   listen (>= 3.0.5, < 3.2)
   memcachier
-  musicbrainz!
   omniauth
   omniauth-facebook
   omniauth-spotify

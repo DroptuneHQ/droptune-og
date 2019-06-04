@@ -38,21 +38,4 @@ class UsersController < ApplicationController
 
     FollowArtistsJob.perform_async(current_user.id, artists)
   end
-
-  def lastfm_callbacks
-    lastfm = Lastfm.new(ENV['lastfm_key'], ENV['lastfm_secret'])
-    token = params[:token]
-    lastfm.session = lastfm.auth.get_session(token: token)['key']
-    
-    current_user.lastfm_token = lastfm.session
-    current_user.lastfm_username = lastfm.user.get_info['name']
-    current_user.lastfm_playcount = lastfm.user.get_info['playcount'].to_i
-    current_user.lastfm_country = lastfm.user.get_info['country']
-    current_user.lastfm_connected_at = DateTime.current
-
-    current_user.save
-
-    flash[:notice] = 'Last.fm connected!'
-    redirect_to root_path
-  end
 end

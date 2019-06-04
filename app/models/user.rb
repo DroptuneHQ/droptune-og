@@ -14,12 +14,6 @@
 #  encrypted_password         :string           default(""), not null
 #  last_sign_in_at            :datetime
 #  last_sign_in_ip            :inet
-#  lastfm_connected_at        :datetime
-#  lastfm_country             :string
-#  lastfm_disconnected_at     :datetime
-#  lastfm_playcount           :integer
-#  lastfm_token               :string
-#  lastfm_username            :string
 #  name                       :string
 #  provider                   :string
 #  remember_created_at        :datetime
@@ -46,7 +40,6 @@ class User < ApplicationRecord
   has_many :active_artists, ->{where(follows: { active: true }) }, through: :follows, source: :artist
   has_many :albums, through: :artists
   has_many :music_videos, through: :artists
-  has_many :streams
 
   include Storext.model
   store_attributes :settings do

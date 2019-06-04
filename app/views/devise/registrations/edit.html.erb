@@ -38,12 +38,6 @@
 
   <button id="apple-music-authorize" class="btn"><i class="fab fa-apple"></i> Connect Apple Music</button>
 
-  <% if current_user.lastfm_token.present? %>
-    <%= link_to raw('<i class="fab fa-lastfm"></i> Re-connect Last.fm'), "https://www.last.fm/api/auth/?api_key=#{ENV['lastfm_key']}&cb=https://droptune.co/users/lastfm_callbacks", class: 'btn btn-light' %> 
-  <% else %>
-    <%= link_to raw('<i class="fab fa-lastfm"></i> Connect Last.fm'), "https://www.last.fm/api/auth/?api_key=#{ENV['lastfm_key']}&cb=https://droptune.co/users/lastfm_callbacks", class: 'btn' %> 
-  <% end %>
-
 </div>
 
 <div class="form-group">

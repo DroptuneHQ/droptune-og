@@ -13,7 +13,6 @@ gem "pg"
 gem "storext"
 gem "with_advisory_lock"
 gem "will_paginate", "~> 3.1.0"
-gem "geokit-rails"
 gem "textacular", "~> 5.0" # Full-text search in Postgres
 gem "ar_lazy_preload"      # automagic preloading defeats most N+1 queries
 
@@ -43,8 +42,6 @@ gem "omniauth-spotify"
 
 # Music Services
 gem "rspotify"
-gem "musicbrainz", github: "inkstak/musicbrainz", tag: "1.0.0"
-gem "lastfm"
 gem "feedjira"          # A feed fetching and parsing library
 gem "opengraph_parser"  # library for parsing Open Graph Protocol information from a website
 

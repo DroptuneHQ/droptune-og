@@ -15,47 +15,9 @@
       <%= render "follow" if current_user %>
     </div>
   </div>
-  <ul class="links">
-    <% if @artist.external_homepage.present? %>
-      <li><%= link_to raw('<i class="fas fa-globe-americas"></i>'), @artist.external_homepage %></li>
-    <% end %>
-    <% if @artist.external_twitter.present? %>
-      <li><%= link_to raw('<i class="fab fa-twitter"></i>'), @artist.external_twitter %></li>
-    <% end %>
-    <% if @artist.external_facebook.present? %>
-      <li><%= link_to raw('<i class="fab fa-facebook"></i>'), @artist.external_facebook %></li>
-    <% end %>
-    <% if @artist.external_instagram.present? %>
-      <li><%= link_to raw('<i class="fab fa-instagram"></i>'), @artist.external_instagram %></li>
-    <% end %>
-    <% if @artist.external_youtube.present? %>
-      <li><%= link_to raw('<i class="fab fa-youtube"></i>'), @artist.external_youtube %></li>
-    <% end %>
-    <% if @artist.external_wikipedia.present? %>
-      <li><%= link_to raw('<i class="fab fa-wikipedia-w"></i>'), @artist.external_wikipedia %></li>
-    <% end %>
-  </ul>
 </section>
 
 <div class="artist-people">
-  <% if @artist.streams.present? %>
-  <div class="streamed-by">
-    <h2>Recently Streamed</h2>
-    <div class="user-grid">
-
-      <% @artist.streams.select("DISTINCT(USER_ID)").each do |stream| %>
-      <% if stream.user.present? && stream.user.private_profile == false %>
-      <div class="user">
-        <a href="<%= user_path(stream.user) %>">
-          <div class="user-image" style="background-image: url(<%= stream.user.avatar_image %>)"></div>
-        </a>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
-
   <% if @artist.active_users.exists? %>
   <div class="fans">
     <h2>Fans</h2>

@@ -44,7 +44,6 @@ Rails.application.routes.draw do
   resources :users do
     collection do
       get 'import_apple_music'
-      get 'lastfm_callbacks'
     end
   end
 
@@ -59,16 +58,6 @@ Rails.application.routes.draw do
     collection do
       get 'enable'
       get 'disable'
-    end
-  end
-
-  resources :genres do
-    collection do
-      get 'search'
-      get 'obscure'
-    end
-    member do
-      get 'users'
     end
   end
 

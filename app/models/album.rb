@@ -8,7 +8,7 @@
 #  applemusic_link    :string
 #  artist_slug        :string
 #  artwork_link       :text
-#  name               :citext
+#  name               :text
 #  release_date       :date
 #  spotify_image      :text
 #  spotify_link       :text
@@ -35,7 +35,6 @@ class Album < ApplicationRecord
   ## -- RELATIONSHIPS
 
   belongs_to :artist
-  has_many :streams
 
   ## -- SCOPES
 

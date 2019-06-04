@@ -1,7 +1,6 @@
 @import "variables";
 @import "reset";
 @import "media-queries";
-@import "jqcloud";
 
 // Layout
 .container {
@@ -397,15 +396,13 @@ h3 {
 }
 
 .fans,
-.media,
-.streamed-by {
+.media {
   h2 {
     margin-bottom: 5px;
   }
 }
 
-.fans,
-.streamed-by {
+.fans {
   .user-grid {
     grid-template-columns: repeat(10, 1fr);
     @include max-screen(850px) {
@@ -823,10 +820,6 @@ button {
   @include max-screen(700px) {
     display: block;
   }
-  .streamed-by {
-    margin-right: 20px;
-  }
-  .streamed-by,
   .fans {
     flex: 1;
   }
