@@ -143,10 +143,6 @@ GEM
     fugit (1.1.6)
       et-orbi (~> 1.1, >= 1.1.6)
       raabro (~> 1.1)
-    geokit (1.13.1)
-    geokit-rails (2.3.1)
-      geokit (~> 1.5)
-      rails (>= 3.0)
     get_process_mem (0.2.3)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -449,7 +445,6 @@ DEPENDENCIES
   feedjira
   figaro
   foreman
-  geokit-rails
   httparty
   intercom-rails
   jbuilder (~> 2.5)

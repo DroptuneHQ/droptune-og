@@ -13,7 +13,6 @@ gem "pg"
 gem "storext"
 gem "with_advisory_lock"
 gem "will_paginate", "~> 3.1.0"
-gem "geokit-rails"
 gem "textacular", "~> 5.0" # Full-text search in Postgres
 gem "ar_lazy_preload"      # automagic preloading defeats most N+1 queries
 
