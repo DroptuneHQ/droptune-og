@@ -66,4 +66,4 @@ If you've got an improvement, just send in a pull request. If you've got feature
 Also, ask questions and discuss the project on Discord: https://discord.gg/CaMMptj
 
 ## License & Copyright
-Released under the MIT license, see the [LICENSE](./LICENSE) file. Copyright (c) 2018 Sabotage Media LLC.
+Released under the MIT license, see the [LICENSE](./LICENSE) file. Copyright (c) Sabotage Media LLC.
