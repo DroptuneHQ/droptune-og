@@ -14,7 +14,6 @@
 //= require activestorage
 //= require turbolinks
 //= require jquery3
-//= require jqcloud
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
