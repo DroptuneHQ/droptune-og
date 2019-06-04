@@ -20,13 +20,7 @@ class BuildArtistApplemusicJob
     })
 
     if response.parsed_response['results'].present?
-      am_genre = response.parsed_response['results']['artists']['data'].first['attributes']['genreNames']
-      am_genre = am_genre.map(&:downcase)
-
-      all_genres = artist.genres.to_set
-      all_genres = all_genres.merge(am_genre)
-
-      artist.update_attributes(applemusic_id: response.parsed_response['results']['artists']['data'].first['id'], applemusic_last_updated_at: Time.now, genres: all_genres)
+      artist.update_attributes(applemusic_id: response.parsed_response['results']['artists']['data'].first['id'], applemusic_last_updated_at: Time.now)
 
       BuildAlbumApplemusicJob.perform_async(artist_id)
     end

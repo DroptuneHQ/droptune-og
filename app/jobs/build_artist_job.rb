@@ -29,9 +29,6 @@ class BuildArtistJob
     if ENV['apple_token']
       BuildArtistApplemusicJob.perform_async(artist_id) if artist.applemusic_last_updated_at.blank? || artist.applemusic_last_updated_at < days.day.ago
     end
-
-    # MusicBrainz
-    BuildArtistMusicbrainzJob.perform_async(artist_id) if artist.musicbrainz_last_updated_at.blank? || artist.musicbrainz_last_updated_at < 14.days.ago
     
     # IMVDb
     if ENV['imvdb_key']

@@ -61,16 +61,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :genres do
-    collection do
-      get 'search'
-      get 'obscure'
-    end
-    member do
-      get 'users'
-    end
-  end
-
   get '/test' => 'pages#test'
   get '/token' => 'pages#token'
   root "pages#index"

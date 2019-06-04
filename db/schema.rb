@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_195403) do
+ActiveRecord::Schema.define(version: 2019_06_04_195655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -52,23 +52,11 @@ ActiveRecord::Schema.define(version: 2019_06_04_195403) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "applemusic_id"
-    t.integer "year_started"
-    t.integer "year_ended"
-    t.string "external_homepage"
-    t.string "external_twitter"
-    t.string "external_facebook"
-    t.string "external_instagram"
-    t.string "external_wikipedia"
-    t.string "external_youtube"
     t.datetime "imvdb_last_updated_at"
-    t.datetime "musicbrainz_last_updated_at"
     t.datetime "spotify_last_updated_at"
     t.datetime "applemusic_last_updated_at"
-    t.jsonb "genres", default: {}, null: false
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
-    t.index ["genres"], name: "index_artists_on_genres", using: :gin
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
-    t.index ["musicbrainz_last_updated_at"], name: "index_artists_on_musicbrainz_last_updated_at"
     t.index ["name"], name: "index_artists_on_name"
     t.index ["spotify_last_updated_at"], name: "index_artists_on_spotify_last_updated_at"
   end
