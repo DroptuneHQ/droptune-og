@@ -469,6 +469,7 @@ DEPENDENCIES
   rails (~> 5.2.3)
   rails_admin (~> 1.3)
   rails_refactor
+  redis
   rspotify
   rubocop
   rubocop-rails_config

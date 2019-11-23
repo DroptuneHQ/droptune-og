@@ -58,6 +58,7 @@ gem "scout_apm"         # Monitors Ruby apps and reports detailed metrics on per
 gem "sentry-raven"      # report errors to Sentry
 
 # Caching
+gem "redis"
 gem "dalli"
 gem "memcachier"
 
