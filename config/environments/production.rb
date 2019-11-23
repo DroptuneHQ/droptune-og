@@ -58,15 +58,16 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
-  config.cache_store = :dalli_store,
-                    (ENV["MEMCACHIER_SERVERS"] || "").split(","),
-                    {:username => ENV["MEMCACHIER_USERNAME"],
-                     :password => ENV["MEMCACHIER_PASSWORD"],
-                     :failover => true,
-                     :socket_timeout => 1.5,
-                     :socket_failure_delay => 0.2,
-                     :down_retry_delay => 60
-                    }
+  config.cache_store = :redis_cache_store, {url: ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" }}
+  # config.cache_store = :dalli_store,
+  #                   (ENV["MEMCACHIER_SERVERS"] || "").split(","),
+  #                   {:username => ENV["MEMCACHIER_USERNAME"],
+  #                    :password => ENV["MEMCACHIER_PASSWORD"],
+  #                    :failover => true,
+  #                    :socket_timeout => 1.5,
+  #                    :socket_failure_delay => 0.2,
+  #                    :down_retry_delay => 60
+  #                   }
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
