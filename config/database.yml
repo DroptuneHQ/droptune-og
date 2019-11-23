@@ -34,3 +34,4 @@ production:
   database: droptune_production
   username: droptune
   password: <%= ENV['DROPTUNE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_CONNECTION_POOL_URL'] || ENV['DATABASE_URL'] %>
