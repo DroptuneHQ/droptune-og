@@ -34,13 +34,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :charts do
-    collection do
-      get 'artists'
-      get 'albums'
-    end
-  end
-
   resources :users do
     collection do
       get 'import_apple_music'

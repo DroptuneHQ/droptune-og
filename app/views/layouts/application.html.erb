@@ -51,7 +51,6 @@
           <%= link_to "Albums", albums_path, class: controller_name=='albums' ? 'active' : '' %>
           <%= link_to "Videos", music_videos_path, class: controller_name=='music_videos' ? 'active' : '' %>
           <%= link_to "Artists", artists_path, class: controller_name=='artists' ? 'active' : '' %>
-          <%= link_to "Charts", charts_path, class: controller_name=='charts' ? 'active' : '' %>
           <%= link_to "Playlists", playlists_path, class: controller_name=='playlists' ? 'active' : '' %>
           <%= link_to raw('<i class="fas fa-search"></i>'), '#', class: (controller_name=='artists' && action_name=='search') ? 'search-button active' : 'search-button' %>
         </nav>
