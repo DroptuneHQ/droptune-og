@@ -17,25 +17,6 @@
   </div>
 </section>
 
-<div class="artist-people">
-  <% if @artist.active_users.exists? %>
-  <div class="fans">
-    <h2>Fans</h2>
-    <div class="user-grid">
-      <% @artist.active_users.uniq.each do |user| %>
-      <% unless user.private_profile %>
-      <div class="user">
-        <a href="<%= user_path(user) %>">
-          <div class="user-image" style="background-image: url(<%= user.avatar_image %>)"></div>
-        </a>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
-  </div>
-  <% end %>
-</div>
-
 <div class="media grid-artist<% unless @artist.music_videos.present? %> full<% end %>">
   <div class="albums">
     <h2>Albums</h2>
