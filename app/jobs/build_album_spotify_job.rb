@@ -18,6 +18,7 @@ class BuildAlbumSpotifyJob
 
     albums.each do |album|  
       Album.with_advisory_lock("#{album.id}") do
+        album_name = album.name.gsub(' - Single', '').gsub(' - EP', '').gsub(/\ (\(|\[)feat\. .*(\)|\])/, '')
         new_album = Album.where('artist_id = ? AND lower(name) = ?', artist.id, album.name.downcase).first_or_create(artist_id: artist.id, name: album.name)
 
         if album.artists.present? && album.artists.first.name == 'Various Artists'
