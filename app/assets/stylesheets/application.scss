@@ -86,7 +86,7 @@ header {
     height: 23px;
     padding: 0;
     text-indent: -9999em;
-    background: image-url("logo-droptune-color-white.svg") no-repeat top left;
+    background: image-url("logo-white.svg") no-repeat top left;
 
     &:hover {
       border-top-color: #fff;
@@ -325,7 +325,7 @@ h3 {
 .artist-header {
   background-size: 100%;
   background-position: 50% 40%;
-  background-color: $black;
+  background-color: #000;
   margin-bottom: 20px;
   border-radius: 5px;
   position: relative;
@@ -334,38 +334,28 @@ h3 {
   @include max-screen(700px) {
     height: 240px;
   }
-  .info,
-  .links {
-    position: relative;
-    z-index: 100;
+  .follow {
+    bottom: 0;
+    position: absolute;
+    right: 0;
   }
   .info {
+    z-index: 100;
     position: absolute;
-    bottom: 50px;
+    bottom: 35px;
     left: 35px;
+    right: 35px;
     @include max-screen(700px) {
       bottom: 40px;
     }
     h1 {
       font-size: 5em;
-      line-height: 100px;
+      line-height: 70px;
       @include max-screen(700px) {
         font-size: 2.5em;
-        line-height: 55px;
-        margin-bottom: 15px;
+        line-height: 35px;
+        margin-bottom: 0;
       }
-    }
-  }
-  .links {
-    position: absolute;
-    right: 40px;
-    bottom: 20px;
-    li {
-      display: inline;
-      margin-left: 10px;
-    }
-    a {
-      color: $white;
     }
   }
   &:after {
@@ -507,6 +497,14 @@ h3 {
         darken(#019bdd, 4%) 0%,
         darken(#01c0dd, 4%) 100%
       );
+    }
+  }
+  &.btn-pink {
+    color: $white;
+    font-weight: 600;
+    background: $pink;
+    &:hover {
+      background: darken($pink, 4%);
     }
   }
   &.btn-gray-border {

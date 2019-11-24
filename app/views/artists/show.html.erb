@@ -10,10 +10,10 @@
 
 <section class="artist-header" style="background-image: url(<%= @artist.spotify_image %>)">
   <div class="info">
-    <h1><%= @artist.name %></h1>
     <div class="follow">
       <%= render "follow" if current_user %>
     </div>
+    <h1><%= @artist.name %></h1>
   </div>
 </section>
 
