@@ -1,5 +1,9 @@
 <% title "Artists" %>
+<% if current_user %>
 <h2>Artists you follow</h2>
+<% else %>
+<h2>Artists to follow</h2>
+<% end %>
 
 <div class="artist-grid">
   <% @artists.each do |a| %>

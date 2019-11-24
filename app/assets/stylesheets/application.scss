@@ -243,8 +243,9 @@ h1 {
 h2 {
   font: 800 36px/35px "SF Display", $fonts;
   margin: 0 0 24px;
-  display: flex;
-  justify-content: space-between;
+  strong {
+    font-weight: 1000;
+  }
 }
 h3 {
   font: 400 20px/30px $fonts;
@@ -429,8 +430,8 @@ h3 {
   background-image: image-url("bgr-jumbo.png");
   background-size: 100%;
   margin-bottom: 15px;
-  h2 {
-    font-weight: 400;
+  h1 {
+    font-weight: 900;
     font-size: 3em;
     margin: 0 0 15px;
   }
@@ -536,9 +537,7 @@ button {
 
 .latest {
   margin-top: 20px;
-  h1 {
-    font: 400 35px/70px $fonts;
-  }
+  
 }
 
 .album-single {
@@ -777,71 +776,6 @@ button {
   }
 }
 
-.events {
-  margin-bottom: 40px;
-  h2 {
-    margin-bottom: 5px;
-  }
-}
-.events-calendar {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-gap: 20px 30px;
-  @include max-screen(800px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @include max-screen(600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-  .event-item {
-    a {
-      display: flex;
-
-      &:hover {
-        background: $lightest-gray;
-        border-radius: 3px;
-      }
-    }
-    .date {
-      text-align: center;
-      margin-right: 15px;
-      strong {
-        background: $red;
-        color: $white;
-        display: block;
-        border-top-right-radius: 3px;
-        border-top-left-radius: 3px;
-        padding: 2px 12px 0 12px;
-        line-height: 23px;
-        text-transform: uppercase;
-      }
-      em {
-        background: $lightest-gray;
-        color: $darker-gray;
-        display: block;
-        font-style: normal;
-        border-bottom-right-radius: 3px;
-        border-bottom-left-radius: 3px;
-        font-weight: bold;
-        font-size: 26px;
-        padding: 4px 8px;
-      }
-    }
-    .venue {
-      h3 {
-        margin: 0;
-        padding: 0;
-        color: $darker-gray;
-        font-weight: 600;
-      }
-      h4 {
-        margin: 0;
-        padding: 0;
-        color: $gray;
-      }
-    }
-  }
-}
 
 .artist-people {
   display: flex;

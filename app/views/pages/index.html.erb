@@ -1,11 +1,12 @@
 <section class="jumbotron container">
-  <h2>Never miss a beat</h2>
+  <h1>Never miss a beat</h1>
   <p>Find out about new music from the artists you love!</p>
   <%= link_to raw("<i class='fab fa-twitter'></i> Sign in with Twitter"), omniauth_authorize_path("user", "twitter"), class: 'btn btn-white' %>
 </section>
 
 <div class="latest">
-  <h1>Latest Albums</h1>
+  <h1 class="tiny">Music</h1>
+  <h2>Latest Releases</h2>
   <div class="album-grid">
     <% @albums.each do |a| %>
     <% cache a do %>
@@ -19,6 +20,30 @@
         <% if a.album_type == 'single' %><span class="single" title="Single">S</span><% end %>
         <%= link_to a.name, album_path(a), class: 'album-title' %>
         <%= link_to a.artist.name, artist_path(a.artist), class: 'album-artist' %>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
+
+<div class="latest">
+  <h1 class="tiny">Videos</h1>
+  <h2>Latest Releases</h2>
+  <div class="album-grid">
+    <% @videos.each do |video| %>
+    <% cache video do %>
+      <div class="album">
+        <a href="<%= music_video_path(video) %>" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-youtube"></i>
+          </span>
+          <img src="<%= video.image %>" />
+        </a>
+        <%= link_to video.name, music_video_path(video), class: 'album-title' %>
+        <%= link_to video.artist.name, artist_path(video.artist), class: 'album-artist' %>
+        <% if video.release_date %>
+        <p class="release-date"><small><%= video.release_date.strftime("%B %-e, %Y") %></small></p>
+        <% end %>
       </div>
     <% end %>
     <% end %>

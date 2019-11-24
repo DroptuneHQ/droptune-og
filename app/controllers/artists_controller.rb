@@ -6,6 +6,8 @@ class ArtistsController < ApplicationController
 
     @artists = Artist.followed_by(@user).with_name.order(name: :asc).distinct.sort_by{|artist| artist.name.downcase}
 
+    @artists = @artists.first(500) if @user.blank?
+
     respond_with @artists
   end
 

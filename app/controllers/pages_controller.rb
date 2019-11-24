@@ -2,7 +2,11 @@ class PagesController < ApplicationController
   def index
     @follows = Follow.group('artist_id').order('count_id desc').count('id').first(250).map(&:first)
 
-    @albums = Album.includes(:artist).where(artist_id: @follows).has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').where("release_date <= ?", Date.today).limit(18)
+    @albums = Album.includes(:artist).where(artist_id: @follows).has_release_date.order(release_date: :desc, artist_id: :desc).where.not(album_type: 'compilation').where.not(album_type: 'single').where("release_date <= ?", Date.today).limit(12)
+
+    query = MusicVideo.includes(:artist).order(release_date: :desc, artist_id: :desc)
+    @num_days = params[:days].present? ? params[:days].to_i : 90
+    @videos = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq.first(12)
   end
 
   def test
