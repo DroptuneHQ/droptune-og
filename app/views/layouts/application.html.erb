@@ -44,7 +44,7 @@
         <a href="#" id="mobile-menu"><i class="fas fa-bars"></i></a>
         <nav>
           <% if user_signed_in? %>
-          <a href="<%= user_path(current_user) %>" class="user-link"><img src="<%= current_user.avatar_image %>"> <span><%= current_user.screename %></span></a>
+          <a href="<%= edit_user_registration_path %>" class="user-link"><img src="<%= current_user.avatar_image %>"> <span><%= current_user.screename %></span></a>
           <% else %>
           <%= link_to raw('<i class="fab fa-twitter"></i> Sign in with Twitter'), omniauth_authorize_path("user", "twitter"), id: 'twitter-sign-in' %>
           <% end %>

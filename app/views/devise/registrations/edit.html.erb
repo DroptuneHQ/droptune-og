@@ -1,4 +1,12 @@
-<h1>Settings</h1>
+<div class="user-info">
+  <div><img src="<%= @user.avatar_image %>"></div>
+  <div class="about">
+    <h1>Settings</h1>
+    <% if @user == current_user %>
+      <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
+    <% end %>
+  </div>
+</div>
 
 <div class="form-group">
   <h2>Preferences</h2>
