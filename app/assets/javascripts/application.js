@@ -41,7 +41,9 @@ $(document).on("turbolinks:load", function() {
   });
 
   $(".follow a").on("ajax:success", function(e){
+    console.log("Worked 1");
     const [data, status, xhr] = Array.from(event.detail);
     $(".follow").html(data.artist);
+    console.log("Worked 2");
   });
 });
