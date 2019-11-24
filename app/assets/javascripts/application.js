@@ -39,10 +39,9 @@ $(document).on("turbolinks:load", function() {
     e.preventDefault();
     $(".search-form").toggleClass("show");
   });
-});
 
-// Follow/unfollow
-$(document).on("ajax:success", ".follow a", function(event) {
-  const [data, status, xhr] = Array.from(event.detail);
-  $(".follow").html(data.artist);
+  $(".follow a").on("ajax:success", function(e){
+    const [data, status, xhr] = Array.from(event.detail);
+    $(".follow").html(data.artist);
+  });
 });
