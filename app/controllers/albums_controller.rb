@@ -32,7 +32,7 @@ class AlbumsController < ApplicationController
       .future_releases
       .followed_by_user(@user)
       .types_for_user(@user)
-      .default_order
+      .order('release_date asc', 'artists.name asc')
 
     respond_with @albums
   end
