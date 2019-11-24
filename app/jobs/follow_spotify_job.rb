@@ -20,11 +20,20 @@ class FollowSpotifyJob
       artist_ids = Array.new
       
       (0..100000000000).step(50) do |n|
-        tracks = spotify.saved_tracks(limit: 50, offset: n)
-        break if tracks.size == 0
-        tracks.each do |track|
-          # Only pull the primary artist from the track
-          artist_ids.push(track.artists.first.name)
+        begin
+          tracks = spotify.saved_tracks(limit: 50, offset: n)
+        rescue RestClient::BadGateway => e
+          break
+        end
+
+        if tracks.present?
+          break if tracks.size == 0
+          tracks.each do |track|
+            # Only pull the primary artist from the track
+            artist_ids.push(track.artists.first.name)
+          end
+        else
+          break
         end
       end
 
