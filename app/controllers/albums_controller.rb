@@ -4,25 +4,48 @@ class AlbumsController < ApplicationController
   def index
     @user = current_user
 
-    @albums = Album.includes(:artist)
+    @latest = Album.includes(:artist)
       .followed_by_user(@user)
       .types_for_user(@user)
       .default_order
 
     if params[:month] && params[:year]
-      @albums = @albums.for_month(params[:month]).for_year(params[:year])
+      @latest = @latest.for_month(params[:month]).for_year(params[:year])
     elsif params[:year]
-      @albums = @albums.for_year(params[:year])
+      @latest = @latest.for_year(params[:year])
     else
       @num_days = params.fetch(:days, 21).to_i
 
-      @albums = @albums.recent_releases(@num_days)
+      @latest = @latest.recent_releases(@num_days).limit(12)
     end
 
-    respond_with(@albums) do |format|
-      format.html { @albums }
-      format.json { render json: @albums.paginate(:page => params[:page], :per_page => 25) }
+    @upcoming = Album.includes(:artist)
+      .future_releases
+      .followed_by_user(@user)
+      .types_for_user(@user)
+      .order('release_date asc', 'artists.name asc')
+      .limit(12)
+
+
+    respond_with(@latest) do |format|
+      format.html { @latest }
+      format.json { render json: @latest.paginate(:page => params[:page], :per_page => 25) }
     end
+  end
+
+  def latest
+    @user = current_user
+
+    @albums = Album.includes(:artist)
+      .followed_by_user(@user)
+      .types_for_user(@user)
+      .default_order
+
+    @num_days = params.fetch(:days, 60).to_i
+
+    @albums = @albums.recent_releases(@num_days)
+
+    respond_with @albums
   end
 
   def upcoming

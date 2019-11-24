@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   resources :albums do
     collection do
+      get 'latest'
       get 'upcoming'
     end
   end

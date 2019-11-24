@@ -1,6 +1,16 @@
+@import "fonts";
 @import "variables";
 @import "reset";
 @import "media-queries";
+
+body {
+  background: $black;
+  color: $white;
+}
+
+a {
+  color: $pink;
+}
 
 // Layout
 .container {
@@ -51,7 +61,7 @@
       }
     }
     a {
-      color: $blue;
+      color: $pink;
       display: block;
       padding: 5px 10px;
       &:hover {
@@ -66,6 +76,7 @@ header {
   position: relative;
   margin: 0 0 30px;
   background: $black;
+  background: linear-gradient(180deg, #000 0%, $black 100%);
 
   #logo {
     float: left;
@@ -106,6 +117,7 @@ header {
   nav {
     height: 64px;
     padding: 0;
+    text-align: center;
 
     &.show {
       display: block;
@@ -128,16 +140,16 @@ header {
       display: inline-block;
       padding: 15px 0 0;
       margin: 0 35px 0 0;
-      border-top: 2px solid transparent;
-      font-size: 15px;
+      border-top: 4px solid transparent;
+      font-size: 18px;
       font-weight: 400;
-      color: $gray;
+      color: $white;
       transition: all 0.2s linear;
 
       &:hover,
       &.active {
         color: $white;
-        border-top-color: $blue;
+        border-top-color: $pink;
         @include max-screen(910px) {
           float: none;
           color: $black;
@@ -209,22 +221,27 @@ header {
       border-radius: 4px;
       font-size: 18px;
       outline: none;
-      color: $white;
-      background: $darker-gray;
+      color: $black;
+      background: $white;
     }
   }
 }
 
 // Typography
 h1 {
-  font: 400 45px/70px $fonts;
+  font: 800 45px/26px "SF Display", $fonts;
   @include max-screen(700px) {
     font-size: 30px;
     line-height: 50px;
   }
+  &.tiny {
+    font-size: 20px;
+    color: $pink;
+    font-weight: 400;
+  }
 }
 h2 {
-  font: 400 22px/35px $fonts;
+  font: 800 36px/35px "SF Display", $fonts;
   margin: 0 0 24px;
   display: flex;
   justify-content: space-between;
@@ -232,6 +249,9 @@ h2 {
 h3 {
   font: 400 20px/30px $fonts;
   margin: 0 0 14px;
+}
+.view_all {
+  float: right;
 }
 
 // Page elements
@@ -242,13 +262,13 @@ h3 {
     display: inline-block;
     margin-right: 18px;
     a {
-      color: $light-gray;
+      color: $pink;
       font-size: 18px;
       transition: all 0.2s linear;
       &.active,
       &:hover {
-        color: $black;
-        border-bottom: 2px solid $blue;
+        color: $pink;
+        border-bottom: 2px solid $pink;
       }
     }
   }
@@ -261,7 +281,7 @@ h3 {
     li {
       display: inline-block;
       a {
-        color: $gray;
+        color: $pink;
       }
       &:after {
         content: "/";
@@ -613,6 +633,7 @@ button {
 .user,
 .event {
   font-size: 13px;
+  min-width: 0;
 
   .album_cover {
     position: relative;
@@ -624,7 +645,7 @@ button {
       position: absolute;
       top: 0;
       width: 100%;
-      border-radius: 5px;
+      border-radius: 8px;
     }
     .sources {
       position: absolute;
@@ -643,7 +664,7 @@ button {
     display: block;
     max-width: 100%;
     margin: 0 0 10px;
-    border-radius: 5px;
+    border-radius: 8px;
   }
 
   .single {
@@ -691,11 +712,20 @@ button {
 
   a.album-title,
   a.artist-title {
-    color: $darker;
+    color: $white;
   }
-
+  a.album-title {
+    font-weight: 700;
+    font-size: 14px;
+    
+    overflow: hidden; 
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+  }
+  
   .album-artist {
     color: $light-gray;
+    font-size: 12px;
   }
   .release-date {
     margin: 0;
@@ -703,7 +733,7 @@ button {
   }
 }
 .latest-upcoming {
-  margin-bottom: 60px;
+  
 }
 .past-albums {
   .past-date {
@@ -893,9 +923,8 @@ button {
 footer {
   margin: 40px 0 0;
   padding: 40px 0;
-  background: $lightest-gray;
 
   a {
-    color: $blue;
+    color: $pink;
   }
 }
