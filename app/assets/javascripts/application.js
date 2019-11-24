@@ -42,7 +42,8 @@ $(document).on("turbolinks:load", function() {
 
   $(".follow a").on("ajax:success", function(event){
     console.log("START");
-    console.log("EVENT: " + event)
+    console.log("EVENT")
+    console.log(event)
     const [data, status, xhr] = Array.from(event.detail);
     console.log("DATA")
     console.log(data)
