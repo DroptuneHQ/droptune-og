@@ -40,10 +40,17 @@ $(document).on("turbolinks:load", function() {
     $(".search-form").toggleClass("show");
   });
 
-  $(".follow a").on("ajax:success", function(e){
-    console.log("Worked 1");
+  $(".follow a").on("ajax:success", function(event){
+    console.log("START");
+    console.log("EVENT: " + event)
     const [data, status, xhr] = Array.from(event.detail);
+    console.log("DATA")
+    console.log(data)
+    console.log("STATUS")
+    console.log(status)
+    console.log("XHR")
+    console.log(xhr)
     $(".follow").html(data.artist);
-    console.log("Worked 2");
+    console.log("END");
   });
 });
