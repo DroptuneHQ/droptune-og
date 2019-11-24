@@ -10,7 +10,7 @@ class MusicVideosController < ApplicationController
       query = MusicVideo.includes(:artist).order(release_date: :desc, artist_id: :desc)
     end
 
-    @num_days = params[:days].present? ? params[:days].to_i : 30
+    @num_days = params[:days].present? ? params[:days].to_i : 90
     @videos = query.where("release_date <= ? AND release_date > ?", Date.today, @num_days.days.ago).uniq
 
     respond_with @videos
