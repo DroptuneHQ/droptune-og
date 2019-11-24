@@ -406,19 +406,9 @@ h3 {
   }
 }
 
-.fans,
 .media {
   h2 {
     margin-bottom: 5px;
-  }
-}
-
-.fans {
-  .user-grid {
-    grid-template-columns: repeat(10, 1fr);
-    @include max-screen(850px) {
-      grid-template-columns: repeat(5, 1fr);
-    }
   }
 }
 
@@ -604,9 +594,7 @@ button {
 
 // Album Layout
 .album-grid,
-.artist-grid,
-.user-grid,
-.events-grid {
+.artist-grid {
   display: grid;
   grid-template-rows: repeat($album-grid-rows, auto);
   grid-template-columns: repeat($album-grid-cols, 1fr);
@@ -626,9 +614,7 @@ button {
 }
 
 .album,
-.artist,
-.user,
-.event {
+.artist {
   font-size: 13px;
   min-width: 0;
 
@@ -737,45 +723,6 @@ button {
     margin-bottom: 0px;
   }
 }
-
-.events-grid {
-  grid-template-columns: repeat(3, 1fr);
-  @include max-screen(800px) {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  @include max-screen(600px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-.event {
-  line-height: 20px;
-  .artist-image {
-    margin-bottom: 15px;
-  }
-  h2 {
-    margin: 0 0 5px 0;
-  }
-  h3 {
-    margin: 0;
-  }
-  .location {
-    margin: 0;
-    padding: 0;
-  }
-  .date {
-    margin: 0;
-    padding: 0;
-  }
-  .details {
-    display: flex;
-
-    justify-content: space-between;
-    .view {
-      text-align: right;
-    }
-  }
-}
-
 
 .artist-people {
   display: flex;
