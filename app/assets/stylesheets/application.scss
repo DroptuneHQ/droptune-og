@@ -285,7 +285,7 @@ h3 {
       }
       &:after {
         content: "/";
-        color: $gray;
+        color: $white;
         padding: 0 8px 0 12px;
       }
       &.active {
@@ -862,6 +862,9 @@ button {
       color: $gray;
     }
     line-height: 40px;
+  }
+  h2 {
+    font-size: 20px;
   }
   .video_wrapper {
     position: relative;
