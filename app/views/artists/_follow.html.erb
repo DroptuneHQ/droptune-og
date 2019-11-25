@@ -1,6 +1,6 @@
 <% follow = Follow.where(user: current_user, artist: @artist).order('updated_at DESC').try(:first) %>
 <% if follow.present? and follow.active.present? %>
-  <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-gray-border', remote: true %>
+  <%= link_to "Unfollow", unfollow_artist_path(@artist), class: 'btn btn-gray-border' %>
 <% else %>
-  <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-pink', remote: true %>
+  <%= link_to "Follow", follow_artist_path(@artist), class: 'btn btn-pink' %>
 <% end %>

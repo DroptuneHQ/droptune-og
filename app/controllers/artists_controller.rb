@@ -29,15 +29,15 @@ class ArtistsController < ApplicationController
     follow.active = true
     follow.save!
 
-    if request.xhr?
-      render json: {
-        artist: render_to_string('artists/_follow',
-          layout: false, locals: { artist: @artist }
-        )
-      }
-    else
+    # if request.xhr?
+    #   render json: {
+    #     artist: render_to_string('artists/_follow',
+    #       layout: false, locals: { artist: @artist }
+    #     )
+    #   }
+    # else
       redirect_to artist_path(@artist)
-    end
+    #end
   end
 
   def unfollow
@@ -47,15 +47,15 @@ class ArtistsController < ApplicationController
     follow.active = false
     follow.save!
 
-    if request.xhr?
-      render json: {
-        artist: render_to_string('artists/_follow',
-          layout: false, locals: { artist: @artist }
-        )
-      }
-    else
+    # if request.xhr?
+    #   render json: {
+    #     artist: render_to_string('artists/_follow',
+    #       layout: false, locals: { artist: @artist }
+    #     )
+    #   }
+    # else
       redirect_to artist_path(@artist)
-    end
+    #end
   end
 
   def search
