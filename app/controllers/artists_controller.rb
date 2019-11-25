@@ -25,7 +25,7 @@ class ArtistsController < ApplicationController
   def follow
     @artist = Artist.find(params[:id])
 
-    follow = Follow.where(user: current_user, artist: @artist).first_or_initialize
+    follow = Follow.where(user: current_user, artist: @artist).order('updated_at DESC').first_or_initialize
     follow.active = true
     follow.save!
 
@@ -41,23 +41,19 @@ class ArtistsController < ApplicationController
   end
 
   def unfollow
-    Rails.logger.warn("CURRENT USER: #{current_user}")
-
     @artist = Artist.find(params[:id])
 
-    follow = Follow.where(user: current_user, artist: @artist).first_or_initialize
+    follow = Follow.where(user: current_user, artist: @artist).order('updated_at DESC').first_or_initialize
     follow.active = false
     follow.save!
 
     if request.xhr?
-      Rails.logger.warn("REQUEST: XHR")
       render json: {
         artist: render_to_string('artists/_follow',
           layout: false, locals: { artist: @artist }
         )
       }
     else
-      Rails.logger.warn("REQUEST: NOT XHR")
       redirect_to artist_path(@artist)
     end
   end

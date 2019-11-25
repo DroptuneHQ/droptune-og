@@ -39,19 +39,21 @@ $(document).on("turbolinks:load", function() {
     e.preventDefault();
     $(".search-form").toggleClass("show");
   });
+});
 
+$( document ).ready(function() {
   $(".follow a").on("ajax:success", function(event){
-    console.log("START");
-    console.log("EVENT")
-    console.log(event)
+    // console.log("START");
+    // console.log("EVENT")
+    // console.log(event)
     const [data, status, xhr] = Array.from(event.detail);
-    console.log("DATA")
-    console.log(data)
-    console.log("STATUS")
-    console.log(status)
-    console.log("XHR")
-    console.log(xhr)
+    // console.log("DATA")
+    // console.log(data)
+    // console.log("STATUS")
+    // console.log(status)
+    // console.log("XHR")
+    // console.log(xhr)
     $(".follow").html(data.artist);
-    console.log("END");
+    // console.log("END");
   });
 });
