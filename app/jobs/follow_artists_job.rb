@@ -14,7 +14,10 @@ class FollowArtistsJob
         BuildArtistJob.perform_async(artist.id)
       end
       
-      user.artists << artist unless Follow.where(user: user, artist: artist, active: false).present?
+      begin
+        user.artists << artist unless Follow.where(user: user, artist: artist, active: false).present?
+      rescue ActiveRecord::RecordInvalid => invalid
+      end
     end
   end
 end

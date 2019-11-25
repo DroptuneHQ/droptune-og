@@ -18,30 +18,41 @@
       <h1><%= @album.name %></h1>
       <h2><%= link_to @album.artist.name, artist_path(@album.artist) %></h2>
       <p class="released"><% if @album.release_date > Date.today %>Releasing<% else %>Released<% end %> <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
-      <!-- <p class="add">
-        <a href="#"><i class="fab fa-spotify"></i> Add</a>
-        <a href="#"><i class="fab fa-apple"></i> Add</a>
-      </p> -->
+      
+      TRACKS
+      <ol class="tracks">
+
+      </ol> 
+
+      <div class="playback" data-apple-music-album-id="<%= @album.applemusic_id %>">
+        <a href="#" class="play">Play</a> <a href="#" class="pause">Pause</a> <a href="#" class="next">Next</a>
+        <span class="status">Status</span>
+      </div>
+
+      <p class="add">
+        <!-- <a href="#"><i class="fab fa-spotify"></i> Add</a> -->
+        <a href="#" class="apple" data-apple-music-add-to-library="<%= @album.applemusic_id %>"><i class="fab fa-apple"></i> Add</a>
+      </p>
     </div>
   </div>
   <div class="col album-player">
     <% if current_user && current_user.apple_music_token.present? %>
       <% if @album.applemusic_id %>
-      <%= render "player", locals: {album: @album, type: 'applemusic'} %>
+      <%#= render "player", locals: {album: @album, type: 'applemusic'} %>
      <% elsif @album.spotify_id %>
-       <%= render "player", locals: {album: @album, type: 'spotify'} %>
+       <%#= render "player", locals: {album: @album, type: 'spotify'} %>
      <% end %>
     <% elsif current_user && current_user.connections.spotify.present? %>
       <% if @album.spotify_id %>
-        <%= render "player", locals: {album: @album, type: 'spotify'} %>
+        <%#= render "player", locals: {album: @album, type: 'spotify'} %>
       <% elsif @album.applemusic_id %>
-        <%= render "player", locals: {album: @album, type: 'applemusic'} %>
+        <%#= render "player", locals: {album: @album, type: 'applemusic'} %>
       <% end %>
     <% else %>
       <% if @album.applemusic_id %>
-      <%= render "player", locals: {album: @album, type: 'applemusic'} %>
+      <%#= render "player", locals: {album: @album, type: 'applemusic'} %>
     <% elsif @album.spotify_id %>
-      <%= render "player", locals: {album: @album, type: 'applemusic'} %>
+      <%#= render "player", locals: {album: @album, type: 'applemusic'} %>
     <% end %>
     <% end %>
   </div>
