@@ -39,4 +39,9 @@ $(document).on("turbolinks:load", function() {
     e.preventDefault();
     $(".search-form").toggleClass("show");
   });
+
+  // Player
+  $(".add .apple").on("click", function(e) {
+    e.preventDefault();
+  });
 });
