@@ -20,6 +20,8 @@ class Follow < ApplicationRecord
   belongs_to :artist
   belongs_to :user
 
+  validates :artist, uniqueness: { scope: :user }
+
   def unfollow
     self.update_attributes(active: false)
   end

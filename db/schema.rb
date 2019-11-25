@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_04_195655) do
+ActiveRecord::Schema.define(version: 2019_11_25_194805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2019_06_04_195655) do
     t.boolean "active", default: true
     t.index ["active"], name: "index_follows_on_active"
     t.index ["artist_id"], name: "index_follows_on_artist_id"
+    t.index ["user_id", "artist_id"], name: "index_follows_on_user_id_and_artist_id", unique: true
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
