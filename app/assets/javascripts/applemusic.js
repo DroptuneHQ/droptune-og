@@ -29,8 +29,8 @@ $(document).on("turbolinks:load", function() {
             //console.log(item.relationships.tracks.data);  
 
             item.relationships.tracks.data.forEach(function (item, index) {
-              $('.tracks').append('<li>'+item.attributes.name+'</li>')
-              //console.log(item, index);
+              $('.tracks').append('<li>'+item.attributes.name+' - '+msToTime(item.attributes.durationInMillis)+' <a href="#" class="play_song" data-apple-music-song-id="'+item.attributes.playParams.id+'"><i class="fa fa-play-circle"></i></a></li>')
+              console.log(item.attributes, index);
             });
           });
           
@@ -62,6 +62,16 @@ $(document).on("turbolinks:load", function() {
             }, 500);
           });
           
+          $(document).on('click', '.play_song', function(e){
+            e.preventDefault();
+            song = $(this).data('apple-music-song-id');
+            console.log(song);
+            music.setQueue({
+              song: song
+            }).then(function(queue){
+              music.play();
+            });
+          });
 
           
 
@@ -93,6 +103,12 @@ $(document).on("turbolinks:load", function() {
       dataType: 'json',
       data: {'user_token': userToken, 'dev_token': devToken}
     });
+  }
+
+  function msToTime(s) {
+    var minutes = Math.floor(s / 60000);
+    var seconds = ((s % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
   }
 
 });
