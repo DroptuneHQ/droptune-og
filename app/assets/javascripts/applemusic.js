@@ -21,20 +21,14 @@ $(document).on("turbolinks:load", function() {
       if (music.isAuthorized) {
         apple_music_id.show().html('<i class="fab fa-apple"></i> Refresh Apple Music Library').addClass('btn btn-light');
 
-
-        var album = $('.playback').data('apple-music-album-id');
+        var album = $('.tracks').data('apple-music-album-id');
         if (album){
-          console.log(album);
           api_album = music.api.album(album).then(function(item){
-            //console.log(item.relationships.tracks.data);  
-
             item.relationships.tracks.data.forEach(function (item, index) {
-              $('.tracks').append('<li>'+item.attributes.name+' - '+msToTime(item.attributes.durationInMillis)+' <a href="#" class="play_song" data-apple-music-song-id="'+item.attributes.playParams.id+'"><i class="fa fa-play-circle"></i></a></li>')
+              $('.tracks').append('<li><a href="#" class="play_song" data-apple-music-song-id="'+item.attributes.playParams.id+'"><strong class="track_name">'+item.attributes.name+'</strong> <time>'+msToTime(item.attributes.durationInMillis)+'</time></a></li>')
               console.log(item.attributes, index);
             });
           });
-          
-          
 
           music.setQueue({
             album: album
@@ -54,23 +48,28 @@ $(document).on("turbolinks:load", function() {
               music.skipToNextItem();
             });
           });
-
-          $('.playback a').on('click', function(e){
-            setTimeout(function() {
-                $('.status').text(music.player.nowPlayingItem.attributes['name'])
-                console.log(music.player.nowPlayingItem.attributes['name'])
-            }, 500);
-          });
           
           $(document).on('click', '.play_song', function(e){
             e.preventDefault();
             song = $(this).data('apple-music-song-id');
+            $('.tracks li').removeClass('active');
+            $(this).parent('li').addClass('active');
+            $(this).removeClass('play_song');
+            $(this).addClass('stop_song');
             console.log(song);
             music.setQueue({
               song: song
             }).then(function(queue){
               music.play();
             });
+          });
+
+          $(document).on('click', '.stop_song', function(e){
+            e.preventDefault();
+            song = $(this).data('apple-music-song-id');
+            $('.tracks li').removeClass('active');
+            $(this).addClass('play_song');
+            music.stop();
           });
 
           
