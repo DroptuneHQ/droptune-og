@@ -68,8 +68,13 @@ $(document).on("turbolinks:load", function() {
             e.preventDefault();
             song = $(this).data('apple-music-song-id');
             $('.tracks li').removeClass('active');
+            $(this).removeClass('stop_song');
             $(this).addClass('play_song');
-            music.stop();
+            music.setQueue({
+              song: song
+            }).then(function(queue){
+              music.stop();
+            });
           });
 
           
