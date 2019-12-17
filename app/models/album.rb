@@ -44,6 +44,7 @@ class Album < ApplicationRecord
   scope :for_year, ->(year) { where('extract(year from release_date) = ?', year) if year.present? }
   scope :for_types, ->(album_types) { where( album_type: album_types ) if album_types.present? }
   scope :types_for_user, ->(user) { where( album_type: Album.calculate_types_for_user(user) ) }
+  scope :filters_for_user, ->(user) { where.not('albums.name ILIKE ANY (array[?])', Album.calculate_filters_for_user(user)) if Album.calculate_filters_for_user(user).present? }
 
   scope :followed_by_user, ->(user) { where( artist: user.active_artists ) if user}
 
@@ -67,6 +68,15 @@ class Album < ApplicationRecord
       album_types -= %w[compilation single]
     end
     album_types
+  end
+
+  def self.calculate_filters_for_user(user = nil)
+    album_types = []
+    if user
+      album_types += %w[remix] if !user.settings['show_remixes']
+      album_types += %w[live] if !user.settings['show_live']
+    end
+    album_types.map {|val| "%#{val}%" }
   end
 
   ## — INSTANCE METHODS

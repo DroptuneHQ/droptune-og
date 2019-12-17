@@ -21,3 +21,28 @@
     <%= render @upcoming %>
   </div>
 </div>
+
+<div class="latest">
+  <h1 class="tiny">Videos</h1>
+  <%= link_to "View All &rarr;".html_safe, music_videos_path, class: 'view_all' %>
+  <h2>Latest Releases</h2>
+  <div class="album-grid">
+    <% @videos.each do |video| %>
+    <% cache video do %>
+      <div class="album">
+        <a href="<%= music_video_path(video) %>" class="album_cover">
+          <span class="sources">
+            <i class="fab fa-youtube"></i>
+          </span>
+          <img src="<%= video.image %>" />
+        </a>
+        <%= link_to video.name, music_video_path(video), class: 'album-title' %>
+        <%= link_to video.artist.name, artist_path(video.artist), class: 'album-artist' %>
+        <% if video.release_date %>
+        <p class="release-date"><small><%= video.release_date.strftime("%B %-e, %Y") %></small></p>
+        <% end %>
+      </div>
+    <% end %>
+    <% end %>
+  </div>
+</div>
