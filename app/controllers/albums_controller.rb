@@ -6,6 +6,7 @@ class AlbumsController < ApplicationController
 
     @latest = Album.includes(:artist)
       .followed_by_user(@user)
+      .filters_for_user(@user)
       .types_for_user(@user)
       .default_order
 
@@ -22,9 +23,13 @@ class AlbumsController < ApplicationController
     @upcoming = Album.includes(:artist)
       .future_releases
       .followed_by_user(@user)
+      .filters_for_user(@user)
       .types_for_user(@user)
       .order('release_date asc', 'artists.name asc')
       .limit(12)
+
+
+    @videos = @user.music_videos.active.includes(:artist).order(release_date: :desc, artist_id: :desc).first(12)
 
 
     respond_with(@latest) do |format|
@@ -38,6 +43,7 @@ class AlbumsController < ApplicationController
 
     @albums = Album.includes(:artist)
       .followed_by_user(@user)
+      .filters_for_user(@user)
       .types_for_user(@user)
       .default_order
 
@@ -54,6 +60,7 @@ class AlbumsController < ApplicationController
     @albums = Album.includes(:artist)
       .future_releases
       .followed_by_user(@user)
+      .filters_for_user(@user)
       .types_for_user(@user)
       .order('release_date asc', 'artists.name asc')
 

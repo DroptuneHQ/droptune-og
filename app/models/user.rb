@@ -45,6 +45,8 @@ class User < ApplicationRecord
   store_attributes :settings do
     show_compilations Boolean, default: false
     show_singles Boolean, default: true
+    show_remixes Boolean, default: true
+    show_live Boolean, default: true
     weekly_report Boolean, default: true
     private_profile Boolean, default: true
     generate_playlist_spotify Boolean, default: false
