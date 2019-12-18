@@ -15,6 +15,15 @@ class PagesController < ApplicationController
 
   def token
     @token = ENV['apple_token']
+
+    connection = current_user.connections.where(provider:'spotify').first
+    spotify = RSpotify::User.new(connection.settings.to_hash)
+    connection.settings = spotify.to_hash
+    connection.save
+
+
+
+    @spotify_user_token = current_user.connections.spotify.first.settings['credentials']['token'] 
     render :layout => false
   end
 

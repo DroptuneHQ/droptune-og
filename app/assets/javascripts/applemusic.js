@@ -30,6 +30,15 @@ $(document).on("turbolinks:load", function() {
           });
         });
 
+        $('.apple').on('click', function(e){
+          e.preventDefault();
+          music.api.addToLibrary({albums: [album]}).then(function(){});
+
+          setTimeout(function(){
+            $('.apple b').text('Added!');
+          }, 600);
+        })
+
         music.setQueue({
           album: album
         }).then(function(queue){

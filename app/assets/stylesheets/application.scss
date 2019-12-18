@@ -824,8 +824,11 @@ button {
     }
     .track_name {
       padding-left: 35px;
+      max-width: 75%;
       font-weight: normal;
       color: white;
+      line-height: 1.2em;
+      display: inline-block;
     }
     time {
       float: right;
