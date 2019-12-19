@@ -4,6 +4,7 @@ class AppleMusic
 
     keyId = ENV['apple_app_key']
     teamId = ENV['apple_team_key']
+    hours_to_live = 24 * 180
 
     time_now = Time.now.to_i
     time_expired = Time.now.to_i + hours_to_live * 3600
