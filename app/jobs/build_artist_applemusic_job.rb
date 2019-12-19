@@ -10,13 +10,13 @@ class BuildArtistApplemusicJob
   })
 
   def perform(artist_id)
-    return unless ENV['apple_token']
+    return unless AppleMusic.token
 
     artist = Artist.find artist_id
 
     response = HTTParty.get('https://api.music.apple.com/v1/catalog/us/search', {
       query: {term: artist.name, types: 'artists', limit: 1},
-      headers: {"Authorization" => "Bearer #{ENV['apple_token']}"}
+      headers: {"Authorization" => "Bearer #{AppleMusic.token}"}
     })
 
     if response.parsed_response['results'].present?
