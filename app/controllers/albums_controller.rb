@@ -4,34 +4,37 @@ class AlbumsController < ApplicationController
   def index
     @user = current_user
 
-    @latest = Album.includes(:artist)
-      .followed_by_user(@user)
-      .filters_for_user(@user)
-      .types_for_user(@user)
-      .default_order
-
-    if params[:month] && params[:year]
-      @latest = @latest.for_month(params[:month]).for_year(params[:year])
-    elsif params[:year]
-      @latest = @latest.for_year(params[:year])
+    if current_user.blank?
+      redirect_to root_path 
     else
-      @num_days = params.fetch(:days, 21).to_i
+      @latest = Album.includes(:artist)
+        .followed_by_user(@user)
+        .filters_for_user(@user)
+        .types_for_user(@user)
+        .default_order
 
-      @latest = @latest.recent_releases(@num_days).limit(12)
+      if params[:month] && params[:year]
+        @latest = @latest.for_month(params[:month]).for_year(params[:year])
+      elsif params[:year]
+        @latest = @latest.for_year(params[:year])
+      else
+        @num_days = params.fetch(:days, 21).to_i
+
+        @latest = @latest.recent_releases(@num_days).limit(12)
+      end
+
+      @upcoming = Album.includes(:artist)
+        .future_releases
+        .followed_by_user(@user)
+        .filters_for_user(@user)
+        .types_for_user(@user)
+        .order('release_date asc', 'artists.name asc')
+        .limit(12)
+
+
+      @videos = @user.music_videos.active.includes(:artist).order(release_date: :desc, artist_id: :desc).first(12)
+
     end
-
-    @upcoming = Album.includes(:artist)
-      .future_releases
-      .followed_by_user(@user)
-      .filters_for_user(@user)
-      .types_for_user(@user)
-      .order('release_date asc', 'artists.name asc')
-      .limit(12)
-
-
-    @videos = @user.music_videos.active.includes(:artist).order(release_date: :desc, artist_id: :desc).first(12)
-
-
     respond_with(@latest) do |format|
       format.html { @latest }
       format.json { render json: @latest.paginate(:page => params[:page], :per_page => 25) }
