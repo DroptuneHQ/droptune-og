@@ -13,25 +13,27 @@
     <div class="album_cover">
       <div><img src="<%= album_image(@album, '600') %>"></div>
     </div>
-    <div class="details">
+    <div class="details" data-spotify-album-id="<%= @album.spotify_id %>" data-apple-music-album-id="<%= @album.applemusic_id %>">
       <span><%= @album.album_type %></span>
       <h1><%= @album.name %></h1>
       <h2><%= link_to @album.artist.name, artist_path(@album.artist) %></h2>
       <p class="released"><% if @album.release_date > Date.today %>Releasing<% else %>Released<% end %> <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
       
-      <% if @album.release_date <= Date.today %>
-      <p class="add">
-        <a href="#"><i class="fab fa-spotify"></i> Add</a>
-        <a href="#" class="apple" data-apple-music-add="<%= @album.applemusic_id %>"><i class="fab fa-apple"></i> <b>Add</b></a>
-      </p>
+      <% if current_user and @album.release_date <= Date.today %>
+        <p class="add">
+          <% if current_user.has_spotify? and @album.spotify_id %>
+          <a href="#" class="spotify" data-spotify-add="<%= @album.applemusic_id %>"><i class="fab fa-spotify"></i> <b>Add</b></a>
+          <% end %>
+          <% if current_user.has_apple_music? and @album.applemusic_id %>
+          <a href="#" class="apple" data-apple-music-add="<%= @album.applemusic_id %>"><i class="fab fa-apple"></i> <b>Add</b></a>
+          <% end %>
+        </p>
 
-      <% if current_user.connections.spotify.present? %>
-      <ol class="tracks" data-spotify-album-id="<%= @album.spotify_id %>"></ol>
-      <% else %>
-      <ol class="tracks" data-apple-music-album-id="<%= @album.applemusic_id %>"></ol>
-      <% end %>
-
-
+        <% if current_user.has_spotify? and @album.spotify_id %>
+          <ol class="tracks spotify_player"></ol>
+        <% elsif current_user.has_apple_music? and @album.applemusic_id %>
+          <ol class="tracks apple_music_player"></ol>
+        <% end %>
       <% end %>
     </div>
   </div>

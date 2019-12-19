@@ -69,6 +69,22 @@ class User < ApplicationRecord
     admin
   end
 
+  def has_spotify?
+    if self.connections.where(provider:'spotify').first.present?
+      true
+    else
+      false
+    end
+  end
+
+  def has_apple_music?
+    if self.apple_music_token.present?
+      true
+    else
+      false
+    end
+  end
+
   def to_param
     @to_param ||= [id, screename.parameterize].join("-")
   end
