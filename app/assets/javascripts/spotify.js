@@ -54,10 +54,10 @@ $(document).on("turbolinks:load", function() {
           getOAuthToken: cb => { cb(_token); }
         });
 
-        player.on('initialization_error', e => console.error(e));
-        player.on('authentication_error', e => console.error(e));
-        player.on('account_error', e => console.error(e));
-        player.on('playback_error', e => console.error(e));
+        // player.on('initialization_error', e => console.error(e));
+        // player.on('authentication_error', e => console.error(e));
+        // player.on('account_error', e => console.error(e));
+        // player.on('playback_error', e => console.error(e));
 
         // Ready
         player.on('ready', data => {
