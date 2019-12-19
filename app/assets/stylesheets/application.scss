@@ -132,7 +132,7 @@ header {
       height: 56px;
       display: none;
       height: auto;
-      background: #fff;
+      background: $black;
       z-index: 200;
     }
 
@@ -152,7 +152,8 @@ header {
         border-top-color: $pink;
         @include max-screen(910px) {
           float: none;
-          color: $black;
+          color: white;
+          background: $pink;
         }
       }
 
@@ -176,7 +177,7 @@ header {
         margin: 0;
         padding: 0;
         border: 0;
-        border-bottom: 1px solid $lighter-gray;
+        
         line-height: 43px;
         text-align: center;
         padding: 8px 0;
