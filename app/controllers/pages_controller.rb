@@ -15,6 +15,17 @@ class PagesController < ApplicationController
 
   def token
     @token = ENV['apple_token']
+
+    # Hacky. Force token refresh.
+    if current_user.present?
+      connection = current_user.connections.where(provider:'spotify').first
+      rspotify_user = RSpotify::User.new(connection.settings.to_hash)
+      rspotify_user.top_tracks(limit: 1, offset: 0, time_range: 'short_term')
+      connection.settings = rspotify_user.to_hash
+      connection.save
+      @spotify_user_token = current_user.connections.spotify.first.settings['credentials']['token'] 
+    end
+
     render :layout => false
   end
 

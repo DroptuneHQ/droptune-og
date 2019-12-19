@@ -578,7 +578,7 @@ button {
       font-size: 0.9em;
     }
     .add {
-      margin-top: 25px;
+      margin: 25px 0;
       a {
         border-radius: 100px;
         color: $white;
@@ -776,6 +776,65 @@ button {
       color: $blue;
       display: inline-block;
       margin-right: 20px;
+    }
+  }
+}
+
+.tracks {
+  list-style: none;
+  counter-reset: tracks;
+  font-size: .9em;
+  li {
+    counter-increment: tracks;
+    border-bottom: 1px solid #272733;
+    a {
+      display: block;
+      padding: 4px 2px;
+      &:before {
+        content: counter(tracks);
+        color: white;
+        opacity: 0.5;
+        position: absolute;
+        margin-left: 4px;
+      }
+      &:hover {
+        &:before {
+          font-family: "Font Awesome 5 Free"; 
+          font-weight: 900; 
+          content: "\f144";
+          position: absolute;
+          color: $pink;
+          opacity: 1;
+        }
+        background: #272733;
+      }
+    }
+    &.active {
+      a {
+        background: #272733;
+        &:before {
+          font-family: "Font Awesome 5 Free"; 
+          font-weight: 900; 
+          content: "\f28d";
+          position: absolute;
+          color: $pink;
+          opacity: 1;
+        }
+      }
+    }
+    .track_name {
+      padding-left: 35px;
+      max-width: 75%;
+      font-weight: normal;
+      color: white;
+      line-height: 1.2em;
+      display: inline-block;
+    }
+    time {
+      float: right;
+      margin-right: 4px;
+      opacity: 0.5;
+      color: white;
     }
   }
 }

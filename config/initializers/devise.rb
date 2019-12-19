@@ -263,7 +263,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   #config.omniauth :facebook, "APP_ID", "APP_SECRET"
   config.omniauth :twitter, ENV['twitter_key'], ENV['twitter_secret']
-  config.omniauth :spotify, ENV['spotify_key'], ENV['spotify_secret'], scope: 'user-modify-playback-state user-read-currently-playing user-read-playback-state playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-library-modify user-follow-modify streaming user-library-read user-read-birthdate user-read-email user-top-read user-read-recently-played'
+  config.omniauth :spotify, ENV['spotify_key'], ENV['spotify_secret'], scope: 'user-modify-playback-state user-read-currently-playing user-read-playback-state playlist-read-private playlist-read-collaborative playlist-modify-public playlist-modify-private user-follow-read user-library-modify user-follow-modify streaming user-library-read user-read-birthdate user-read-email user-top-read user-read-recently-played user-read-private'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
