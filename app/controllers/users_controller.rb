@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     loop do
       response = HTTParty.get('https://api.music.apple.com/v1/me/library/artists', {
         query: {limit: 100, offset: offset},
-        headers: {"Authorization" => "Bearer #{params['dev_token']}", "music-user-token" => params['user_token']}
+        headers: {"Authorization" => "Bearer #{params['dev_token']}", "Music-User-Token" => params['user_token']}
       })
       
       next_url = response.parsed_response['next']

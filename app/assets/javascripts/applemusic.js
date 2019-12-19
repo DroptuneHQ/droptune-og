@@ -1,4 +1,3 @@
-apple_music_id= $('#apple-music-authorize');
 var dev_token;
 
 $(document).on("turbolinks:load", function() {
@@ -19,7 +18,7 @@ $(document).on("turbolinks:load", function() {
       dev_token=data['token'];
 
       if (music.isAuthorized) {
-        apple_music_id.show().html('<i class="fab fa-apple"></i> Refresh Apple Music Library').addClass('btn btn-light');
+        $('#apple-music-authorize').show().html('<i class="fab fa-apple"></i> Refresh Apple Music Library').addClass('btn btn-light');
       }
 
       var album = $('.details').data('apple-music-album-id');
@@ -90,13 +89,14 @@ $(document).on("turbolinks:load", function() {
     }
   });
 
-  apple_music_id.on('click', function () {
+
+  $('#apple-music-authorize').on('click', function () {
     var auth = music.authorize();
 
     auth.then(function (value) {
         if (music.isAuthorized) {
-            apple_music_id.text('Scanning Apple Music Library').prop('disabled', true);
-            apple_music_id.addClass('blink');
+            $('#apple-music-authorize').text('Scanning Apple Music Library').prop('disabled', true);
+            $('#apple-music-authorize').addClass('blink');
             importAppleMusic(dev_token, value)
         }
         else {
