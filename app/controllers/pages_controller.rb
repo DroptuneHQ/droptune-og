@@ -13,6 +13,21 @@ class PagesController < ApplicationController
     render :layout => false
   end
 
+  def feed
+    @user = User.find_by_username(params[:screename])
+
+    @latest = Album.includes(:artist)
+      .followed_by_user(@user)
+      .filters_for_user(@user)
+      .types_for_user(@user)
+      .default_order
+      .recent_releases(30).limit(90)
+
+    respond_to do |format|
+      format.rss { render :layout => false }
+    end
+  end
+
   def token
     @token = ENV['apple_token']
 

@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   # get "/sitemap-pages.xml" => "pages#sitemap_pages", :format => "xml", :as => :sitemap_pages
   get 'pages/index'
 
+  get '/:screename.rss', to: 'pages#feed', as: 'feed'
+
   authenticate :user, lambda { |u| u.admin? } do
     mount Sidekiq::Web => '/sidekiq'
   end
