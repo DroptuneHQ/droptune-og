@@ -29,7 +29,7 @@ class PagesController < ApplicationController
   end
 
   def token
-    @token = AppleMusic.token
+    @token = ENV['apple_token']
 
     # Hacky. Force token refresh.
     if current_user.present? and current_user.has_spotify?

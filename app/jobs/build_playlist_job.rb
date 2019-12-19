@@ -44,7 +44,7 @@ class BuildPlaylistJob
     if user.generate_playlist_applemusic.present? && user.apple_music_token.present?
       response = HTTParty.get('https://api.music.apple.com/v1/me/library/playlists', {
         query: {limit: 100 },
-        headers: {"Authorization" => "Bearer #{AppleMusic.token}", "Music-User-Token" => user.apple_music_token}
+        headers: {"Authorization" => "Bearer #{ENV['apple_token']}", "Music-User-Token" => user.apple_music_token}
       })
 
       results = response.parsed_response['data']
@@ -55,7 +55,7 @@ class BuildPlaylistJob
       else
         playlist = HTTParty.post('https://api.music.apple.com/v1/me/library/playlists', {
           body: {attributes: { name: 'Droptune New Music', description: 'New music from Droptune'}}.to_json,
-          headers: {'Content-Type' => 'application/json', "Authorization" => "Bearer #{AppleMusic.token}", "Music-User-Token" => user.apple_music_token}
+          headers: {'Content-Type' => 'application/json', "Authorization" => "Bearer #{ENV['apple_token']}", "Music-User-Token" => user.apple_music_token}
         })
         playlist_id = playlist.parsed_response['data'].first['id']
       end
@@ -67,7 +67,7 @@ class BuildPlaylistJob
 
       playlist_tracks = HTTParty.get("https://api.music.apple.com/v1/me/library/playlists/#{playlist_id}/tracks", {
           query: {limit: 100 },
-          headers: {'Content-Type' => 'application/json', "Authorization" => "Bearer #{AppleMusic.token}", "Music-User-Token" => user.apple_music_token}
+          headers: {'Content-Type' => 'application/json', "Authorization" => "Bearer #{ENV['apple_token']}", "Music-User-Token" => user.apple_music_token}
         })
 
       playlist_tracks_data = playlist_tracks.parsed_response['data']
@@ -76,7 +76,7 @@ class BuildPlaylistJob
       albums.each do |album|
         album_tracks = HTTParty.get("https://api.music.apple.com/v1/catalog/us/albums/#{album.applemusic_id}/tracks", {
           query: {limit: 100 },
-          headers: {"Authorization" => "Bearer #{AppleMusic.token}"}
+          headers: {"Authorization" => "Bearer #{ENV['apple_token']}"}
         })
 
         tracks_response = album_tracks.parsed_response['data']
@@ -89,7 +89,7 @@ class BuildPlaylistJob
           body: {data: tracks_response}.to_json,
           headers: {
             'Content-Type' => 'application/json', 
-            "Authorization" => "Bearer #{AppleMusic.token}", 
+            "Authorization" => "Bearer #{ENV['apple_token']}", 
             "Music-User-Token" => user.apple_music_token
           }
         )
