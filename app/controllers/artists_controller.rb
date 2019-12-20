@@ -16,10 +16,15 @@ class ArtistsController < ApplicationController
 
     @artist = Artist.where(id: params[:id]).first
 
-    @albums = @artist.albums.order(release_date: :desc).types_for_user(@user).where.not(release_date: nil)
-    @music_videos = @artist.music_videos.order(release_date: :desc)
+    if @artist.present?
 
-    respond_with @artist
+      @albums = @artist.albums.order(release_date: :desc).types_for_user(@user).where.not(release_date: nil)
+      @music_videos = @artist.music_videos.order(release_date: :desc)
+
+      respond_with @artist
+    else
+      redirect_to root_path
+    end
   end
 
   def follow
