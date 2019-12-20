@@ -26,7 +26,7 @@ class BuildArtistJob
     BuildArtistSpotifyJob.perform_async(artist_id) if artist.spotify_last_updated_at.blank? || artist.spotify_last_updated_at < days.day.ago
 
     # Apple Music
-    if ENV['apple_token']
+    if AppleMusic.token
       BuildArtistApplemusicJob.perform_async(artist_id) if artist.applemusic_last_updated_at.blank? || artist.applemusic_last_updated_at < days.day.ago
     end
     

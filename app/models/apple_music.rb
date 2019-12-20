@@ -1,6 +1,6 @@
 class AppleMusic
   def self.token
-    private_key = ENV['apple_private_key']
+    private_key = ENV['APPLE_PRIVATE_KEY']
 
     keyId = ENV['apple_app_key']
     teamId = ENV['apple_team_key']
