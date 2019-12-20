@@ -33,6 +33,8 @@
               <ol class="tracks spotify_player"></ol>
             <% elsif current_user.has_apple_music? and @album.applemusic_id %>
               <ol class="tracks apple_music_player"></ol>
+            <% elsif @album.spotify_id %>
+              <iframe src="https://embed.spotify.com/?uri=spotify:album:<%= @album.spotify_id %>" width="100%" height="<% if @album.album_type == 'single' %>200<% else %>450<% end %>" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             <% end %>
         <% end %>
       <% end %>
