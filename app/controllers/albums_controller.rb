@@ -35,6 +35,7 @@ class AlbumsController < ApplicationController
       @videos = @user.music_videos.active.includes(:artist).order(release_date: :desc, artist_id: :desc).first(12)
 
     end
+    
     respond_with(@latest) do |format|
       format.html { @latest }
       format.json { render json: @latest.paginate(:page => params[:page], :per_page => 25) }

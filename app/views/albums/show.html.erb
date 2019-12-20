@@ -17,21 +17,24 @@
       <span><%= @album.album_type %></span>
       <h1><%= @album.name %></h1>
       <h2><%= link_to @album.artist.name, artist_path(@album.artist) %></h2>
-      <p class="released"><% if @album.release_date > Date.today %>Releasing<% else %>Released<% end %> <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
-      <% if current_user and @album.release_date <= Date.today %>
-        <p class="add">
-          <% if current_user.has_spotify? and @album.spotify_id %>
-          <a href="#" class="spotify" data-spotify-add="<%= @album.applemusic_id %>"><i class="fab fa-spotify"></i> <b>Add</b></a>
-          <% end %>
-          <% if current_user.has_apple_music? and @album.applemusic_id %>
-          <a href="#" class="apple" data-apple-music-add="<%= @album.applemusic_id %>"><i class="fab fa-apple"></i> <b>Add</b></a>
-          <% end %>
-        </p>
-          <% if current_user.has_spotify? and @album.spotify_id and !browser.safari? and !browser.device.mobile? %>
-            <ol class="tracks spotify_player"></ol>
-          <% elsif current_user.has_apple_music? and @album.applemusic_id %>
-            <ol class="tracks apple_music_player"></ol>
-          <% end %>
+      <% if @album.release_date.present? %>
+        <p class="released"><% if @album.release_date > Date.today %>Releasing<% else %>Released<% end %> <time datetime="<%= @album.release_date.strftime("%Y-%m-%-e") %>"><%= @album.release_date.strftime("%B %-e, %Y") %></time></p>
+
+        <% if current_user and @album.release_date <= Date.today %>
+          <p class="add">
+            <% if current_user.has_spotify? and @album.spotify_id %>
+            <a href="#" class="spotify" data-spotify-add="<%= @album.applemusic_id %>"><i class="fab fa-spotify"></i> <b>Add</b></a>
+            <% end %>
+            <% if current_user.has_apple_music? and @album.applemusic_id %>
+            <a href="#" class="apple" data-apple-music-add="<%= @album.applemusic_id %>"><i class="fab fa-apple"></i> <b>Add</b></a>
+            <% end %>
+          </p>
+            <% if current_user.has_spotify? and @album.spotify_id and !browser.safari? and !browser.device.mobile? %>
+              <ol class="tracks spotify_player"></ol>
+            <% elsif current_user.has_apple_music? and @album.applemusic_id %>
+              <ol class="tracks apple_music_player"></ol>
+            <% end %>
+        <% end %>
       <% end %>
     </div>
   </div>
