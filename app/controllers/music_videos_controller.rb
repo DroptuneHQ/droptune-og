@@ -15,9 +15,15 @@ class MusicVideosController < ApplicationController
 
     respond_with @videos
   end
-  def show
-    @video = MusicVideo.find(params[:id])
 
+  def show
+    begin
+      @video = MusicVideo.find(params[:id])
+    rescue ActiveRecord::RecordNotFound  
+      redirect_to root_path
+      return
+    end
+    
     respond_with @video
   end
 end
