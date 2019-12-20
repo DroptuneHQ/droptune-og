@@ -70,6 +70,7 @@ gem "httparty"
 gem "jwt"
 gem "intercom-rails"    # customer relationship management and messaging tool
 gem "colorize"          # ability to colorize output strings
+gem 'dotenv-rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.1.0", require: false
