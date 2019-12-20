@@ -73,6 +73,10 @@ class AlbumsController < ApplicationController
   def show
     @album = Album.find(params[:id])
 
-    respond_with @album
+    if @album.present?
+      respond_with @album
+    else
+      redirect_to root_path
+    end
   end
 end
