@@ -71,12 +71,13 @@ class AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id])
-
-    if @album.present?
-      respond_with @album
-    else
+    begin
+      @album = Album.find(params[:id])
+    rescue ActiveRecord::RecordNotFound  
       redirect_to root_path
+      return
     end
+
+    respond_with @album
   end
 end
