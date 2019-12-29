@@ -18,28 +18,36 @@ The codebase is vanilla [Rails](https://rubyonrails.org/), [Sidekiq](https://sid
 
 **1. You'll need to pull down the repo locally.** You can use GitHub's "Clone or download" button to make that happen.
 
-**2. Then, add a config file** to `config/application.yml` with Twitter and Spotify OAuth keys. See below on how to get setup and get keys for Twitter and Spotify.
+**2. Then, add a config file** to `config/application.yml`, using `config/application.yml.sample` as your template.
 
-```yaml
-twitter_key: KEY
-twitter_secret: SECRET
-spotify_key: KEY
-spotify_secret: SECRET
-```
+### Twitter
 
-**Twitter**
-
-For Twitter, you'll need to have a Developer account and create your own app, which is free: https://developer.twitter.com
+Twitter credentials are needed for authentication. You'll need to have a Developer account and create your own app, which is free: https://developer.twitter.com
 
 Make sure to set the Callback URL to `http://localhost:5000/users/auth/twitter/callback`. You will also need to set a Terms of Service URL, a Privacy Policy URL. Then make sure to check "Request email address" on the permissions page.
 
-**Spotify**
+### Spotify
 
 For Spotify, you'll also need a Developer account and create your own app, which is also free: https://developer.spotify.com
 
 Make sure to set the Redirect URI to `http://localhost:5000/users/auth/spotify/callback`
 
 These will get you the necessary keys for the app to fully function.
+
+### Apple Music
+
+Apple doesn't make this easy. Actually setting this up isn't necessary for base functionality, but obviously if you'd like the Apple Music portions of this to work, you'll need to set this up. You need an Apple Developer account (which isn't free).
+
+You'll need 3 bits from your Apple Developer account:
+* [Private key](https://help.apple.com/developer-account/#/devcdfbb56a3?sub=dev0416b9004)
+* [App Key](https://developer.apple.com/account/resources/authkeys/list)
+* [Team Key/ID](https://developer.apple.com/account/#/membership/)
+
+### IMVDb
+
+Not required, but necessary to import music video data. Create a free IMVDb developer account here: https://imvdb.com/developers/api
+
+You'll need to register an app and use the generated `Application Key` for `imvdb_key`.
 
 **3. In the command line, you'll then run the following to set up gems and the database...**
 ```bash

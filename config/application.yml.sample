@@ -1,0 +1,9 @@
+# Details for setting these up can be found in the README: https://github.com/DroptuneHQ/droptune#how-to-start
+twitter_key: KEY
+twitter_secret: KEY
+spotify_key: KEY
+spotify_secret: KEY
+apple_private_key: KEY
+apple_app_key: KEY
+apple_team_key: KEY
+imvdb_key: KEY
