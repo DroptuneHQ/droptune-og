@@ -17,5 +17,7 @@ module Droptune
     # the framework and any gems in your application.
     config.active_job.queue_adapter = :sidekiq
     config.autoload_paths += %W(#{config.root}/app/serializers)
+
+    config.session_store :cookie_store, expire_after: 365.days
   end
 end
