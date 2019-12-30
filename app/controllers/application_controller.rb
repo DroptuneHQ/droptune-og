@@ -10,14 +10,14 @@ private
   end
 
   def mobile_app?
-    request.user_agent.to_s.include?('Droptune - MobileApp')
+    @mobile_app ||= request.user_agent.to_s.include?('Droptune - MobileApp')
   end
 
   def ios_mobile_app?
-    mobile_app? && request.user_agent.to_s.include?('iOS')
+    @ios_mobile_app ||= mobile_app? && request.user_agent.to_s.include?('iOS')
   end
 
-  def mobile_app_version?
-    request.user_agent.to_s.split('version::').last || '0.1 Build(0)'
+  def mobile_app_version
+    @mobile_app_version ||= request.user_agent.to_s.split('version::').last || '0.1 Build(0)'
   end
 end
