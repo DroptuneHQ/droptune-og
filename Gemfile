@@ -45,6 +45,7 @@ gem "omniauth-spotify"
 gem "rspotify"
 gem "feedjira"          # A feed fetching and parsing library
 gem "opengraph_parser"  # library for parsing Open Graph Protocol information from a website
+gem 'musicbrainz'
 
 # Background Processing
 gem "sidekiq"

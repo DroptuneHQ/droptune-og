@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_194805) do
+ActiveRecord::Schema.define(version: 2020_01_02_034408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -55,6 +55,10 @@ ActiveRecord::Schema.define(version: 2019_11_25_194805) do
     t.datetime "imvdb_last_updated_at"
     t.datetime "spotify_last_updated_at"
     t.datetime "applemusic_last_updated_at"
+    t.string "social_twitter"
+    t.string "social_facebook"
+    t.string "social_instagram"
+    t.datetime "musicbrainz_last_updated_at"
     t.index ["applemusic_last_updated_at"], name: "index_artists_on_applemusic_last_updated_at"
     t.index ["imvdb_last_updated_at"], name: "index_artists_on_imvdb_last_updated_at"
     t.index ["name"], name: "index_artists_on_name"

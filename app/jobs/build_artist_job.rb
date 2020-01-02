@@ -35,5 +35,9 @@ class BuildArtistJob
       imvdb_days = days * 2
       BuildArtistImvdbJob.perform_async(artist_id) if artist.imvdb_last_updated_at.blank? || artist.imvdb_last_updated_at < imvdb_days.days.ago
     end
+
+    # MusicBrainz
+    musicbrainz_days = days * 90
+    BuildArtistMusicbrainzJob.perform_async(artist_id) if artist.musicbrainz_last_updated_at.blank? || artist.musicbrainz_last_updated_at < musicbrainz_days.days.ago
   end
 end
