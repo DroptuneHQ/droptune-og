@@ -5,8 +5,8 @@ class BuildArtistMusicbrainzJob
   sidekiq_options :queue => :musicbrainz
 
   sidekiq_throttle({
-    :concurrency => { :limit => 20 },
-    :threshold => { :limit => 1_000, :period => 1.minute }
+    :concurrency => { :limit => 5 },
+    :threshold => { :limit => 1, :period => 1.second }
   })
 
   def perform(artist_id)
