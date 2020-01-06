@@ -3,16 +3,16 @@
   <div class="about">
     <h1>Settings</h1>
     <% if @user == current_user %>
-      <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></p>
+      <p><%= link_to 'Sign out', destroy_user_session_path, method: :delete, remote: true %></p>
     <% end %>
   </div>
 </div>
 
 <div class="form-group">
   <h2>Preferences</h2>
-  
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>   
-    <%= devise_error_messages! %>  
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= devise_error_messages! %>
 
     <div class="form-line">
       <%= f.check_box :show_compilations, class: 'form-check-input' %>
@@ -35,17 +35,17 @@
       <%= f.label :weekly_report, 'Receive weekly new music email', class: 'form-check-label' %>
     </div>
 
-    <%= f.submit "Update", class: 'btn' %>  
-  
+    <%= f.submit "Update", class: 'btn' %>
+
   <% end %>
 </div>
 
 <div class="form-group">
   <h2>Connections</h2>
   <% if current_user.connections.spotify.present? %>
-    <%= link_to raw('<i class="fab fa-spotify"></i> Re-connect Spotify'), omniauth_authorize_path('user', 'spotify'), class: 'btn btn-light' %> 
+    <%= link_to raw('<i class="fab fa-spotify"></i> Re-connect Spotify'), omniauth_authorize_path('user', 'spotify'), class: 'btn btn-light' %>
   <% else %>
-    <%= link_to raw('<i class="fab fa-spotify"></i> Connect Spotify'), omniauth_authorize_path('user', 'spotify'), class: 'btn' %> 
+    <%= link_to raw('<i class="fab fa-spotify"></i> Connect Spotify'), omniauth_authorize_path('user', 'spotify'), class: 'btn' %>
   <% end %>
 
   <button id="apple-music-authorize" class="btn"><i class="fab fa-apple"></i> Connect Apple Music</button>
