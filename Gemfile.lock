@@ -364,8 +364,6 @@ GEM
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
-    sentry-raven (2.12.3)
-      faraday (>= 0.7.6, < 1.0)
     sidekiq (6.0.3)
       connection_pool (>= 2.2.2)
       rack (>= 2.0.0)
@@ -485,7 +483,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   scout_apm
   selenium-webdriver
-  sentry-raven
   sidekiq
   sidekiq-cron
   sidekiq-failures

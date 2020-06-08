@@ -57,7 +57,6 @@ gem "sidekiq-failures"
 # Stats/Error Reporting
 gem "barnes"            # report GC usage data to statsd
 gem "scout_apm"         # Monitors Ruby apps and reports detailed metrics on performance to Scout.
-gem "sentry-raven"      # report errors to Sentry
 
 # Caching
 gem "redis"
