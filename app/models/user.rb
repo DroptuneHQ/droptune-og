@@ -119,7 +119,7 @@ class User < ApplicationRecord
 
   def avatar_image
     if username
-      "https://avatars.io/twitter/#{username}"
+      "https://unavatar.io/twitter/#{username}"
     else
       fauxvatar
     end
